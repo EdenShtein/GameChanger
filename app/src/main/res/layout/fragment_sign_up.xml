@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B1916"
-    tools:context=".SignUp">
+    tools:context=".SignUpFragment">
 
     <TextView
         android:id="@+id/signup_title_text"
@@ -37,10 +37,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="60dp"
         android:backgroundTint="#FF5722"
         android:ems="10"
+        android:hint="Enter your Email"
         android:inputType="textEmailAddress"
         android:shadowColor="@color/black"
         android:textColor="#FF9800"
@@ -66,11 +67,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="60dp"
         android:backgroundTint="#FF5722"
         android:ems="10"
+        android:hint="Enter your Password"
         android:inputType="textPassword"
+        android:textColorHint="#FF9800"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup_password_text" />
@@ -118,7 +121,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_continue_btn" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/signin_password_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
