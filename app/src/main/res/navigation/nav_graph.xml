@@ -24,4 +24,9 @@
         android:name="com.example.gamechanger.EditUserFragment"
         android:label="fragment_edit_user"
         tools:layout="@layout/fragment_edit_user" />
+    <fragment
+        android:id="@+id/mainFeedFragment"
+        android:name="com.example.gamechanger.MainFeedFragment"
+        android:label="fragment_main_feed"
+        tools:layout="@layout/fragment_main_feed" />
 </navigation>
