@@ -12,7 +12,7 @@ import android.widget.Button;
 
 public class LoginFragment extends Fragment {
     Button SignUpBtn;
-
+    Button signInBtn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -25,6 +25,10 @@ public class LoginFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_login_to_signUp);
             }
         });
+
+        signInBtn = view.findViewById(R.id.signin_login_btn);
+        signInBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_signin_to_mainFeed));
+
         return view;
     }
 }
