@@ -12,12 +12,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.gamechanger.model.FireBaseModel;
+
 
 public class SignUpFragment extends Fragment {
     TextView signinLink;
     EditText email;
     EditText password;
     Button signup;
+    FireBaseModel firebase;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -28,6 +31,12 @@ public class SignUpFragment extends Fragment {
         password=view.findViewById(R.id.signup_password_input);
         signup=view.findViewById(R.id.signup_continue_btn);
         signinLink= view.findViewById(R.id.signin_link);
+
+
+        String useremail=email.getText().toString();
+        String userpassword=password.getText().toString();
+
+        //firebase.signUpFirebase(useremail,userpassword);
 
 
         signinLink.setOnClickListener(new View.OnClickListener() {
