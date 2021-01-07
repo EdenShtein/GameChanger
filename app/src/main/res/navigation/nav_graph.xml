@@ -18,7 +18,11 @@
         android:id="@+id/signupFragment"
         android:name="com.example.gamechanger.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signup_to_signin"
+            app:destination="@id/signinFragment" />
+    </fragment>
     <fragment
         android:id="@+id/edituserfragment"
         android:name="com.example.gamechanger.EditUserFragment"

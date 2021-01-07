@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/signin_email_text" />
 
     <TextView
-        android:id="@+id/signin_password_text"
+        android:id="@+id/signin_link"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
@@ -72,7 +72,7 @@
         android:textColor="#FF9800"
         android:textColorHint="#FF9800"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin_password_text" />
+        app:layout_constraintTop_toBottomOf="@+id/signin_link" />
 
     <Button
         android:id="@+id/signin_login_btn"
