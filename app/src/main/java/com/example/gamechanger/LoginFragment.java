@@ -11,13 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 public class LoginFragment extends Fragment {
+    Button SignUpBtn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        Button SignUpBtn = view.findViewById(R.id.signin_signup_btn);
+        SignUpBtn = view.findViewById(R.id.signin_signup_btn);
         SignUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

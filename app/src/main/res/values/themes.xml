@@ -13,4 +13,13 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme_Splash" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#dd370f</item>
+        <item name="colorPrimaryDark">#dd370f</item>
+    </style>
 </resources>
