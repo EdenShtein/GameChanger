@@ -3,20 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/login">
+    app:startDestination="@id/signinFragment">
 
     <fragment
-        android:id="@+id/login"
+        android:id="@+id/signinFragment"
         android:name="com.example.gamechanger.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_login_to_signUp"
-            app:destination="@id/signUp" />
+            app:destination="@id/signupFragment" />
     </fragment>
     <fragment
-        android:id="@+id/signUp"
+        android:id="@+id/signupFragment"
         android:name="com.example.gamechanger.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
+    <fragment
+        android:id="@+id/edituserfragment"
+        android:name="com.example.gamechanger.EditUserFragment"
+        android:label="fragment_edit_user"
+        tools:layout="@layout/fragment_edit_user" />
 </navigation>

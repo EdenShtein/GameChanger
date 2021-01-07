@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/signin_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#1B1916"
@@ -12,13 +13,12 @@
         android:layout_width="153dp"
         android:layout_height="58dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="154dp"
         android:text="Sign In"
         android:textColor="#FF9800"
         android:textColorHint="#FF9800"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/signin_image" />
 
     <TextView
         android:id="@+id/signin_email_text"
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:text="Password"
         android:textColor="#FF9800"
         android:textSize="24sp"
@@ -125,5 +125,15 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signin_title_text" />
+
+    <ImageView
+        android:id="@+id/signin_image"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:rotationX="21"
+        android:src="@drawable/gamechangerlogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
