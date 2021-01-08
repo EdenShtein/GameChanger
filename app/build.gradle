@@ -30,6 +30,8 @@ android {
 }
 
 dependencies {
+    def room_version = "2.2.0"
+    def lifecycle_version = "2.1.0"
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.1.0'
@@ -43,4 +45,17 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //room database
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    //ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+
+    //Cardview
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    //RecyclerView
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }

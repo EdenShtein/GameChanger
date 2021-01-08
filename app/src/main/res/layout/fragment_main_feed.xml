@@ -37,10 +37,11 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:background="#FFFFFF"
+        android:background="#1B1916"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mainfeed_title_text" />
+        app:layout_constraintTop_toBottomOf="@id/mainfeed_title_text"
+        tools:listitem="@layout/mainfeed_list_row" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
