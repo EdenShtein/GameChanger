@@ -35,5 +35,19 @@
         android:id="@+id/mainFeedFragment"
         android:name="com.example.gamechanger.MainFeedFragment"
         android:label="fragment_main_feed"
-        tools:layout="@layout/fragment_main_feed" />
+        tools:layout="@layout/fragment_main_feed" >
+        <action
+            android:id="@+id/action_mainFeed_to_addGame"
+            app:destination="@id/addGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addGameFragment"
+        android:name="com.example.gamechanger.AddGameFragment"
+        android:label="fragment_add_game"
+        tools:layout="@layout/fragment_add_game" >
+        <action
+            android:id="@+id/action_addGameFragment_pop"
+            app:popUpTo="@id/mainFeedFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
 </navigation>

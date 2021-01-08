@@ -44,4 +44,19 @@
         app:layout_constraintTop_toBottomOf="@id/mainfeed_title_text"
         tools:listitem="@layout/mainfeed_list_row" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/mainfeed_addgame_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#CD3405"
+        android:clickable="true"
+        android:src="@android:drawable/ic_input_add"
+        app:fabSize="auto"
+        app:layout_constraintBottom_toTopOf="@+id/mainfeed_gameslist_rv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxImageSize="36dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
