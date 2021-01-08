@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gamechanger.model.Game;
+import com.example.gamechanger.model.Model;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +26,8 @@ public class MainFeedFragment extends Fragment {
 
     RecyclerView gamesList;
     List<Game> data;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -36,41 +39,58 @@ public class MainFeedFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         gamesList.setLayoutManager(layoutManager);
 
+        data = Model.instance.getAllGames();
+
+        MyAdapter adapter = new MyAdapter();
+        gamesList.setAdapter(adapter);
+
+        return view;
+    }
 
         class MyViewHolder extends RecyclerView.ViewHolder{
             TextView gameText;
             TextView gameSubText;
             ImageView gameImage;
+            int position;
 
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                gameImage = view.findViewById(R.id.listrow_image_v);
-                gameText = view.findViewById(R.id.listrow_text_v);
-                gameSubText = view.findViewById(R.id.listrow_subtext_v);
+                gameImage = itemView.findViewById(R.id.listrow_image_v);
+                gameText = itemView.findViewById(R.id.listrow_text_v);
+                gameSubText = itemView.findViewById(R.id.listrow_subtext_v);
+            }
+
+            public void bindData(Game game, int position){
+                gameText.setText(game.name);
+                gameSubText.setText(game.price);
+                this.position = position;
             }
         }
 
-        /*class MyAdapter extends RecyclerView.Adapter<>{
+        class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
             @NonNull
             @Override
-            public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return null;
+            public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = getLayoutInflater().inflate(R.layout.mainfeed_list_row, null);
+                MyViewHolder holder = new MyViewHolder(view);
+                return holder;
             }
 
             @Override
-            public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+            public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+                Game game = data.get(position);
+                holder.bindData(game,position);
             }
 
             @Override
             public int getItemCount() {
-                return 0;
+                return data.size();
             }
-        }*/
+        }
 
-        return view;
-    }
+
+
 
 
 }
