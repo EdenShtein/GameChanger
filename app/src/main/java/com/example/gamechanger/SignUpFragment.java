@@ -1,7 +1,9 @@
 package com.example.gamechanger;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -20,7 +22,14 @@ public class SignUpFragment extends Fragment {
     EditText email;
     EditText password;
     Button signup;
-    FireBaseModel firebase;
+
+    private OnComplete callback;
+
+
+    public interface OnComplete{
+        void onSignUpComplete(String user, String password);
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -33,18 +42,17 @@ public class SignUpFragment extends Fragment {
         signinLink= view.findViewById(R.id.signin_link);
 
 
-        String useremail=email.getText().toString();
-        String userpassword=password.getText().toString();
-        FireBaseModel f =new FireBaseModel();
+
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                f.signUpToFireBase(useremail,userpassword);
+                String useremail=email.getText().toString();
+                String userpassword=password.getText().toString();
+                callback.onSignUpComplete(useremail, userpassword);
                 Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
             }
         });
-
-
         signinLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,5 +62,19 @@ public class SignUpFragment extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        callback = (OnComplete)context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(callback != null){
+            callback = null;
+        }
     }
 }
