@@ -35,8 +35,14 @@ public class SignUpFragment extends Fragment {
 
         String useremail=email.getText().toString();
         String userpassword=password.getText().toString();
-
-        //firebase.signUpFirebase(useremail,userpassword);
+        FireBaseModel f =new FireBaseModel();
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                f.signUpToFireBase(useremail,userpassword);
+                Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
+            }
+        });
 
 
         signinLink.setOnClickListener(new View.OnClickListener() {
