@@ -1,18 +1,34 @@
 package com.example.gamechanger;
 
+import android.content.Context;
+import android.content.SyncStatusObserver;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.example.gamechanger.model.Model;
 
 public class LoginFragment extends Fragment {
     Button SignUpBtn;
     Button signInBtn;
+    EditText email;
+    EditText password;
+    private OnComplete callback;
+
+
+    public interface OnComplete{
+        void onSignInComplete(String user, String password, Model.LoginListener listener);
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,8 +43,42 @@ public class LoginFragment extends Fragment {
         });
 
         signInBtn = view.findViewById(R.id.signin_login_btn);
-        signInBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_signin_to_mainFeed));
+        email=view.findViewById(R.id.signin_email_input);
+        password=view.findViewById(R.id.signin_password_input);
+        signInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String useremail=email.getText().toString();
+                String userpassword=password.getText().toString();
+                callback.onSignInComplete(useremail, userpassword, new Model.LoginListener() {
+                    @Override
+                    public void onComplete(boolean result) {
+                        if (result){
+                            Navigation.findNavController(view).navigate(R.id.action_signin_to_mainFeed);
+                        }else{
+                            Toast.makeText(getActivity(), "Failed to login", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+            }
+        });
 
         return view;
+    }
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        callback = (OnComplete)context;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if(callback != null){
+            callback = null;
+        }
     }
 }

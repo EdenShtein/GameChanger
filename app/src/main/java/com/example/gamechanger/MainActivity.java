@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.gamechanger.model.Model;
 
-public class MainActivity extends AppCompatActivity implements SignUpFragment.OnComplete {
+public class MainActivity extends AppCompatActivity implements SignUpFragment.OnComplete,LoginFragment.OnComplete {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +23,10 @@ public class MainActivity extends AppCompatActivity implements SignUpFragment.On
     @Override
     public void onSignUpComplete(String user, String password) {
         Model.instance.signUpFB(user, password);
+    }
+
+    @Override
+    public void onSignInComplete(String user, String password, Model.LoginListener listener) {
+        Model.instance.logInFB(user, password, listener);
     }
 }

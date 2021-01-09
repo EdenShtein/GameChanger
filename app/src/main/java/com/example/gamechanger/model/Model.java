@@ -8,13 +8,17 @@ public class Model {
     public final static Model instance = new Model();
     FireBaseModel fireBase = new FireBaseModel();
 
-
-    private Model(){
-
-    }
     public void signUpFB(String email,String password)
     {
         fireBase.signUpToFireBase(email,password,mActivity);
+    }
+
+    public interface LoginListener{
+        void onComplete(boolean result);
+    }
+    public void logInFB(String email,String password, LoginListener listener)
+    {
+        fireBase.logInToFireBase(email,password,mActivity, listener);
     }
 
     public void setActivity(Activity activity){
