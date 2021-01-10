@@ -56,7 +56,7 @@ public class LoginFragment extends Fragment {
                 String useremail = email.getText().toString();
                 String userpassword = password.getText().toString();
                 if (useremail.equals("") && userpassword.equals("")) {
-                    Toast.makeText(getActivity(),"You must enter Email and Password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Enter email and password",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

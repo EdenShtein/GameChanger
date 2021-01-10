@@ -1,5 +1,6 @@
 package com.example.gamechanger;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -96,6 +97,17 @@ public class MainFeedFragment extends Fragment {
                 Toast.makeText(getActivity(), "Game has been deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(gamesList_rv);
+
+        gamesAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Game game, View v) {
+                String title = game.getName();
+                String price = game.getPrice();
+                int Id = game.getId();
+                MainFeedFragmentDirections.ActionMainFeedToEditGame action = MainFeedFragmentDirections.actionMainFeedToEditGame(title, price, Id);
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
 
         return view;
     }

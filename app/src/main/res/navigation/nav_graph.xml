@@ -77,5 +77,18 @@
         android:id="@+id/editGameFragment"
         android:name="com.example.gamechanger.EditGameFragment"
         android:label="fragment_edit_game"
-        tools:layout="@layout/fragment_edit_game" />
+        tools:layout="@layout/fragment_edit_game" >
+        <action
+            android:id="@+id/action_editGame_to_mainFeed"
+            app:destination="@id/mainFeedFragment" />
+        <argument
+            android:name="editGameTitle"
+            app:argType="string" />
+        <argument
+            android:name="editGamePrice"
+            app:argType="string" />
+        <argument
+            android:name="editGameId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

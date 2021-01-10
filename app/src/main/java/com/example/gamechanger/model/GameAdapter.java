@@ -11,20 +11,21 @@ import com.example.gamechanger.R;
 import java.util.LinkedList;
 import java.util.List;
 
-public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> {
+public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
 
     private List<Game> gamesData = new LinkedList<Game>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public GameHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mainfeed_list_row, parent, false);
-        MyViewHolder holder = new MyViewHolder(view);
+        GameHolder holder = new GameHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull GameHolder holder, int position) {
         Game currentGame = gamesData.get(position);
         holder.bindData(currentGame,position);
     }
@@ -32,6 +33,14 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
     @Override
     public int getItemCount() {
         return gamesData.size();
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(Game game, View view);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.listener = listener;
     }
 
     public Game getGames(int position)
@@ -45,18 +54,30 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
         notifyDataSetChanged();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    class GameHolder extends RecyclerView.ViewHolder{
         TextView gameText;
         TextView gameSubText;
         ImageView gameImage;
         int position;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public GameHolder(@NonNull View itemView) {
             super(itemView);
             gameImage = itemView.findViewById(R.id.listrow_image_v);
             gameText = itemView.findViewById(R.id.listrow_text_v);
             gameSubText = itemView.findViewById(R.id.listrow_subtext_v);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (listener != null && position != RecyclerView.NO_POSITION)
+                    {
+                        listener.onItemClick(gamesData.get(position), v);
+                    }
+                }
+            });
         }
+
 
         public void bindData(Game game, int position){
             gameText.setText(game.name);

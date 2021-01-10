@@ -9,7 +9,7 @@
     tools:context=".EditGameFragment" >
 
     <EditText
-        android:id="@+id/addgame_price_input3"
+        android:id="@+id/editgame_price_input"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginStart="16dp"
@@ -23,10 +23,10 @@
         android:textColorHint="#FF9800"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addgame_title_input3" />
+        app:layout_constraintTop_toBottomOf="@+id/editgame_title_input" />
 
     <EditText
-        android:id="@+id/addgame_title_input3"
+        android:id="@+id/editgame_title_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -54,7 +54,7 @@
         android:textColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/editGame_edit_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addgame_price_input3" />
+        app:layout_constraintTop_toBottomOf="@+id/editgame_price_input" />
 
     <Button
         android:id="@+id/editGame_edit_btn"
@@ -68,5 +68,5 @@
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editGame_cancel_btn"
-        app:layout_constraintTop_toBottomOf="@+id/addgame_price_input3" />
+        app:layout_constraintTop_toBottomOf="@+id/editgame_price_input" />
 </androidx.constraintlayout.widget.ConstraintLayout>
