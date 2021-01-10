@@ -69,7 +69,7 @@ public class LoginFragment extends Fragment {
         forgotPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Navigation.findNavController(view).navigate((R.id.action_signin_to_forgetPass));
             }
         });
 
