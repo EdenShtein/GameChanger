@@ -62,7 +62,13 @@ public class FireBaseModel {
                 });
     }
 
+    public FirebaseUser getUser(){
+        return mAuth.getCurrentUser();
+    }
 
+    public void signOutFromFireBase (){
+        mAuth.signOut();
+    }
 
 
 }

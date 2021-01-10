@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_signin_to_mainFeed"
             app:destination="@id/mainFeedFragment" />
+        <action
+            android:id="@+id/action_signin_to_forgetPass"
+            app:destination="@id/forgetPassFragment" />
     </fragment>
     <fragment
         android:id="@+id/signupFragment"
@@ -25,6 +28,9 @@
         <action
             android:id="@+id/action_signup_to_signin"
             app:destination="@id/signinFragment" />
+        <action
+            android:id="@+id/action_signupFragment_self"
+            app:destination="@id/signupFragment" />
     </fragment>
     <fragment
         android:id="@+id/edituserfragment"
@@ -39,6 +45,9 @@
         <action
             android:id="@+id/action_mainFeed_to_addGame"
             app:destination="@id/addGameFragment" />
+        <action
+            android:id="@+id/action_mainFeed_to_signin"
+            app:destination="@id/signinFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGameFragment"
@@ -55,4 +64,9 @@
         android:name="com.example.gamechanger.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/forgetPassFragment"
+        android:name="com.example.gamechanger.ForgetPassFragment"
+        android:label="fragment_forget_pass"
+        tools:layout="@layout/fragment_forget_pass" />
 </navigation>

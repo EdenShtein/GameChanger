@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.Display;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Toast;
 
 import com.example.gamechanger.model.Model;
@@ -29,4 +31,12 @@ public class MainActivity extends AppCompatActivity implements SignUpFragment.On
     public void onSignInComplete(String user, String password, Model.LoginListener listener) {
         Model.instance.logInFB(user, password, listener);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater=getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
 }

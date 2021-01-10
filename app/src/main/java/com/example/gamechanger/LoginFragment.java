@@ -21,6 +21,7 @@ import com.example.gamechanger.model.Model;
 public class LoginFragment extends Fragment {
     Button SignUpBtn;
     Button signInBtn;
+    Button forgotPass;
     EditText email;
     EditText password;
     private OnComplete callback;
@@ -61,6 +62,14 @@ public class LoginFragment extends Fragment {
                     }
                 });
 
+            }
+        });
+
+        forgotPass=view.findViewById(R.id.signin_forgot_btn);
+        forgotPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
             }
         });
 
