@@ -27,7 +27,7 @@ public class LoginFragment extends Fragment {
     private OnComplete callback;
 
     public interface OnComplete{
-        void onSignInComplete(String user, String password, Model.LoginListener listener);
+        void onSignInComplete(String user, String password, Model.SuccessListener listener);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,19 +48,24 @@ public class LoginFragment extends Fragment {
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String useremail=email.getText().toString();
-                String userpassword=password.getText().toString();
-                callback.onSignInComplete(useremail, userpassword, new Model.LoginListener() {
-                    @Override
-                    public void onComplete(boolean result) {
-                        if (result){
-                            Navigation.findNavController(view).navigate(R.id.action_signin_to_mainFeed);
-                        }else{
-                            Toast.makeText(getActivity(), "Failed to login", Toast.LENGTH_SHORT).show();
+                String useremail = email.getText().toString();
+                String userpassword = password.getText().toString();
+                if (useremail.equals("") && userpassword.equals("")) {
+                    Toast.makeText(getActivity(),"You must enter Email and Password",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    callback.onSignInComplete(useremail, userpassword, new Model.SuccessListener() {
+                        @Override
+                        public void onComplete(boolean result) {
+                            if (result) {
+                                Navigation.findNavController(view).navigate(R.id.action_signin_to_mainFeed);
+                            } else {
+                                Toast.makeText(getActivity(), "Failed to login", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
-
+                    });
+                }
             }
         });
 

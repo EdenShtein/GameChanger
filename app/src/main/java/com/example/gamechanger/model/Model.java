@@ -6,7 +6,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class Model {
 
-    public interface LoginListener{
+    public interface SuccessListener{
         void onComplete(boolean result);
     }
 
@@ -22,9 +22,13 @@ public class Model {
 
 
 
-    public void logInFB(String email,String password, LoginListener listener)
+    public void logInFB(String email,String password, SuccessListener listener)
     {
         fireBase.logInToFireBase(email,password,mActivity, listener);
+    }
+    public void resetPass(String email, SuccessListener listener)
+    {
+        fireBase.forgotPassword(email,mActivity, listener);
     }
 
     public void setActivity(Activity activity){

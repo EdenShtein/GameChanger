@@ -65,5 +65,9 @@
         android:id="@+id/forgetPassFragment"
         android:name="com.example.gamechanger.ForgetPassFragment"
         android:label="fragment_forget_pass"
-        tools:layout="@layout/fragment_forget_pass" />
+        tools:layout="@layout/fragment_forget_pass" >
+        <action
+            android:id="@+id/action_forgetPass_to_signin"
+            app:destination="@id/signinFragment" />
+    </fragment>
 </navigation>

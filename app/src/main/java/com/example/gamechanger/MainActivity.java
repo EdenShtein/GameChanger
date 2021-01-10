@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.example.gamechanger.model.Model;
 
-public class MainActivity extends AppCompatActivity implements SignUpFragment.OnComplete,LoginFragment.OnComplete {
+public class MainActivity extends AppCompatActivity implements SignUpFragment.OnComplete,LoginFragment.OnComplete, ForgetPassFragment.OnComplete {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,15 @@ public class MainActivity extends AppCompatActivity implements SignUpFragment.On
     }
 
     @Override
-    public void onSignInComplete(String user, String password, Model.LoginListener listener) {
+    public void onSignInComplete(String user, String password, Model.SuccessListener listener) {
         Model.instance.logInFB(user, password, listener);
+    }
+
+
+
+    @Override
+    public void onResetComplete(String email, Model.SuccessListener listener) {
+        Model.instance.resetPass(email, listener);
     }
 
     @Override
