@@ -26,7 +26,6 @@ public class LoginFragment extends Fragment {
     EditText password;
     private OnComplete callback;
 
-
     public interface OnComplete{
         void onSignInComplete(String user, String password, Model.LoginListener listener);
     }
@@ -44,8 +43,8 @@ public class LoginFragment extends Fragment {
         });
 
         signInBtn = view.findViewById(R.id.signin_login_btn);
-        email=view.findViewById(R.id.signin_email_input);
-        password=view.findViewById(R.id.signin_password_input);
+        email = view.findViewById(R.id.signin_email_input);
+        password = view.findViewById(R.id.signin_password_input);
         signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
