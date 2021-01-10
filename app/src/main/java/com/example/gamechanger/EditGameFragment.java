@@ -55,7 +55,7 @@ public class EditGameFragment extends Fragment {
                 String price = gamePrice.getText().toString();
                 EditGameFragmentDirections.ActionEditGameToMainFeed action = EditGameFragmentDirections.actionEditGameToMainFeed(title, price);
                 MainFeedFragment mainFeedFragment = new MainFeedFragment();
-                mainFeedFragment.setMainFeedFlag(1);
+                mainFeedFragment.setMainFeedFlag(2);
                 Navigation.findNavController(view).navigate(action);
             }
         });

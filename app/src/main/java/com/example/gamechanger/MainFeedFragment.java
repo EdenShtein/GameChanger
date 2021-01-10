@@ -81,8 +81,11 @@ public class MainFeedFragment extends Fragment {
             }
         });
 
-        if (getMainFeedFlag() != 0) {
+        if (getMainFeedFlag() == 1) {
             checkForNewGame(view);
+        }
+        if (getMainFeedFlag() == 2) {
+            checkForNewUpdate(view);
         }
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -117,6 +120,15 @@ public class MainFeedFragment extends Fragment {
         gamePrice = MainFeedFragmentArgs.fromBundle(getArguments()).getGamePrice();
         Game game = new Game(gameTitle,gamePrice);
         gameViewModel.insert(game);
+
+        return;
+    }
+
+    private void checkForNewUpdate(View view) {
+        gameTitle = MainFeedFragmentArgs.fromBundle(getArguments()).getGameTitle();
+        gamePrice = MainFeedFragmentArgs.fromBundle(getArguments()).getGamePrice();
+        Game game = new Game(gameTitle,gamePrice);
+        gameViewModel.update(game);
 
         return;
     }
