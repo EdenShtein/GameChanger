@@ -51,6 +51,9 @@
         <argument
             android:name="gamePrice"
             app:argType="string" />
+        <action
+            android:id="@+id/action_mainFeed_to_editGame"
+            app:destination="@id/editGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGameFragment"
@@ -70,4 +73,9 @@
             android:id="@+id/action_forgetPass_to_signin"
             app:destination="@id/signinFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/editGameFragment"
+        android:name="com.example.gamechanger.EditGameFragment"
+        android:label="fragment_edit_game"
+        tools:layout="@layout/fragment_edit_game" />
 </navigation>
