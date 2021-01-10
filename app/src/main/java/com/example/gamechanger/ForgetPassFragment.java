@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -33,6 +34,8 @@ public class ForgetPassFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_forget_pass, container, false);
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("GameChanger");
 
         resetBtn = view.findViewById(R.id.forgetpass_reset_btn);
         email = view.findViewById(R.id.forgetpass_email_input);

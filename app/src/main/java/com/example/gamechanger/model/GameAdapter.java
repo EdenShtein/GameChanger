@@ -34,6 +34,11 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
         return gamesData.size();
     }
 
+    public Game getGames(int position)
+    {
+        return gamesData.get(position);
+    }
+
     public void setGamesData(List<Game> games)
     {
         this.gamesData = games;
@@ -58,5 +63,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.MyViewHolder> 
             gameSubText.setText(game.price);
             this.position = position;
         }
+
     }
 }

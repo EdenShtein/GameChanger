@@ -3,10 +3,12 @@ package com.example.gamechanger;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.gamechanger.model.Game;
 import com.example.gamechanger.model.GameAdapter;
@@ -30,10 +33,19 @@ import java.util.List;
 public class MainFeedFragment extends Fragment {
 
     private GameViewModel gameViewModel;
-    RecyclerView gamesList;
+    RecyclerView gamesList_rv;
     FloatingActionButton addGamebtn;
+    String gameTitle;
+    String gamePrice;
+    static int flag =0;
     //private View view;
 
+    public int getMainFeedFlag(){
+        return flag;
+    }
+    public int setMainFeedFlag(int flag){
+        return this.flag = flag;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,13 +53,15 @@ public class MainFeedFragment extends Fragment {
 
         View view =  inflater.inflate(R.layout.fragment_main_feed, container, false);
 
-        gamesList = view.findViewById(R.id.mainfeed_gameslist_rv);
-        gamesList.setHasFixedSize(true);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Main Feed");
+
+        gamesList_rv = view.findViewById(R.id.mainfeed_gameslist_rv);
+        gamesList_rv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-        gamesList.setLayoutManager(layoutManager);
+        gamesList_rv.setLayoutManager(layoutManager);
 
         final GameAdapter gamesAdapter = new GameAdapter();
-        gamesList.setAdapter(gamesAdapter);
+        gamesList_rv.setAdapter(gamesAdapter);
 
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
         gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
@@ -65,8 +79,36 @@ public class MainFeedFragment extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_addGame);
             }
         });
+
+        if (getMainFeedFlag() != 0) {
+            checkForNewGame(view);
+        }
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                gameViewModel.delete(gamesAdapter.getGames(viewHolder.getAdapterPosition()));
+                Toast.makeText(getActivity(), "Game has been deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(gamesList_rv);
+
         return view;
     }
+
+    private void checkForNewGame(View view) {
+        gameTitle = MainFeedFragmentArgs.fromBundle(getArguments()).getGameTitle();
+        gamePrice = MainFeedFragmentArgs.fromBundle(getArguments()).getGamePrice();
+        Game game = new Game(gameTitle,gamePrice);
+        gameViewModel.insert(game);
+
+        return;
+    }
+
 
 
 /*

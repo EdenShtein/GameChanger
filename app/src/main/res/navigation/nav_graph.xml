@@ -45,6 +45,12 @@
         <action
             android:id="@+id/action_mainFeed_to_signin"
             app:destination="@id/signinFragment" />
+        <argument
+            android:name="gameTitle"
+            app:argType="string" />
+        <argument
+            android:name="gamePrice"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addGameFragment"
@@ -52,15 +58,9 @@
         android:label="fragment_add_game"
         tools:layout="@layout/fragment_add_game" >
         <action
-            android:id="@+id/action_addGameFragment_pop"
-            app:popUpTo="@id/mainFeedFragment"
-            app:popUpToInclusive="false" />
+            android:id="@+id/action_addGame_to_mainFeed"
+            app:destination="@id/mainFeedFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.example.gamechanger.MapsFragment"
-        android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
     <fragment
         android:id="@+id/forgetPassFragment"
         android:name="com.example.gamechanger.ForgetPassFragment"

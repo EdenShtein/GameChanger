@@ -5,6 +5,7 @@ import android.content.SyncStatusObserver;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -35,6 +36,9 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("GameChanger");
+
         SignUpBtn = view.findViewById(R.id.signin_signup_btn);
         SignUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
