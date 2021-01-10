@@ -36,8 +36,7 @@ public class Model {
     }
 
     public Boolean isUserLogIn(){
-        if(fireBase.getUser()!=null) {return true;}
-        else {return false;}
+        return fireBase.isUserExist();
 
     }
 

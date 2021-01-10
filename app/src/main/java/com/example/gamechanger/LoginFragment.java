@@ -26,6 +26,7 @@ public class LoginFragment extends Fragment {
     EditText password;
     private OnComplete callback;
 
+
     public interface OnComplete{
         void onSignInComplete(String user, String password, Model.SuccessListener listener);
     }
@@ -94,4 +95,5 @@ public class LoginFragment extends Fragment {
             callback = null;
         }
     }
+
 }

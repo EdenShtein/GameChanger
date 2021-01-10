@@ -34,6 +34,7 @@ public class MainFeedFragment extends Fragment {
     FloatingActionButton addGamebtn;
     //private View view;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -68,16 +69,16 @@ public class MainFeedFragment extends Fragment {
     }
 
 
-    /*
+/*
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId())
         {
             case R.id.signoutmenu:
-                //Model.instance.signOutFB();
-                Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_signin);
+                Model.instance.signOutFB();
+                Navigation.findNavController(this.view).navigate(R.id.action_mainFeed_to_signin);
 
         }
         return true;
     }
-    */
+*/
 }

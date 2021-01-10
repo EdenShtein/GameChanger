@@ -1,9 +1,11 @@
 package com.example.gamechanger;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.Menu;
@@ -41,9 +43,9 @@ public class MainActivity extends AppCompatActivity implements SignUpFragment.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater=getMenuInflater();
-        menuInflater.inflate(R.menu.main_menu,menu);
-        return super.onCreateOptionsMenu(menu);
+            MenuInflater menuInflater = getMenuInflater();
+            menuInflater.inflate(R.menu.main_menu, menu);
+            return super.onCreateOptionsMenu(menu);
     }
 
 }

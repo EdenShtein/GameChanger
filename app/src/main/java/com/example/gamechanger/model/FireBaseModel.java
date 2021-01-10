@@ -62,8 +62,11 @@ public class FireBaseModel {
                 });
     }
 
-    public FirebaseUser getUser(){
-        return mAuth.getCurrentUser();
+    public Boolean isUserExist(){
+        if(mAuth.getCurrentUser()!=null)
+        {
+            return true;
+        }else {return false;}
     }
 
     public void signOutFromFireBase (){
