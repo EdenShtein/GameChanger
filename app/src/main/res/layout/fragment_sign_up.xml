@@ -140,8 +140,8 @@
 
     <ImageView
         android:id="@+id/signup_image"
-        android:layout_width="406dp"
-        android:layout_height="wrap_content"
+        android:layout_width="341dp"
+        android:layout_height="149dp"
         android:src="@drawable/gamechangersimple"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

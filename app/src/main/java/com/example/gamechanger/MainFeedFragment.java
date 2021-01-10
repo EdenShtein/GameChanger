@@ -49,7 +49,7 @@ public class MainFeedFragment extends Fragment {
         final GameAdapter gamesAdapter = new GameAdapter();
         gamesList.setAdapter(gamesAdapter);
 
-        gameViewModel = ViewModelProviders.of(this).get(GameViewModel.class);
+        gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
         gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
             @Override
             public void onChanged(List<Game> games) {

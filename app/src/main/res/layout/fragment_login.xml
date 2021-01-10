@@ -9,18 +9,6 @@
     tools:context=".LoginFragment">
 
     <TextView
-        android:id="@+id/signin_title_text"
-        android:layout_width="153dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="32dp"
-        android:text="Sign In"
-        android:textColor="#FF9800"
-        android:textColorHint="#FF9800"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin_image" />
-
-    <TextView
         android:id="@+id/signin_email_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,13 +78,14 @@
 
     <Button
         android:id="@+id/signin_forgot_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="144dp"
+        android:layout_height="49dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
         android:backgroundTint="#FF9800"
         android:text="Forgot Password?"
         android:textColor="#000000"
+        android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signin_login_btn" />
 
@@ -104,7 +93,7 @@
         android:id="@+id/signin_signup_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="60dp"
         android:backgroundTint="#FF9800"
@@ -119,12 +108,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Hey there! Ready to Trade?"
         android:textColor="#FF9800"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin_title_text" />
+        app:layout_constraintTop_toBottomOf="@+id/signin_image" />
 
     <ImageView
         android:id="@+id/signin_image"
