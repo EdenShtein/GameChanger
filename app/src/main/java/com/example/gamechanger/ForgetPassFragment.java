@@ -23,12 +23,7 @@ public class ForgetPassFragment extends Fragment {
 
     Button resetBtn;
     EditText email;
-    private OnComplete callback;
 
-
-    public interface OnComplete{
-        void onResetComplete(String email, Model.SuccessListener listener);
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,7 +43,7 @@ public class ForgetPassFragment extends Fragment {
                 }
                 else
                 {
-                    callback.onResetComplete(useremail, new Model.SuccessListener() {
+                    Model.instance.resetPass(useremail, new Model.SuccessListener() {
                         @Override
                         public void onComplete(boolean result) {
                             if (result) {
@@ -65,17 +60,4 @@ public class ForgetPassFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        callback = (OnComplete)context;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        if(callback != null){
-            callback = null;
-        }
-    }
 }

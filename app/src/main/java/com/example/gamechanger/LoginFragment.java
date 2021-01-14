@@ -25,12 +25,7 @@ public class LoginFragment extends Fragment {
     Button forgotPass;
     EditText email;
     EditText password;
-    private OnComplete callback;
 
-
-    public interface OnComplete{
-        void onSignInComplete(String user, String password, Model.SuccessListener listener);
-    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,11 +51,11 @@ public class LoginFragment extends Fragment {
                 String useremail = email.getText().toString();
                 String userpassword = password.getText().toString();
                 if (useremail.equals("") && userpassword.equals("")) {
-                    Toast.makeText(getActivity(),"Enter email and password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Please Enter Email and Password",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    callback.onSignInComplete(useremail, userpassword, new Model.SuccessListener() {
+                    Model.instance.logInFB(useremail, userpassword, new Model.SuccessListener() {
                         @Override
                         public void onComplete(boolean result) {
                             if (result) {
@@ -85,19 +80,5 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
-
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        callback = (OnComplete)context;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        if(callback != null){
-            callback = null;
-        }
-    }
 
 }

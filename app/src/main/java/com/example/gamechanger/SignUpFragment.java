@@ -14,8 +14,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gamechanger.model.FireBaseModel;
+import com.example.gamechanger.model.Model;
 
 
 public class SignUpFragment extends Fragment {
@@ -23,13 +25,6 @@ public class SignUpFragment extends Fragment {
     EditText email;
     EditText password;
     Button signup;
-
-    private OnComplete callback;
-
-
-    public interface OnComplete{
-        void onSignUpComplete(String user, String password);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,8 +47,13 @@ public class SignUpFragment extends Fragment {
             public void onClick(View v) {
                 String useremail=email.getText().toString();
                 String userpassword=password.getText().toString();
-                callback.onSignUpComplete(useremail, userpassword);
-                Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
+                if (useremail.equals("") && userpassword.equals("")) {
+                    Toast.makeText(getActivity(),"Please Enter Email and Password",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Model.instance.signUpFB(useremail, userpassword);
+                    Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
+                }
             }
         });
         signinLink.setOnClickListener(new View.OnClickListener() {
@@ -67,17 +67,5 @@ public class SignUpFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        callback = (OnComplete)context;
-    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        if(callback != null){
-            callback = null;
-        }
-    }
 }
