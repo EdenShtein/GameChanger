@@ -39,7 +39,7 @@ public class MainFeedFragment extends Fragment {
     String gameTitle;
     String gamePrice;
     static int flag =0;
-    //private View view;
+    private View view;
 
     public int getMainFeedFlag(){
         return flag;
@@ -52,10 +52,10 @@ public class MainFeedFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view =  inflater.inflate(R.layout.fragment_main_feed, container, false);
+        view =  inflater.inflate(R.layout.fragment_main_feed, container, false);
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Main Feed");
-
+        setHasOptionsMenu(true);
         gamesList_rv = view.findViewById(R.id.mainfeed_gameslist_rv);
         gamesList_rv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
@@ -134,17 +134,26 @@ public class MainFeedFragment extends Fragment {
     }
 
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.main_menu, menu);
+        super.onCreateOptionsMenu(menu,inflater);
 
-/*
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId())
         {
             case R.id.signoutmenu:
-                Model.instance.signOutFB();
-                Navigation.findNavController(this.view).navigate(R.id.action_mainFeed_to_signin);
+                if(view != null) {
+                    Model.instance.signOutFB();
+                    Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_signin);
+                }
 
+                break;
+            default:
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
-*/
 }

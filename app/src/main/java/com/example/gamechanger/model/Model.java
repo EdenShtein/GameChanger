@@ -44,4 +44,8 @@ public class Model {
         fireBase.signOutFromFireBase();
     }
 
+    public String getUserEmail(){
+        return fireBase.getEmail();
+    }
+
 }

@@ -68,6 +68,9 @@ public class FireBaseModel {
             return true;
         }else {return false;}
     }
+    public String getEmail(){
+        return mAuth.getCurrentUser().getEmail();
+    }
 
     public void signOutFromFireBase (){
         mAuth.signOut();

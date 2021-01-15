@@ -7,6 +7,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
@@ -17,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.gamechanger.model.FireBaseModel;
 import com.example.gamechanger.model.Model;
 
 public class LoginFragment extends Fragment {
@@ -31,54 +34,67 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("GameChanger");
 
-        SignUpBtn = view.findViewById(R.id.signin_signup_btn);
-        SignUpBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_login_to_signUp);
-            }
-        });
 
-        signInBtn = view.findViewById(R.id.signin_login_btn);
-        email = view.findViewById(R.id.signin_email_input);
-        password = view.findViewById(R.id.signin_password_input);
-        signInBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String useremail = email.getText().toString();
-                String userpassword = password.getText().toString();
-                if (useremail.equals("") && userpassword.equals("")) {
-                    Toast.makeText(getActivity(),"Please Enter Email and Password",Toast.LENGTH_SHORT).show();
+
+            SignUpBtn = view.findViewById(R.id.signin_signup_btn);
+            SignUpBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(view).navigate(R.id.action_login_to_signUp);
                 }
-                else
-                {
-                    Model.instance.logInFB(useremail, userpassword, new Model.SuccessListener() {
-                        @Override
-                        public void onComplete(boolean result) {
-                            if (result) {
-                                Navigation.findNavController(view).navigate(R.id.action_signin_to_mainFeed);
-                            } else {
-                                Toast.makeText(getActivity(), "Failed to login", Toast.LENGTH_SHORT).show();
+            });
+
+            signInBtn = view.findViewById(R.id.signin_login_btn);
+            email = view.findViewById(R.id.signin_email_input);
+            password = view.findViewById(R.id.signin_password_input);
+            signInBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String useremail = email.getText().toString();
+                    String userpassword = password.getText().toString();
+                    if (useremail.equals("") && userpassword.equals("")) {
+                        Toast.makeText(getActivity(), "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Model.instance.logInFB(useremail, userpassword, new Model.SuccessListener() {
+                            @Override
+                            public void onComplete(boolean result) {
+                                if (result) {
+                                    Navigation.findNavController(view).navigate(R.id.action_signin_to_mainFeed);
+                                } else {
+                                    Toast.makeText(getActivity(), "Failed to login", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                 }
-            }
-        });
+            });
 
-        forgotPass=view.findViewById(R.id.signin_forgot_btn);
-        forgotPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).navigate((R.id.action_signin_to_forgetPass));
-            }
-        });
+            forgotPass = view.findViewById(R.id.signin_forgot_btn);
+            forgotPass.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Navigation.findNavController(view).navigate((R.id.action_signin_to_forgetPass));
+                }
+            });
 
-        return view;
+
+
+            return view;
+
     }
 
-
+    @Override
+    public void onStart() {
+        super.onStart();
+/*        if(Model.instance.isUserLogIn())
+        {
+            Fragment loginFragment = new LoginFragment();
+            FragmentManager fm = getParentFragmentManager();
+            FragmentTransaction transaction = fm.beginTransaction();
+            transaction.replace(R.id.mainFeedFragment,loginFragment);
+            transaction.commit();
+        }*/
+    }
 }
