@@ -80,8 +80,8 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
 
 
         public void bindData(Game game, int position){
-            gameText.setText(game.name);
-            gameSubText.setText(game.price);
+            gameText.setText(game.getName());
+            gameSubText.setText(game.getPrice());
             this.position = position;
         }
 

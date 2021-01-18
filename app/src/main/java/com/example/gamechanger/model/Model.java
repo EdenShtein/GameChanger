@@ -1,8 +1,10 @@
 package com.example.gamechanger.model;
 
 import android.app.Activity;
-
-import com.google.firebase.auth.FirebaseUser;
+import android.graphics.Bitmap;
+import android.annotation.SuppressLint;
+import android.os.AsyncTask;
+import java.util.List;
 
 public class Model {
 
@@ -44,8 +46,20 @@ public class Model {
         fireBase.signOutFromFireBase();
     }
 
+    public String getUserId(){
+        return fireBase.getId();
+    }
+
     public String getUserEmail(){
         return fireBase.getEmail();
+    }
+
+    public interface UploadImageListener {
+        void onComplete(String result);
+    }
+
+    public void uploadImage(Bitmap imageBmp, String name, final UploadImageListener listener) {
+        fireBase.uploadImage(imageBmp, name, listener);
     }
 
 }

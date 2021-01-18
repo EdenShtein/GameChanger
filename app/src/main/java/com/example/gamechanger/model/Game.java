@@ -7,11 +7,13 @@ import androidx.room.PrimaryKey;
 public class Game {
 
     @PrimaryKey(autoGenerate = true)
-    public int id;
+    private int id;
 
-    public String name;
+    private String name;
 
-    public String price;
+    private String price;
+
+    private String imageURL;
 
     public Game(String name, String price) {
         this.name = name;
@@ -32,5 +34,13 @@ public class Game {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

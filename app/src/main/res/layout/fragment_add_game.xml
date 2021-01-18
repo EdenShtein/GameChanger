@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,37 +13,47 @@
 
     <EditText
         android:id="@+id/addgame_title_input"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:backgroundTint="#FF5722"
         android:ems="10"
         android:hint="Enter Game Title"
         android:inputType="textPersonName"
         android:textColor="#FF9800"
-        android:textColorHint="#FF9800" />
+        android:textColorHint="#FF9800"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/addgame_price_input"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
         android:backgroundTint="#FF5722"
         android:ems="10"
         android:hint="Enter Game Price"
         android:inputType="textPersonName"
         android:textColor="#FF9800"
-        android:textColorHint="#FF9800" />
+        android:textColorHint="#FF9800"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addgame_title_input" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
+        android:layout_marginBottom="54dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <Button
             android:id="@+id/addgame_cancel_btn"
@@ -65,4 +75,28 @@
             android:text="Save"
             android:textColor="#000000" />
     </LinearLayout>
-</LinearLayout>
+
+    <ImageButton
+        android:id="@+id/addstudent_edit_image_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="21dp"
+        android:src="@android:drawable/ic_menu_edit"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addstudent_avatar_imv" />
+
+    <ImageView
+        android:id="@+id/addstudent_avatar_imv"
+        android:layout_width="0dp"
+        android:layout_height="251dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginEnd="59dp"
+        android:layout_marginBottom="21dp"
+        android:src="@drawable/gametemplate"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/addstudent_edit_image_btn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
