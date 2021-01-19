@@ -24,6 +24,10 @@ public class SignUpFragment extends Fragment {
     TextView signinLink;
     EditText email;
     EditText password;
+    EditText fName;
+    EditText lName;
+    EditText phonenumber;
+    EditText city;
     Button signup;
 
     @Override
@@ -38,7 +42,10 @@ public class SignUpFragment extends Fragment {
         password=view.findViewById(R.id.signup_password_input);
         signup=view.findViewById(R.id.signup_continue_btn);
         signinLink= view.findViewById(R.id.signin_link);
-
+        fName=view.findViewById(R.id.signup_fname_input);
+        lName=view.findViewById(R.id.signup_lname_input);
+        phonenumber=view.findViewById(R.id.signup_phonenumber_input);
+        city=view.findViewById(R.id.signup_city_input);
 
 
 
@@ -47,8 +54,12 @@ public class SignUpFragment extends Fragment {
             public void onClick(View v) {
                 String useremail=email.getText().toString();
                 String userpassword=password.getText().toString();
+                String fullName=fName.getText().toString();
+                String lastName=lName.getText().toString();
+                String phoneNumber=phonenumber.getText().toString();
+                String cityName=city.getText().toString();
                 if (useremail.equals("") && userpassword.equals("")) {
-                    Toast.makeText(getActivity(),"Please Enter Email and Password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Model.instance.signUpFB(useremail, userpassword);
