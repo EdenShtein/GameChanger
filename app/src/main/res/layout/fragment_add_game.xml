@@ -45,58 +45,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addgame_title_input" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <Button
+        android:id="@+id/addgame_cancel_btn"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="54dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_weight="1"
+        android:backgroundTint="#FF5722"
+        android:text="Cancel"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toEndOf="@+id/addgame_save_btn"
+        app:layout_constraintTop_toBottomOf="@+id/addstudent_avatar_imv" />
 
-        <Button
-            android:id="@+id/addgame_cancel_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="#FF5722"
-            android:text="Cancel"
-            android:textColor="#000000" />
-
-        <Button
-            android:id="@+id/addgame_save_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:layout_weight="1"
-            android:backgroundTint="#FF5722"
-            android:text="Save"
-            android:textColor="#000000" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/addgame_save_btn"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        android:backgroundTint="#FF5722"
+        android:text="Save"
+        android:textColor="#000000"
+        app:layout_constraintEnd_toStartOf="@+id/addgame_cancel_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addstudent_avatar_imv" />
 
     <ImageButton
         android:id="@+id/addstudent_edit_image_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="75dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="76dp"
         android:src="@android:drawable/ic_menu_edit"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addstudent_avatar_imv" />
+        app:layout_constraintTop_toBottomOf="@+id/addgame_price_input" />
 
     <ImageView
         android:id="@+id/addstudent_avatar_imv"
         android:layout_width="0dp"
         android:layout_height="251dp"
         android:layout_marginStart="29dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="59dp"
-        android:layout_marginBottom="21dp"
         android:src="@drawable/gametemplate"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toStartOf="@+id/addstudent_edit_image_btn"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addgame_price_input" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

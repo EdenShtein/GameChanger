@@ -12,6 +12,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
@@ -56,7 +57,12 @@ public class AddGameFragment extends Fragment {
         gamePrice = view.findViewById(R.id.addgame_price_input);
 
         cancelBtn = view.findViewById(R.id.addgame_cancel_btn);
-        cancelBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_addGame_to_mainFeed));
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().popBackStack();
+            }
+        });
 
         saveBtn = view.findViewById(R.id.addgame_save_btn);
 

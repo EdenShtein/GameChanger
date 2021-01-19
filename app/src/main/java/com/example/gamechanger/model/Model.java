@@ -2,9 +2,8 @@ package com.example.gamechanger.model;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.annotation.SuppressLint;
-import android.os.AsyncTask;
-import java.util.List;
+
+import com.example.gamechanger.model.User.User;
 
 public class Model {
 

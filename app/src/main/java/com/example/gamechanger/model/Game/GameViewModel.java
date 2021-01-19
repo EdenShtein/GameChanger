@@ -1,20 +1,23 @@
-package com.example.gamechanger.model;
+package com.example.gamechanger.model.Game;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.gamechanger.model.AppRepository;
+
 import java.util.List;
 
 public class GameViewModel extends AndroidViewModel {
 
-    private GameRepository repository;
+    private AppRepository repository;
     private LiveData<List<Game>> gamesList;
 
     public GameViewModel(@NonNull Application application) {
         super(application);
 
-        repository = new GameRepository(application);
+        repository = new AppRepository(application);
         gamesList = repository.getAllGames();
     }
 

@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.gamechanger.model.Game;
-
 public class EditGameFragment extends Fragment {
 
     Button cancelBtn;
