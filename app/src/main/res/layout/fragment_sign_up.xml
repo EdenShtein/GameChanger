@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/signup_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,32 +18,20 @@
         android:id="@+id/signup_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="28dp"
         android:text="Sign Up"
-        android:textColor="#FF9800"
-        android:textSize="36sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/signup_email_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
-        android:text="Email"
         android:textColor="#FF9800"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_title_text" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/signup_email_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="60dp"
         android:backgroundTint="#FF5722"
         android:ems="10"
@@ -46,42 +40,112 @@
         android:shadowColor="@color/black"
         android:textColor="#FF9800"
         android:textColorHint="#FF9800"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_email_text" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_title_text" />
 
-    <TextView
-        android:id="@+id/signup_password_text"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/signup_fname_input"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
-        android:text="Password"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="60dp"
+        android:backgroundTint="#FF5722"
+        android:ems="10"
+        android:hint="Enter your First Name"
+        android:inputType="text"
+        android:shadowColor="@color/black"
         android:textColor="#FF9800"
-        android:textSize="24sp"
+        android:textColorHint="#FF9800"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_email_input" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_password_input" />
+
+    <EditText
+        android:id="@+id/signup_lname_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="60dp"
+        android:backgroundTint="#FF5722"
+        android:ems="10"
+        android:hint="Enter your Last Name"
+        android:inputType="text"
+        android:shadowColor="@color/black"
+        android:textColor="#FF9800"
+        android:textColorHint="#FF9800"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_fname_input" />
+
+    <EditText
+        android:id="@+id/signup_city_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="60dp"
+        android:backgroundTint="#FF5722"
+        android:ems="10"
+        android:hint="Enter your City"
+        android:inputType="text"
+        android:shadowColor="@color/black"
+        android:textColor="#FF9800"
+        android:textColorHint="#FF9800"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_lname_input3" />
+
+    <EditText
+        android:id="@+id/signup_lname_input3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="60dp"
+        android:backgroundTint="#FF5722"
+        android:ems="10"
+        android:hint="Enter your Phone number"
+        android:inputType="text|phone"
+        android:shadowColor="@color/black"
+        android:textColor="#FF9800"
+        android:textColorHint="#FF9800"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signup_lname_input" />
 
     <ImageView
-        android:id="@+id/mainfeed_image3"
-        android:layout_width="175dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="32dp"
+        android:id="@+id/signup_image"
+        android:layout_width="164dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:rotation="29"
         android:src="@drawable/gamechangersimple"
         app:layout_constraintBottom_toTopOf="@+id/signup_email_input"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintHorizontal_bias="0.76"
         app:layout_constraintStart_toEndOf="@+id/signup_title_text"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/signup_password_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="60dp"
         android:backgroundTint="#FF5722"
         android:ems="10"
@@ -89,38 +153,27 @@
         android:inputType="textPassword"
         android:textColor="#FF9800"
         android:textColorHint="#FF9800"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_password_text" />
-
-    <CheckBox
-        android:id="@+id/signup_checkbox"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="60dp"
-        android:text="I agree to the Terms of Service and Privacy Policy."
-        android:textColor="#FF9800"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_password_input" />
+        app:layout_constraintTop_toBottomOf="@+id/signup_email_input" />
 
     <Button
         android:id="@+id/signup_continue_btn"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="175dp"
+        android:layout_height="40dp"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="60dp"
         android:backgroundTint="#FF5722"
         android:shadowColor="#FFFFFF"
         android:text="Continue"
-        android:textColor="#FF9800"
+        android:textColor="#000000"
         android:textColorHint="#FF9800"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_checkbox"
+        app:layout_constraintTop_toBottomOf="@+id/signup_city_input"
         app:rippleColor="#FFFFFF"
         app:strokeColor="#FFFFFF" />
 
@@ -129,7 +182,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="Have an account?"
         android:textColor="#FF9800"
         android:textSize="18sp"
@@ -141,7 +194,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="60dp"
         android:shadowColor="#1B1615"
         android:text="Sign In"
@@ -153,3 +206,5 @@
         app:layout_constraintTop_toBottomOf="@+id/signup_continue_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
