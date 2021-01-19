@@ -1,21 +1,38 @@
 package com.example.gamechanger.model;
 
+import com.google.firebase.firestore.FieldValue;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class User {
 
-    private int id;
+    private String id;
     private String fName;
     private String lName;
     private String email;
     private String city;
     private String phoneNumber;
+    private Long lastUpdated;
 
-    public User(int id,String fName, String lName, String email, String city, String phoneNumber) {
+    public User(String id,String fName, String lName, String email, String city, String phoneNumber) {
         this.id=id;
         this.fName = fName;
         this.lName = lName;
         this.email = email;
         this.city = city;
         this.phoneNumber = phoneNumber;
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", id);
+        result.put("fName", fName);
+        result.put("lName", lName);
+        result.put("phone", phoneNumber);
+        result.put("email", email);
+        result.put("lastUpdated", FieldValue.serverTimestamp());
+        return result;
     }
 
     public String getfName() {
@@ -58,11 +75,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 }

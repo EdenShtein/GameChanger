@@ -62,4 +62,19 @@ public class Model {
         fireBase.uploadImage(imageBmp, name, listener);
     }
 
+
+
+    public interface AddUserListener {
+        void onComplete();
+    }
+
+    public void addUser(final User user, final AddUserListener listener) {
+        fireBase.addUser(user, new AddUserListener() {
+            @Override
+            public void onComplete() {
+                        listener.onComplete();
+                    }
+                });
+            }
+
 }

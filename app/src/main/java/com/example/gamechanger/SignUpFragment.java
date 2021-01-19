@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.gamechanger.model.FireBaseModel;
 import com.example.gamechanger.model.Model;
+import com.example.gamechanger.model.User;
 
 
 public class SignUpFragment extends Fragment {
@@ -62,8 +63,12 @@ public class SignUpFragment extends Fragment {
                     Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Model.instance.signUpFB(useremail, userpassword);
-                    Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
+                    final User user = new User("1",fullName,lastName,useremail,phoneNumber,cityName);
+                    Model.instance.addUser(user,()->{
+                        Model.instance.signUpFB(useremail, userpassword);
+                        Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
+                    });
+
                 }
             }
         });

@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -26,6 +27,7 @@ import static android.content.ContentValues.TAG;
 public class FireBaseModel {
     public FirebaseAuth mAuth=FirebaseAuth.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public void signUpToFireBase (String email, String password, Activity activity){
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -72,22 +74,6 @@ public class FireBaseModel {
                 });
     }
 
-    public Boolean isUserExist(){
-        if(mAuth.getCurrentUser()!=null)
-        {
-            return true;
-        }else {return false;}
-    }
-    public String getEmail(){
-        return mAuth.getCurrentUser().getEmail();
-    }
-
-    public void signOutFromFireBase (){
-        mAuth.signOut();
-    }
-
-    public String getId(){return mAuth.getCurrentUser().getProviderId();}
-
     public void forgotPassword(String email,Activity activity, Model.SuccessListener listener){
         mAuth.sendPasswordResetEmail(email).addOnCompleteListener(activity, new OnCompleteListener<Void>() {
             @Override
@@ -108,8 +94,9 @@ public class FireBaseModel {
 
     }
 
+
+
     public void uploadImage(Bitmap imageBmp, String name, final Model.UploadImageListener listener){
-        FirebaseStorage storage = FirebaseStorage.getInstance();
         final StorageReference imagesRef = storage.getReference().child("images").child(name);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -133,6 +120,40 @@ public class FireBaseModel {
             }
         });
     }
+
+    public void addUser(User user, final Model.AddUserListener listener) {
+        db.collection("Users").document(user.getId())
+                .set(user.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("TAG","student added successfully");
+                listener.onComplete();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("TAG","fail adding student");
+                listener.onComplete();
+            }
+        });
+    }
+
+
+    public Boolean isUserExist(){
+        if(mAuth.getCurrentUser()!=null)
+        {
+            return true;
+        }else {return false;}
+    }
+    public String getEmail(){
+        return mAuth.getCurrentUser().getEmail();
+    }
+
+    public void signOutFromFireBase (){
+        mAuth.signOut();
+    }
+
+    public String getId(){return mAuth.getCurrentUser().getProviderId();}
 
 
 }
