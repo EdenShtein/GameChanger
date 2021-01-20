@@ -1,4 +1,4 @@
-package com.example.gamechanger.model;
+package com.example.gamechanger.model.Game;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

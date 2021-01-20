@@ -8,18 +8,27 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = Game.class, version = 2, exportSchema = false)
-public abstract class GameDatabase extends RoomDatabase {
+import com.example.gamechanger.model.Game.Game;
+import com.example.gamechanger.model.Game.GameDao;
+import com.example.gamechanger.model.Listing.Listing;
+import com.example.gamechanger.model.Listing.ListingDao;
+import com.example.gamechanger.model.User.User;
+import com.example.gamechanger.model.User.UserDao;
 
-    private static GameDatabase instance;
+@Database(entities = {Game.class, Listing.class, User.class}, version = 3, exportSchema = false)
+public abstract class AppDatabase extends RoomDatabase {
+
+    private static AppDatabase instance;
 
     public abstract GameDao gameDao();
+    public abstract ListingDao listingDao();
+    public abstract UserDao userDao();
 
-    public static synchronized GameDatabase getInstance(Context context){
+    public static synchronized AppDatabase getInstance(Context context){
 
         if(instance == null){
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    GameDatabase.class, "game_database").fallbackToDestructiveMigration()
+                    AppDatabase.class, "app_database").fallbackToDestructiveMigration()
                     .addCallback(roomCallBack)
                     .build();
         }
@@ -39,10 +48,15 @@ public abstract class GameDatabase extends RoomDatabase {
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void>
     {
         private GameDao gameDao;
+        private ListingDao listingDao;
+        private UserDao userDao;
 
-        private PopulateDbAsyncTask(GameDatabase database)
+        private PopulateDbAsyncTask(AppDatabase database)
         {
             gameDao = database.gameDao();
+            listingDao = database.listingDao();
+            userDao = database.userDao();
+
         }
 
         @Override

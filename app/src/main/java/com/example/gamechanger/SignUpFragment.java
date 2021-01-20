@@ -1,9 +1,7 @@
 package com.example.gamechanger;
 
-import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -16,9 +14,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gamechanger.model.FireBaseModel;
 import com.example.gamechanger.model.Model;
-import com.example.gamechanger.model.User;
+import com.example.gamechanger.model.User.User;
+
+import java.util.Random;
 
 
 public class SignUpFragment extends Fragment {
@@ -30,6 +29,9 @@ public class SignUpFragment extends Fragment {
     EditText phonenumber;
     EditText city;
     Button signup;
+
+    Random rand = new Random();
+    int rand_int = rand.nextInt(1000);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,7 +65,7 @@ public class SignUpFragment extends Fragment {
                     Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    final User user = new User("1",fullName,lastName,useremail,phoneNumber,cityName);
+                    final User user = new User(rand_int,fullName,lastName,useremail,phoneNumber,cityName);
                     Model.instance.addUser(user,()->{
                         Model.instance.signUpFB(useremail, userpassword);
                         Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);

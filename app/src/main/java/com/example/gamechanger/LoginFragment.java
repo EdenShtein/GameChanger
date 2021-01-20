@@ -37,7 +37,6 @@ public class LoginFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("GameChanger");
 
 
-
             SignUpBtn = view.findViewById(R.id.signin_signup_btn);
             SignUpBtn.setOnClickListener(new View.OnClickListener() {
                 @Override

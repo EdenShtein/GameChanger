@@ -1,54 +1,61 @@
-package com.example.gamechanger.model;
+package com.example.gamechanger.model.User;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.firebase.firestore.FieldValue;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Entity(tableName = "user_table")
 public class User {
 
-    private String id;
-    private String fName;
-    private String lName;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    private String firstName;
+    private String lastName;
     private String email;
     private String city;
     private String phoneNumber;
     private Long lastUpdated;
 
-    public User(String id,String fName, String lName, String email, String city, String phoneNumber) {
-        this.id=id;
-        this.fName = fName;
-        this.lName = lName;
+    public User(int id, String firstName, String lastName, String email, String city, String phoneNumber) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.city = city;
         this.phoneNumber = phoneNumber;
     }
 
+
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("id", id);
-        result.put("fName", fName);
-        result.put("lName", lName);
+        result.put("fName", firstName);
+        result.put("lName", lastName);
         result.put("phone", phoneNumber);
         result.put("email", email);
         result.put("lastUpdated", FieldValue.serverTimestamp());
         return result;
     }
 
-    public String getfName() {
-        return fName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setfName(String fName) {
-        this.fName = fName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getlName() {
-        return lName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setlName(String lName) {
-        this.lName = lName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -75,11 +82,19 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public Long getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Long lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 }

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.gamechanger.model.User.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -122,7 +123,7 @@ public class FireBaseModel {
     }
 
     public void addUser(User user, final Model.AddUserListener listener) {
-        db.collection("Users").document(user.getId())
+        db.collection("Users").document(String.valueOf(user.getId()))
                 .set(user.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

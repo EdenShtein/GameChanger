@@ -1,6 +1,5 @@
 package com.example.gamechanger;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,12 +18,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.gamechanger.model.Game;
-import com.example.gamechanger.model.GameAdapter;
-import com.example.gamechanger.model.GameViewModel;
+import com.example.gamechanger.model.Game.Game;
+import com.example.gamechanger.model.Game.GameAdapter;
+import com.example.gamechanger.model.Game.GameViewModel;
 import com.example.gamechanger.model.Model;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
