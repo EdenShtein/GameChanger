@@ -97,7 +97,7 @@ public class FireBaseModel {
 
 
     public void uploadImage(Bitmap imageBmp, String name, final Model.UploadImageListener listener){
-        final StorageReference imagesRef = storage.getReference().child("images").child(name);
+        final StorageReference imagesRef = storage.getReference(mAuth.getCurrentUser().getEmail()).child("game");
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
