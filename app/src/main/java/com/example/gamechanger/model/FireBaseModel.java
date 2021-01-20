@@ -54,6 +54,7 @@ public class FireBaseModel {
     }
 
     public void logInToFireBase (String email, String password, Activity activity, Model.SuccessListener listener){
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
                     @Override
