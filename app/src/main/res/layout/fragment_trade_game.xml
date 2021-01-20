@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tradegame_title1_input" />
 
     <Button
-        android:id="@+id/addgame_cancel_btn2"
+        android:id="@+id/tradegame_cancel_btn"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
@@ -52,11 +52,11 @@
         android:text="Cancel"
         android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addgame_save_btn2"
+        app:layout_constraintStart_toEndOf="@+id/tradegame_save_btn"
         app:layout_constraintTop_toBottomOf="@+id/addgame_mapview2" />
 
     <Button
-        android:id="@+id/addgame_save_btn2"
+        android:id="@+id/tradegame_save_btn"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
@@ -66,7 +66,7 @@
         android:backgroundTint="#FF5722"
         android:text="Save"
         android:textColor="#000000"
-        app:layout_constraintEnd_toStartOf="@+id/addgame_cancel_btn2"
+        app:layout_constraintEnd_toStartOf="@+id/tradegame_cancel_btn"
         app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"

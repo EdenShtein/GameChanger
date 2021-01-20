@@ -61,7 +61,7 @@ public class AddGameFragment extends Fragment {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().popBackStack();
+                Navigation.findNavController(view).navigate(R.id.action_addGame_to_mainFeed);
             }
         });
 

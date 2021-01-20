@@ -23,7 +23,7 @@ public interface GameDao {
     @Delete
     void delete(Game game);
 
-    @Query("SELECT * FROM game_table ORDER BY id ASC")
+    @Query("SELECT * FROM game_table ORDER BY game_id ASC")
     LiveData<List<Game>> getAllGames();
 
 }
