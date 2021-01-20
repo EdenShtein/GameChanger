@@ -18,6 +18,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gamechanger.model.Game.Game;
@@ -25,12 +27,14 @@ import com.example.gamechanger.model.Game.GameAdapter;
 import com.example.gamechanger.model.Game.GameViewModel;
 import com.example.gamechanger.model.Model;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.squareup.picasso.Picasso;
 
+import java.util.LinkedList;
 import java.util.List;
 
 
 public class MainFeedFragment extends Fragment {
-
+    List<Game> gmList = new LinkedList<Game>();
     private GameViewModel gameViewModel;
     RecyclerView gamesList_rv;
     FloatingActionButton addGamebtn;
@@ -109,9 +113,19 @@ public class MainFeedFragment extends Fragment {
                 Navigation.findNavController(view).navigate(action);
             }
         });
+        ImageView img= view.findViewById(R.id.listrow_image_v);
 
+        Bundle bundle = getArguments();
+        if(bundle!=null) {
+            String url = bundle.getString("url");
+            if(url!=null) {
+                Picasso.get().load(url).into(img);
+            }
+        }
         return view;
     }
+
+
 
     private void checkForNewGame(View view) {
         gameTitle = MainFeedFragmentArgs.fromBundle(getArguments()).getGameTitle();

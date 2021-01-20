@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey;
 
 import com.google.firebase.firestore.FieldValue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ public class User {
     private String phoneNumber;
     private Long lastUpdated;
 
+
     public User(int id, String firstName, String lastName, String email, String city, String phoneNumber) {
         this.id = id;
         this.firstName = firstName;
@@ -28,6 +30,7 @@ public class User {
         this.email = email;
         this.city = city;
         this.phoneNumber = phoneNumber;
+
     }
 
 
@@ -40,6 +43,7 @@ public class User {
         result.put("email", email);
         result.put("lastUpdated", FieldValue.serverTimestamp());
         return result;
+
     }
 
     public String getFirstName() {

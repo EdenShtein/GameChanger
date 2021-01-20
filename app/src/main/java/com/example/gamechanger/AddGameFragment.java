@@ -26,6 +26,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Model;
 
 import static android.app.Activity.RESULT_CANCELED;
@@ -81,13 +82,16 @@ public class AddGameFragment extends Fragment {
                 BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();
                 Bitmap bitmap = drawable.getBitmap();
                 AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections.actionAddGameToMainFeed(title, price);
-
+                final Game game= new Game(title,price);
                 Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
                     @Override
                     public void onComplete(String url) {
                         if (url == null){
                             displayFailedError();
                         }else{
+                            game.setImageURL(url);
+                            Bundle bundle= new Bundle();
+                            bundle.putString("url",url);
                             Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -152,13 +156,13 @@ public class AddGameFragment extends Fragment {
                         if (selectedImage != null) {
                             Cursor cursor = getActivity().getContentResolver().query(selectedImage,
                                     filePathColumn, null, null, null);
-                            if (cursor != null) {
+
                                 cursor.moveToFirst();
                                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                                 String picturePath = cursor.getString(columnIndex);
                                 avatarImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                                 cursor.close();
-                            }
+
                         }
                     }
                     break;
