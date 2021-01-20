@@ -59,4 +59,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:maxImageSize="36dp" />
 
+    <ImageView
+        android:id="@+id/mainfeed_map_btn"
+        android:layout_width="56dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="44dp"
+        android:src="@android:drawable/ic_dialog_map"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

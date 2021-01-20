@@ -40,9 +40,6 @@
         android:label="fragment_main_feed"
         tools:layout="@layout/fragment_main_feed" >
         <action
-            android:id="@+id/action_mainFeed_to_addGame"
-            app:destination="@id/addGameFragment" />
-        <action
             android:id="@+id/action_mainFeed_to_signin"
             app:destination="@id/signinFragment" />
         <argument
@@ -54,6 +51,9 @@
         <action
             android:id="@+id/action_mainFeed_to_editGame"
             app:destination="@id/editGameFragment" />
+        <action
+            android:id="@+id/action_mainFeed_to_decision"
+            app:destination="@id/decisionFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGameFragment"
@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_addGame_to_mainFeed"
             app:destination="@id/mainFeedFragment" />
+        <action
+            android:id="@+id/action_addGameFragment_to_loadingFragment"
+            app:destination="@id/loadingFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgetPassFragment"
@@ -90,5 +93,38 @@
         <argument
             android:name="editGameId"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/decisionFragment"
+        android:name="com.example.gamechanger.DecisionFragment"
+        android:label="fragment_decision"
+        tools:layout="@layout/fragment_decision" >
+        <action
+            android:id="@+id/action_decision_to_addGame"
+            app:destination="@id/addGameFragment" />
+        <action
+            android:id="@+id/action_decision_to_tradeGame"
+            app:destination="@id/tradeGameFragment" />
+        <action
+            android:id="@+id/action_decision_to_mainFeed"
+            app:destination="@id/mainFeedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tradeGameFragment"
+        android:name="com.example.gamechanger.TradeGameFragment"
+        android:label="fragment_trade_game"
+        tools:layout="@layout/fragment_trade_game" >
+        <action
+            android:id="@+id/action_tradeGameFragment_to_loadingFragment"
+            app:destination="@id/loadingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="com.example.gamechanger.LoadingFragment"
+        android:label="fragment_loading"
+        tools:layout="@layout/fragment_loading" >
+        <action
+            android:id="@+id/action_loadingFragment_to_mainFeedFragment"
+            app:destination="@id/mainFeedFragment" />
     </fragment>
 </navigation>

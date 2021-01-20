@@ -32,9 +32,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     .addCallback(roomCallBack)
                     .build();
         }
-
         return instance;
-
     }
 
     private static RoomDatabase.Callback roomCallBack = new RoomDatabase.Callback(){

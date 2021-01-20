@@ -75,7 +75,7 @@ public class MainFeedFragment extends Fragment {
         addGamebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_addGame);
+                Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_decision);
             }
         });
 
@@ -95,7 +95,7 @@ public class MainFeedFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 gameViewModel.delete(gamesAdapter.getGames(viewHolder.getAdapterPosition()));
-                Toast.makeText(getActivity(), "Game has been deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Ad has been deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(gamesList_rv);
 
