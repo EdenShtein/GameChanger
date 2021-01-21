@@ -30,15 +30,18 @@ public class FireBaseModel {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public void signUpToFireBase (String email, String password, Activity activity){
-        mAuth.createUserWithEmailAndPassword(email, password)
+    public void signUpToFireBase (User user,String password, Activity activity){
+        mAuth.createUserWithEmailAndPassword(user.getEmail(), password)
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            user.setId(mAuth.getCurrentUser().getUid());
+                            Model.instance.addUser(user,()->{
+
+                            });
                             Toast.makeText(activity, "User Created Successfully", Toast.LENGTH_SHORT).show();
 
                         } else {
@@ -54,7 +57,6 @@ public class FireBaseModel {
     }
 
     public void logInToFireBase (String email, String password, Activity activity, Model.SuccessListener listener){
-
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -124,7 +126,7 @@ public class FireBaseModel {
     }
 
     public void addUser(User user, final Model.AddUserListener listener) {
-        db.collection("Users").document(String.valueOf(user.getId()))
+        db.collection("Users").document(user.getId())
                 .set(user.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -155,7 +157,7 @@ public class FireBaseModel {
         mAuth.signOut();
     }
 
-    public String getId(){return mAuth.getCurrentUser().getProviderId();}
+    public String getId(){return mAuth.getCurrentUser().getUid();}
 
 
 }

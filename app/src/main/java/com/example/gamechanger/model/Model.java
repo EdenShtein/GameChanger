@@ -16,9 +16,9 @@ public class Model {
     public final static Model instance = new Model();
     FireBaseModel fireBase = new FireBaseModel();
 
-    public void signUpFB(String email,String password)
+    public void signUpFB(User user,String password)
     {
-        fireBase.signUpToFireBase(email,password,mActivity);
+        fireBase.signUpToFireBase(user,password,mActivity);
     }
 
 
