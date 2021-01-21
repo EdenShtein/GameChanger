@@ -26,8 +26,7 @@ public class User {
     private Long lastUpdated;
 
 
-    public User(String id, String firstName, String lastName, String email, String city, String phoneNumber) {
-        this.id = id;
+    public User(String firstName, String lastName, String email, String city, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

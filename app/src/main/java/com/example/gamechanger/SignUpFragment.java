@@ -63,17 +63,9 @@ public class SignUpFragment extends Fragment {
                     Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Model.instance.signUpFB(useremail, userpassword);
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            final User user = new User(Model.instance.getUserId(),fullName,lastName,useremail,phoneNumber,cityName);
-                            Model.instance.addUser(user,()->{
-                                Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
-                            });
-                        }
-                    },1000);
-
+                    final User user = new User(fullName, lastName, useremail, phoneNumber, cityName);
+                    Model.instance.signUpFB(user,userpassword);
+                    Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
                 }
             }
         });

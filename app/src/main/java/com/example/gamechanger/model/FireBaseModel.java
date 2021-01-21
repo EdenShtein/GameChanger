@@ -30,15 +30,18 @@ public class FireBaseModel {
     FirebaseStorage storage = FirebaseStorage.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    public void signUpToFireBase (String email, String password, Activity activity){
-        mAuth.createUserWithEmailAndPassword(email, password)
+    public void signUpToFireBase (User user,String password, Activity activity){
+        mAuth.createUserWithEmailAndPassword(user.getEmail(), password)
                 .addOnCompleteListener(activity, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            user.setId(mAuth.getCurrentUser().getUid());
+                            Model.instance.addUser(user,()->{
+
+                            });
                             Toast.makeText(activity, "User Created Successfully", Toast.LENGTH_SHORT).show();
 
                         } else {
