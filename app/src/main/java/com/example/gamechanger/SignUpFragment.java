@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,9 +30,6 @@ public class SignUpFragment extends Fragment {
     EditText phonenumber;
     EditText city;
     Button signup;
-
-    Random rand = new Random();
-    int rand_int = rand.nextInt(1000);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,11 +63,16 @@ public class SignUpFragment extends Fragment {
                     Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    final User user = new User(rand_int,fullName,lastName,useremail,phoneNumber,cityName);
-                    Model.instance.addUser(user,()->{
-                        Model.instance.signUpFB(useremail, userpassword);
-                        Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
-                    });
+                    Model.instance.signUpFB(useremail, userpassword);
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            final User user = new User(Model.instance.getUserId(),fullName,lastName,useremail,phoneNumber,cityName);
+                            Model.instance.addUser(user,()->{
+                                Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
+                            });
+                        }
+                    },1000);
 
                 }
             }

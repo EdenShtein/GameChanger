@@ -1,8 +1,10 @@
 package com.example.gamechanger.model.User;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FieldValue;
 
 import java.util.ArrayList;
@@ -12,8 +14,9 @@ import java.util.Map;
 @Entity(tableName = "user_table")
 public class User {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
+    private String id;
 
     private String firstName;
     private String lastName;
@@ -23,7 +26,7 @@ public class User {
     private Long lastUpdated;
 
 
-    public User(int id, String firstName, String lastName, String email, String city, String phoneNumber) {
+    public User(String id, String firstName, String lastName, String email, String city, String phoneNumber) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -43,7 +46,16 @@ public class User {
         result.put("email", email);
         result.put("lastUpdated", FieldValue.serverTimestamp());
         return result;
+    }
 
+    public void fromMap(Map<String, Object> map){
+        id = (String)map.get("id");
+        firstName = (String)map.get("fName");
+        lastName = (String)map.get("lName");
+        phoneNumber = (String)map.get("phone");
+        email = (String)map.get("email");
+        Timestamp ts = (Timestamp)map.get("lastUpdated");
+        lastUpdated = ts.getSeconds();
     }
 
     public String getFirstName() {
@@ -86,11 +98,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
