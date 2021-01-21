@@ -46,7 +46,7 @@ public class EditGameFragment extends Fragment {
 
         UpdateGame(view);
 
-        editBtn.setOnClickListener(new View.OnClickListener() {
+       /* editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String title = gameTitle.getText().toString();
@@ -56,7 +56,7 @@ public class EditGameFragment extends Fragment {
                 mainFeedFragment.setMainFeedFlag(2);
                 Navigation.findNavController(view).navigate(action);
             }
-        });
+        });*/
 
         return view;
     }
