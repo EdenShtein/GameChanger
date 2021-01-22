@@ -81,7 +81,6 @@ public class AddGameFragment extends Fragment {
                 String price = gamePrice.getText().toString();
                 BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();
                 Bitmap bitmap = drawable.getBitmap();
-                AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections.actionAddGameToMainFeed(title, price);
                 final Game game= new Game(title,price);
                 Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
                     @Override
@@ -92,13 +91,15 @@ public class AddGameFragment extends Fragment {
                             game.setImageURL(url);
                             Bundle bundle= new Bundle();
                             bundle.putString("url",url);
+                            //AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections.actionAddGameToMainFeed(title, price,url);
+
                             Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
                 MainFeedFragment mainFeedFragment = new MainFeedFragment();
                 mainFeedFragment.setMainFeedFlag(1);
-                Navigation.findNavController(view).navigate(action);
+                //Navigation.findNavController(view).navigate(action);
             }
         });
 
