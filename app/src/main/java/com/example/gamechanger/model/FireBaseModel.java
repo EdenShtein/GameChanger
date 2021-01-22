@@ -16,12 +16,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static android.content.ContentValues.TAG;
 
@@ -40,7 +43,6 @@ public class FireBaseModel {
                             Log.d(TAG, "createUserWithEmail:success");
                             user.setId(mAuth.getCurrentUser().getUid());
                             Model.instance.addUser(user,()->{
-
                             });
                             Toast.makeText(activity, "User Created Successfully", Toast.LENGTH_SHORT).show();
 
@@ -101,7 +103,8 @@ public class FireBaseModel {
 
 
     public void uploadImage(Bitmap imageBmp, String name, final Model.UploadImageListener listener){
-        final StorageReference imagesRef = storage.getReference(mAuth.getCurrentUser().getEmail()).child("game");
+        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+        final StorageReference imagesRef = storage.getReference(mAuth.getCurrentUser().getEmail()).child("game"+ timeStamp.toString());
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();

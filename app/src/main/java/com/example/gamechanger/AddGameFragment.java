@@ -82,6 +82,7 @@ public class AddGameFragment extends Fragment {
                 BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();
                 Bitmap bitmap = drawable.getBitmap();
                 final Game game= new Game(title,price);
+                AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections.actionAddGameToMainFeed(title, price,null);
                 Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
                     @Override
                     public void onComplete(String url) {
@@ -91,7 +92,6 @@ public class AddGameFragment extends Fragment {
                             game.setImageURL(url);
                             Bundle bundle= new Bundle();
                             bundle.putString("url",url);
-                            //AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections.actionAddGameToMainFeed(title, price,url);
 
                             Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
                         }
@@ -99,7 +99,7 @@ public class AddGameFragment extends Fragment {
                 });
                 MainFeedFragment mainFeedFragment = new MainFeedFragment();
                 mainFeedFragment.setMainFeedFlag(1);
-                //Navigation.findNavController(view).navigate(action);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 
