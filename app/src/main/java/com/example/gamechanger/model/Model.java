@@ -22,11 +22,8 @@ public class Model {
     private Activity mActivity;
     public final static Model instance = new Model();
     FireBaseModel fireBase = new FireBaseModel();
-    LiveData<List<Game>> gameList = AppDatabase.getInstance(mActivity.getApplicationContext()).gameDao().getAllGames();
 
-    public LiveData<List<Game>> getAllGames() {
-        return gameList;
-    }
+
 
     public void signUpFB(User user,String password)
     {
