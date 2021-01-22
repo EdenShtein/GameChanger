@@ -12,9 +12,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -51,8 +49,8 @@ public class AddGameFragment extends Fragment {
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add new Game");
 
-        avatarImageView = view.findViewById(R.id.addstudent_avatar_imv);
-        editImage = view.findViewById(R.id.addstudent_edit_image_btn);
+        avatarImageView = view.findViewById(R.id.addgame_avatar_imv);
+        editImage = view.findViewById(R.id.addgame_edit_image_btn);
 
         gameTitle = view.findViewById(R.id.addgame_title_input);
         gamePrice = view.findViewById(R.id.addgame_price_input);
@@ -82,6 +80,7 @@ public class AddGameFragment extends Fragment {
                 BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();
                 Bitmap bitmap = drawable.getBitmap();
                 final Game game= new Game(title,price);
+                AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections.actionAddGameToMainFeed(title, price, null);
                 Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
                     @Override
                     public void onComplete(String url) {
@@ -89,17 +88,21 @@ public class AddGameFragment extends Fragment {
                             displayFailedError();
                         }else{
                             game.setImageURL(url);
-                            Bundle bundle= new Bundle();
-                            bundle.putString("url",url);
-                            //AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections.actionAddGameToMainFeed(title, price,url);
-
-                            Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
+                            Model.instance.addGame(game, new Model.AddGameListener() {
+                                @Override
+                                public void onComplete() {
+                                    Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
+                                    Navigation.findNavController(view).navigate(R.id.action_addGame_to_mainFeed);
+                                }
+                            });
+                            /*Bundle bundle= new Bundle();
+                            bundle.putString("url",url);*/
                         }
                     }
                 });
                 MainFeedFragment mainFeedFragment = new MainFeedFragment();
                 mainFeedFragment.setMainFeedFlag(1);
-                //Navigation.findNavController(view).navigate(action);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 

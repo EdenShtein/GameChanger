@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/addgame_mapview" />
 
     <ImageButton
-        android:id="@+id/addstudent_edit_image_btn"
+        android:id="@+id/addgame_edit_image_btn"
         style="@android:style/Widget.Holo.ImageButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toBottomOf="@+id/addgame_price_input" />
 
     <ImageView
-        android:id="@+id/addstudent_avatar_imv"
+        android:id="@+id/addgame_avatar_imv"
         android:layout_width="146dp"
         android:layout_height="128dp"
         android:layout_marginTop="20dp"
@@ -123,7 +123,7 @@
         android:textColor="#FF9800"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addstudent_avatar_imv" />
+        app:layout_constraintTop_toBottomOf="@+id/addgame_avatar_imv" />
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/addgame_mapview"

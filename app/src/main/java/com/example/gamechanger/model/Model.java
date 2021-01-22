@@ -1,9 +1,17 @@
 package com.example.gamechanger.model;
 
 import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
 import android.graphics.Bitmap;
 
+import androidx.lifecycle.LiveData;
+
+import com.example.gamechanger.model.Game.Game;
+import com.example.gamechanger.model.Game.GameDao;
 import com.example.gamechanger.model.User.User;
+
+import java.util.List;
 
 public class Model {
 
@@ -11,17 +19,19 @@ public class Model {
         void onComplete(boolean result);
     }
 
-
     private Activity mActivity;
     public final static Model instance = new Model();
     FireBaseModel fireBase = new FireBaseModel();
+    LiveData<List<Game>> gameList = AppDatabase.getInstance(mActivity.getApplicationContext()).gameDao().getAllGames();
+
+    public LiveData<List<Game>> getAllGames() {
+        return gameList;
+    }
 
     public void signUpFB(User user,String password)
     {
         fireBase.signUpToFireBase(user,password,mActivity);
     }
-
-
 
     public void logInFB(String email,String password, SuccessListener listener)
     {
@@ -61,7 +71,18 @@ public class Model {
         fireBase.uploadImage(imageBmp, name, listener);
     }
 
+    public interface AddGameListener {
+        void onComplete();
+    }
 
+    public void addGame(final Game game, final AddGameListener listener) {
+        fireBase.addGame(game, new AddGameListener() {
+            @Override
+            public void onComplete() {
+                listener.onComplete();
+            }
+        });
+    }
 
     public interface AddUserListener {
         void onComplete();
@@ -71,9 +92,9 @@ public class Model {
         fireBase.addUser(user, new AddUserListener() {
             @Override
             public void onComplete() {
-                        listener.onComplete();
-                    }
-                });
+                listener.onComplete();
             }
+        });
+    }
 
 }

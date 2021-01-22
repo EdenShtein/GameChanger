@@ -8,6 +8,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.gamechanger.model.Game.Game;
+import com.example.gamechanger.model.Game.GameAdapter;
 import com.example.gamechanger.model.User.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -106,6 +108,7 @@ public class FireBaseModel {
         imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
         UploadTask uploadTask = imagesRef.putBytes(data);
+
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(Exception exception) {
@@ -128,6 +131,23 @@ public class FireBaseModel {
     public void addUser(User user, final Model.AddUserListener listener) {
         db.collection("Users").document(user.getId())
                 .set(user.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("TAG","student added successfully");
+                listener.onComplete();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("TAG","fail adding student");
+                listener.onComplete();
+            }
+        });
+    }
+
+    public void addGame(Game game, final Model.AddGameListener listener) {
+        db.collection("Games").document(String.valueOf(game.getId()))
+                .set(game.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d("TAG","student added successfully");

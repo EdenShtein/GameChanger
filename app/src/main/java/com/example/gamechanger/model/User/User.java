@@ -23,7 +23,7 @@ public class User {
     private String email;
     private String city;
     private String phoneNumber;
-    private Long lastUpdated;
+    private long lastUpdated;
 
 
     public User(String firstName, String lastName, String email, String city, String phoneNumber) {

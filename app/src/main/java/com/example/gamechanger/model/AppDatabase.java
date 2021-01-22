@@ -16,7 +16,7 @@ import com.example.gamechanger.model.Listing.ListingDao;
 import com.example.gamechanger.model.User.User;
 import com.example.gamechanger.model.User.UserDao;
 
-@Database(entities = {Game.class, Listing.class, User.class}, version = 6, exportSchema = false)
+@Database(entities = {Game.class, Listing.class, User.class}, version = 7, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;

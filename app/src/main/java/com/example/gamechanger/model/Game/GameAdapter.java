@@ -11,12 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.gamechanger.R;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
 
@@ -92,7 +94,12 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
 
             //Getting image from URL
 
-            /*URL url = null;
+            gameImage.setImageResource(R.drawable.gamechangersimple);
+            if (game.getImageURL() != null){
+                Picasso.get().load(game.getImageURL()).placeholder(R.drawable.gamechangersimple).into(gameImage);
+            }
+
+           /* URL url = null;
             try {
                 url = new URL(game.getImageURL());
             } catch (MalformedURLException e) {
