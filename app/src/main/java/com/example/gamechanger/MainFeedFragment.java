@@ -1,7 +1,6 @@
 package com.example.gamechanger;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -11,35 +10,29 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Game.GameAdapter;
 import com.example.gamechanger.model.Game.GameViewModel;
 import com.example.gamechanger.model.Model;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.squareup.picasso.Picasso;
-
-import java.util.LinkedList;
 import java.util.List;
 
 
 public class MainFeedFragment extends Fragment {
-    List<Game> gmList = new LinkedList<Game>();
+
     private GameViewModel gameViewModel;
-    RecyclerView gamesList_rv;
+    public RecyclerView gamesList_rv;
     FloatingActionButton addGamebtn;
     String gameTitle;
     String gamePrice;
+    String imageUrl;
     static int flag =0;
     private View view;
 
@@ -103,6 +96,7 @@ public class MainFeedFragment extends Fragment {
             }
         }).attachToRecyclerView(gamesList_rv);
 
+        //For Editing Game
         gamesAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Game game, View v) {
@@ -113,24 +107,49 @@ public class MainFeedFragment extends Fragment {
                 Navigation.findNavController(view).navigate(action);
             }
         });
-        ImageView img= view.findViewById(R.id.listrow_image_v);
 
-        Bundle bundle = getArguments();
-        if(bundle!=null) {
-            String url = bundle.getString("url");
-            if(url!=null) {
-                Picasso.get().load(url).into(img);
-            }
-        }
         return view;
     }
 
+    /*public void GetDataFromFirebase(){
 
+        Query query = myRef.child("Games");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //ClearAll();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                    Game game = new Game();
+                    game.setImageURL(snapshot.child("imgUrl").getValue().toString());
+                    game.setName(snapshot.child("gameName").getValue().toString());
+                    game.setPrice(snapshot.child("gamePrice").getValue().toString());
+
+                    gmList.add(game);
+                }
+
+                gameAdapter = new GameAdapter(gmList,getActivity().getApplicationContext());
+                gamesList_rv.setAdapter(gameAdapter);
+                gameAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }*/
 
     private void checkForNewGame(View view) {
-        gameTitle = MainFeedFragmentArgs.fromBundle(getArguments()).getGameTitle();
-        gamePrice = MainFeedFragmentArgs.fromBundle(getArguments()).getGamePrice();
-        Game game = new Game(gameTitle,gamePrice);
+
+        Bundle bundle = getArguments();
+        gameTitle = bundle.getString("gameTitle");
+        gamePrice = bundle.getString("gamePrice");
+        imageUrl = bundle.getString("imageUrl");
+        //imageUrl = MainFeedFragmentArgs.fromBundle(getArguments()).getImageUrl();
+        Game game = new Game(gameTitle,gamePrice,imageUrl);
         gameViewModel.insert(game);
 
         return;
@@ -139,7 +158,8 @@ public class MainFeedFragment extends Fragment {
     private void checkForNewUpdate(View view) {
         gameTitle = MainFeedFragmentArgs.fromBundle(getArguments()).getGameTitle();
         gamePrice = MainFeedFragmentArgs.fromBundle(getArguments()).getGamePrice();
-        Game game = new Game(gameTitle,gamePrice);
+        imageUrl = MainFeedFragmentArgs.fromBundle(getArguments()).getImageUrl();
+        Game game = new Game(gameTitle,gamePrice,imageUrl);
         gameViewModel.update(game);
 
         return;

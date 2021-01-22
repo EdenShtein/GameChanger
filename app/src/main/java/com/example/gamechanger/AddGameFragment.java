@@ -12,7 +12,10 @@ import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
@@ -63,8 +66,6 @@ public class AddGameFragment extends Fragment {
             }
         });
 
-        saveBtn = view.findViewById(R.id.addgame_save_btn);
-
         editImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,6 +73,7 @@ public class AddGameFragment extends Fragment {
             }
         });
 
+        saveBtn = view.findViewById(R.id.addgame_save_btn);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,8 +81,8 @@ public class AddGameFragment extends Fragment {
                 String price = gamePrice.getText().toString();
                 BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();
                 Bitmap bitmap = drawable.getBitmap();
-                final Game game= new Game(title,price);
-                AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections.actionAddGameToMainFeed(title, price, null);
+                final Game game= new Game(title,price,null);
+                //AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections.actionAddGameToMainFeed(title, price, null);
                 Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
                     @Override
                     public void onComplete(String url) {
@@ -88,21 +90,39 @@ public class AddGameFragment extends Fragment {
                             displayFailedError();
                         }else{
                             game.setImageURL(url);
+
+                            Bundle bundle = new Bundle();
+                            bundle.putString("gameTitle",title);
+                            bundle.putString("gamePrice",price);
+                            bundle.putString("imageUrl",url);
+
+                            Toast.makeText(getActivity(), "image url saved", Toast.LENGTH_SHORT).show();
+
                             Model.instance.addGame(game, new Model.AddGameListener() {
                                 @Override
                                 public void onComplete() {
+                                    //mainFeedFragment.GetDataFromFirebase();
                                     Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
-                                    Navigation.findNavController(view).navigate(R.id.action_addGame_to_mainFeed);
+
+                                    MainFeedFragment mainFeedFragment = new MainFeedFragment();
+                                    mainFeedFragment.setMainFeedFlag(1);
+
+                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                                    mainFeedFragment.setArguments(bundle);
+
+                                    LoadingFragment loadingFragment = new LoadingFragment();
+                                    fragmentTransaction.replace(R.id.addgame_layout, mainFeedFragment);
+                                    fragmentTransaction.commit();
                                 }
                             });
-                            /*Bundle bundle= new Bundle();
-                            bundle.putString("url",url);*/
+
                         }
                     }
                 });
-                MainFeedFragment mainFeedFragment = new MainFeedFragment();
-                mainFeedFragment.setMainFeedFlag(1);
-                Navigation.findNavController(view).navigate(action);
+
+                //Navigation.findNavController(view).navigate(R.id.action_addGame_to_mainFeed);
             }
         });
 

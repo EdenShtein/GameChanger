@@ -6,8 +6,6 @@ import androidx.lifecycle.LiveData;
 
 import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Game.GameDao;
-import com.example.gamechanger.model.Listing.Listing;
-import com.example.gamechanger.model.Listing.ListingDao;
 import com.example.gamechanger.model.User.User;
 import com.example.gamechanger.model.User.UserDao;
 
@@ -17,9 +15,6 @@ public class AppRepository {
 
     private GameDao gameDao;
     private LiveData<List<Game>> games;
-
-    private ListingDao listingDao;
-    private LiveData<List<Listing>> listings;
 
     private UserDao userDao;
     private LiveData<List<User>> users;
@@ -31,9 +26,6 @@ public class AppRepository {
         gameDao = database.gameDao();
         games = gameDao.getAllGames();
 
-        listingDao = database.listingDao();
-        listings = listingDao.getAllListings();
-
         userDao = database.userDao();
         users = userDao.getAllUsers();
 
@@ -42,10 +34,6 @@ public class AppRepository {
     public void insert(Game game)
     {
         new InsertGameAsyncTask(gameDao).execute(game);
-    }
-    public void insert(Listing listing)
-    {
-        new InsertListingAsyncTask(listingDao).execute(listing);
     }
     public void insert(User user)
     {
@@ -56,10 +44,6 @@ public class AppRepository {
     {
         new UpdateGameAsyncTask(gameDao).execute(game);
     }
-    public void update(Listing listing)
-    {
-        new UpdateListingAsyncTask(listingDao).execute(listing);
-    }
     public void update(User user)
     {
         new UpdateUserAsyncTask(userDao).execute(user);
@@ -69,10 +53,6 @@ public class AppRepository {
     {
         new DeleteGameAsyncTask(gameDao).execute(game);
     }
-    public void delete(Listing listing)
-    {
-        new DeleteListingAsyncTask(listingDao).execute(listing);
-    }
     public void delete(User user) { new DeleteUserAsyncTask(userDao).execute(user); }
 
 
@@ -80,16 +60,13 @@ public class AppRepository {
     {
         return games;
     }
-    public LiveData<List<Listing>> getAllListings()
-    {
-        return listings;
-    }
     public LiveData<List<User>> getAllUsers()
     {
         return users;
     }
 
-    //Games---------///
+    //-----------------Games-------------------///
+
     private static class InsertGameAsyncTask extends AsyncTask<Game, Void, Void>
     {
         private GameDao gameDao;
@@ -138,7 +115,8 @@ public class AppRepository {
         }
     }
 
-    //Users---------///
+    //----------------------Users----------------------///
+
     private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void>
     {
         private UserDao userDao;
@@ -187,53 +165,4 @@ public class AppRepository {
         }
     }
 
-    //Listings------------///
-
-    private static class InsertListingAsyncTask extends AsyncTask<Listing, Void, Void>
-    {
-        private ListingDao listingDao;
-
-        private InsertListingAsyncTask(ListingDao listingDao)
-        {
-            this.listingDao = listingDao;
-        }
-
-        @Override
-        protected Void doInBackground(Listing... listings) {
-            listingDao.Insert(listings[0]);
-            return null;
-        }
-    }
-
-    private static class UpdateListingAsyncTask extends AsyncTask<Listing, Void, Void>
-    {
-        private ListingDao listingDao;
-
-        private UpdateListingAsyncTask(ListingDao listingDao)
-        {
-            this.listingDao = listingDao;
-        }
-
-        @Override
-        protected Void doInBackground(Listing... listings) {
-            listingDao.Update(listings[0]);
-            return null;
-        }
-    }
-
-    private static class DeleteListingAsyncTask extends AsyncTask<Listing, Void, Void>
-    {
-        private ListingDao listingDao;
-
-        private DeleteListingAsyncTask(ListingDao listingDao)
-        {
-            this.listingDao = listingDao;
-        }
-
-        @Override
-        protected Void doInBackground(Listing... listings) {
-            listingDao.delete(listings[0]);
-            return null;
-        }
-    }
 }

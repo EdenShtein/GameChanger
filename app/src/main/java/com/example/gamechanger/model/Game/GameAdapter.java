@@ -1,8 +1,6 @@
 package com.example.gamechanger.model.Game;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,28 +22,15 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
 
     private List<Game> gamesData = new LinkedList<Game>();
     private OnItemClickListener listener;
+    Context context;
 
-    @NonNull
-    @Override
-    public GameHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mainfeed_list_row, parent, false);
-        GameHolder holder = new GameHolder(view);
-        return holder;
+    public GameAdapter(){
+
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull GameHolder holder, int position) {
-        Game currentGame = gamesData.get(position);
-        holder.bindData(currentGame,position);
-    }
-
-    @Override
-    public int getItemCount() {
-        return gamesData.size();
-    }
-
-    public interface OnItemClickListener{
-        void onItemClick(Game game, View view);
+    public GameAdapter(List<Game> gamesData, Context context) {
+        this.gamesData = gamesData;
+        this.context = context;
     }
 
     public void setOnItemClickListener(OnItemClickListener listener){
@@ -63,7 +48,50 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
         notifyDataSetChanged();
     }
 
-    class GameHolder extends RecyclerView.ViewHolder{
+    public void updateData(List<Game> gamesData){
+        gamesData.clear();
+        gamesData.addAll(gamesData);
+        notifyDataSetChanged();
+    }
+
+    public void addGame(int position, Game game){
+        gamesData.add(position,game);
+        notifyItemInserted(position);
+    }
+
+    public void removeItem(int position){
+        gamesData.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    @NonNull
+    @Override
+    public GameHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mainfeed_list_row, parent, false);
+        GameHolder holder = new GameHolder(view);
+        return holder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull GameHolder holder, int position) {
+        Game currentGame = gamesData.get(position);
+        holder.bindData(currentGame,position);
+        holder.itemView.setTag(currentGame);
+    }
+
+    @Override
+    public int getItemCount() {
+        return gamesData.size();
+    }
+
+    public interface OnItemClickListener{
+        void onItemClick(Game game, View view);
+    }
+
+
+    //---------------GameHolder----------------//
+
+    public class GameHolder extends RecyclerView.ViewHolder{
         TextView gameText;
         TextView gameSubText;
         ImageView gameImage;
@@ -91,9 +119,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
         public void bindData(Game game, int position){
             gameText.setText(game.getName());
             gameSubText.setText(game.getPrice());
-
-            //Getting image from URL
-
             gameImage.setImageResource(R.drawable.gamechangersimple);
             if (game.getImageURL() != null){
                 Picasso.get().load(game.getImageURL()).placeholder(R.drawable.gamechangersimple).into(gameImage);

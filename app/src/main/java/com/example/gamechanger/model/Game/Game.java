@@ -12,6 +12,8 @@ import com.google.gson.annotations.SerializedName;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Nullable;
+
 @Entity(tableName = "game_table")
 public class Game {
 
@@ -34,10 +36,10 @@ public class Game {
 
     private long lastUpdated;
 
-
-    public Game(String name, String price) {
+    public Game(String name, String price,@Nullable String imageURL) {
         this.name = name;
         this.price = price;
+        this.imageURL = imageURL;
     }
 
     public Map<String, Object> toMap() {

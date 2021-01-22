@@ -8,8 +8,6 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.gamechanger.model.Game.Game;
-import com.example.gamechanger.model.Listing.Listing;
 
 import java.util.List;
 

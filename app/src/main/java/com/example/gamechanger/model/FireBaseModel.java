@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.example.gamechanger.model.Game.Game;
-import com.example.gamechanger.model.Game.GameAdapter;
 import com.example.gamechanger.model.User.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -17,13 +16,10 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -32,8 +28,8 @@ import static android.content.ContentValues.TAG;
 
 public class FireBaseModel {
     public FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    FirebaseStorage storage = FirebaseStorage.getInstance();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    public FirebaseStorage storage = FirebaseStorage.getInstance();
+    public FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     public void signUpToFireBase (User user,String password, Activity activity){
         mAuth.createUserWithEmailAndPassword(user.getEmail(), password)

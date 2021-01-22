@@ -11,18 +11,15 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Game.GameDao;
-import com.example.gamechanger.model.Listing.Listing;
-import com.example.gamechanger.model.Listing.ListingDao;
 import com.example.gamechanger.model.User.User;
 import com.example.gamechanger.model.User.UserDao;
 
-@Database(entities = {Game.class, Listing.class, User.class}, version = 7, exportSchema = false)
+@Database(entities = {Game.class, User.class}, version = 9, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase instance;
 
     public abstract GameDao gameDao();
-    public abstract ListingDao listingDao();
     public abstract UserDao userDao();
 
     public static synchronized AppDatabase getInstance(Context context){
@@ -48,20 +45,18 @@ public abstract class AppDatabase extends RoomDatabase {
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void>
     {
         private GameDao gameDao;
-        private ListingDao listingDao;
         private UserDao userDao;
 
         private PopulateDbAsyncTask(AppDatabase database)
         {
             gameDao = database.gameDao();
-            listingDao = database.listingDao();
             userDao = database.userDao();
 
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            gameDao.Insert(new Game("Title 1", "Price 1"));
+            gameDao.Insert(new Game("Title 1", "Price 1", ""));
 
 
             return null;
