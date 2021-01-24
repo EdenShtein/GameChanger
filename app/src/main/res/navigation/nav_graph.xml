@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_mainFeed_to_userProfile"
             app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_mainFeed_to_maps"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGameFragment"
@@ -141,4 +144,9 @@
         android:name="com.example.gamechanger.UserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.gamechanger.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>
