@@ -55,7 +55,7 @@ public class SignUpFragment extends Fragment {
             public void onClick(View v) {
                 String useremail=email.getText().toString();
                 String userpassword=password.getText().toString();
-                String fullName=fName.getText().toString();
+                String firstName=fName.getText().toString();
                 String lastName=lName.getText().toString();
                 String phoneNumber=phonenumber.getText().toString();
                 String cityName=city.getText().toString();
@@ -63,7 +63,7 @@ public class SignUpFragment extends Fragment {
                     Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    final User user = new User(fullName, lastName, useremail, phoneNumber, cityName);
+                    final User user = new User(firstName, lastName, useremail, cityName, phoneNumber);
                     Model.instance.signUpFB(user,userpassword);
                     Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
                 }

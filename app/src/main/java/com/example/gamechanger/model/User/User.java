@@ -40,8 +40,9 @@ public class User {
         result.put("id", id);
         result.put("fName", firstName);
         result.put("lName", lastName);
-        result.put("phone", phoneNumber);
         result.put("email", email);
+        result.put("city", city);
+        result.put("phone", phoneNumber);
         result.put("lastUpdated", FieldValue.serverTimestamp());
         return result;
     }
@@ -50,8 +51,9 @@ public class User {
         id = (String)map.get("id");
         firstName = (String)map.get("fName");
         lastName = (String)map.get("lName");
-        phoneNumber = (String)map.get("phone");
         email = (String)map.get("email");
+        city = (String)map.get("city");
+        phoneNumber = (String)map.get("phone");
         Timestamp ts = (Timestamp)map.get("lastUpdated");
         lastUpdated = ts.getSeconds();
     }
