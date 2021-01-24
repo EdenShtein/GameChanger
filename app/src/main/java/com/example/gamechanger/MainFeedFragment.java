@@ -22,6 +22,7 @@ import com.example.gamechanger.model.Game.GameAdapter;
 import com.example.gamechanger.model.Game.GameViewModel;
 import com.example.gamechanger.model.Model;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.List;
 
 
@@ -39,9 +40,7 @@ public class MainFeedFragment extends Fragment {
     public int getMainFeedFlag(){
         return flag;
     }
-    public int setMainFeedFlag(int flag){
-        return this.flag = flag;
-    }
+    public void setMainFeedFlag(int flag){ this.flag = flag; }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,14 +72,22 @@ public class MainFeedFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_decision);
+                /*DecisionFragment decisionFragment = new DecisionFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.mainfeed_layout, decisionFragment);
+                addGamebtn.setVisibility(v.GONE);
+                fragmentTransaction.commit();*/
             }
         });
 
         if (getMainFeedFlag() == 1) {
             checkForNewGame(view);
+            this.setMainFeedFlag(0);
         }
         if (getMainFeedFlag() == 2) {
             checkForNewUpdate(view);
+            this.setMainFeedFlag(0);
         }
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -102,7 +109,7 @@ public class MainFeedFragment extends Fragment {
             public void onItemClick(Game game, View v) {
                 String title = game.getName();
                 String price = game.getPrice();
-                int Id = game.getId();
+                String Id = game.getId();
                 MainFeedFragmentDirections.ActionMainFeedToEditGame action = MainFeedFragmentDirections.actionMainFeedToEditGame(title, price, Id);
                 Navigation.findNavController(view).navigate(action);
             }
@@ -144,11 +151,16 @@ public class MainFeedFragment extends Fragment {
 
     private void checkForNewGame(View view) {
 
-        Bundle bundle = getArguments();
+        gameTitle = MainFeedFragmentArgs.fromBundle(getArguments()).getGameTitle();
+        gamePrice = MainFeedFragmentArgs.fromBundle(getArguments()).getGamePrice();
+        imageUrl = MainFeedFragmentArgs.fromBundle(getArguments()).getImageUrl();
+
+        /*Bundle bundle = getArguments();
         gameTitle = bundle.getString("gameTitle");
         gamePrice = bundle.getString("gamePrice");
-        imageUrl = bundle.getString("imageUrl");
+        imageUrl = bundle.getString("imageUrl");*/
         //imageUrl = MainFeedFragmentArgs.fromBundle(getArguments()).getImageUrl();
+
         Game game = new Game(gameTitle,gamePrice,imageUrl);
         gameViewModel.insert(game);
 
@@ -182,7 +194,11 @@ public class MainFeedFragment extends Fragment {
                     Model.instance.signOutFB();
                     Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_signin);
                 }
-
+                break;
+            case R.id.myprofilemenu:
+                if(view != null) {
+                    Navigation.findNavController(view).navigate(R.id.userProfileFragment);
+                }
                 break;
             default:
         }

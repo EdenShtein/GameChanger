@@ -63,6 +63,12 @@ public class AddGameFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_addGame_to_mainFeed);
+                /*MainFeedFragment mainFeedFragment = new MainFeedFragment();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.addgame_layout, mainFeedFragment);
+                fragmentTransaction.commit();*/
+
             }
         });
 
@@ -81,40 +87,46 @@ public class AddGameFragment extends Fragment {
                 String price = gamePrice.getText().toString();
                 BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();
                 Bitmap bitmap = drawable.getBitmap();
-                final Game game= new Game(title,price,null);
-                //AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections.actionAddGameToMainFeed(title, price, null);
+                //final Game game= new Game(title,price,null);
+                //AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections
+                // .actionAddGameToMainFeed(title, price, null);
                 Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
                     @Override
                     public void onComplete(String url) {
                         if (url == null){
                             displayFailedError();
                         }else{
-                            game.setImageURL(url);
+                            Game game= new Game(title,price,url);
+                            //game.setImageURL(url);
 
-                            Bundle bundle = new Bundle();
+                            AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections
+                                    .actionAddGameToMainFeed(title, price, url);
+
+                            /*Bundle bundle = new Bundle();
                             bundle.putString("gameTitle",title);
                             bundle.putString("gamePrice",price);
-                            bundle.putString("imageUrl",url);
+                            bundle.putString("imageUrl",url);*/
 
                             Toast.makeText(getActivity(), "image url saved", Toast.LENGTH_SHORT).show();
+
+                            MainFeedFragment mainFeedFragment = new MainFeedFragment();
+                            mainFeedFragment.setMainFeedFlag(1);
+
+                            Navigation.findNavController(view).navigate(action);
 
                             Model.instance.addGame(game, new Model.AddGameListener() {
                                 @Override
                                 public void onComplete() {
                                     //mainFeedFragment.GetDataFromFirebase();
                                     Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
-
-                                    MainFeedFragment mainFeedFragment = new MainFeedFragment();
-                                    mainFeedFragment.setMainFeedFlag(1);
-
+                                    /*
                                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
                                     mainFeedFragment.setArguments(bundle);
-
-                                    LoadingFragment loadingFragment = new LoadingFragment();
                                     fragmentTransaction.replace(R.id.addgame_layout, mainFeedFragment);
-                                    fragmentTransaction.commit();
+                                    cancelBtn.setVisibility(v.GONE);
+                                    saveBtn.setVisibility(v.GONE);
+                                    fragmentTransaction.commit();*/
                                 }
                             });
 

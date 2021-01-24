@@ -35,7 +35,6 @@ public class User {
 
     }
 
-
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();
         result.put("id", id);

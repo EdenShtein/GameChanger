@@ -1,26 +1,32 @@
 package com.example.gamechanger.model.Game;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
-import androidx.room.Embedded;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.gamechanger.model.User.User;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Nullable;
 
 @Entity(tableName = "game_table")
 public class Game {
 
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
+    @NonNull
     @ColumnInfo(name = "game_id")
     @SerializedName("id")
-    private int id;
+    private String id = UUID.randomUUID().toString();
 
     @ColumnInfo(name = "game_name")
     @SerializedName("name")
@@ -36,6 +42,17 @@ public class Game {
 
     private long lastUpdated;
 
+    @Ignore
+    String ownedBy;
+
+    @Ignore
+    FirebaseAuth mAuth=FirebaseAuth.getInstance();
+    String UserId = mAuth.getCurrentUser().getUid();
+
+    public Game(){
+
+    }
+
     public Game(String name, String price,@Nullable String imageURL) {
         this.name = name;
         this.price = price;
@@ -49,16 +66,18 @@ public class Game {
         result.put("gamePrice", price);
         result.put("imgUrl", imageURL);
         result.put("lastUpdated", FieldValue.serverTimestamp());
+        result.put("OwnedBy", UserId);
         return result;
     }
 
     public void fromMap(Map<String, Object> map){
-        id = (int) map.get("id");
+        id = (String) map.get("id");
         name = (String)map.get("gameName");
         price = (String)map.get("gamePrice");
         imageURL = (String)map.get("imageUrl");
         Timestamp ts = (Timestamp)map.get("lastUpdated");
         lastUpdated = ts.getSeconds();
+        UserId = (String) map.get("OwnedBy");
     }
 
     public void setName(String name) {
@@ -70,7 +89,7 @@ public class Game {
     }
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -82,7 +101,7 @@ public class Game {
         return price;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -100,5 +119,9 @@ public class Game {
 
     public void setLastUpdated(long lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    public String getOwnedBy() {
+        return ownedBy;
     }
 }

@@ -1,5 +1,6 @@
 package com.example.gamechanger.model.Game;
 
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,28 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.gamechanger.R;
 import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
 
-    private List<Game> gamesData = new LinkedList<Game>();
-    private OnItemClickListener listener;
+    public static List<Game> gamesData = new LinkedList<Game>();
+    private static OnItemClickListener listener;
     Context context;
-
-    public GameAdapter(){
-
-    }
-
-    public GameAdapter(List<Game> gamesData, Context context) {
-        this.gamesData = gamesData;
-        this.context = context;
-    }
 
     public void setOnItemClickListener(OnItemClickListener listener){
         this.listener = listener;
@@ -46,22 +33,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
     {
         this.gamesData = games;
         notifyDataSetChanged();
-    }
-
-    public void updateData(List<Game> gamesData){
-        gamesData.clear();
-        gamesData.addAll(gamesData);
-        notifyDataSetChanged();
-    }
-
-    public void addGame(int position, Game game){
-        gamesData.add(position,game);
-        notifyItemInserted(position);
-    }
-
-    public void removeItem(int position){
-        gamesData.remove(position);
-        notifyItemRemoved(position);
     }
 
     @NonNull
@@ -91,7 +62,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
 
     //---------------GameHolder----------------//
 
-    public class GameHolder extends RecyclerView.ViewHolder{
+    public static class GameHolder extends RecyclerView.ViewHolder{
         TextView gameText;
         TextView gameSubText;
         ImageView gameImage;

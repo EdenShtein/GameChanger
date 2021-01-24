@@ -1,15 +1,12 @@
 package com.example.gamechanger.model;
 
 import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
 import android.graphics.Bitmap;
 
-import androidx.lifecycle.LiveData;
-
 import com.example.gamechanger.model.Game.Game;
-import com.example.gamechanger.model.Game.GameDao;
 import com.example.gamechanger.model.User.User;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import java.util.List;
 
@@ -92,6 +89,10 @@ public class Model {
                 listener.onComplete();
             }
         });
+    }
+
+    public List<Game> showUserGames(final AddGameListener listener){
+        return fireBase.showUserGames(listener);
     }
 
 }
