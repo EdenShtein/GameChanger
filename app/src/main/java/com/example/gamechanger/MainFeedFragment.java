@@ -1,5 +1,6 @@
 package com.example.gamechanger;
 
+import android.media.Image;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Game.GameAdapter;
@@ -33,6 +35,7 @@ public class MainFeedFragment extends Fragment {
     String gameTitle;
     String gamePrice;
     String imageUrl;
+    ImageView mapBtn;
     static int flag =0;
     private View view;
 
@@ -107,6 +110,17 @@ public class MainFeedFragment extends Fragment {
                 Navigation.findNavController(view).navigate(action);
             }
         });
+
+
+
+        mapBtn= view.findViewById(R.id.mainfeed_map_btn);
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_maps);
+            }
+        });
+
 
         return view;
     }

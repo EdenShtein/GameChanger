@@ -57,6 +57,9 @@
         <argument
             android:name="imageUrl"
             app:argType="string" />
+        <action
+            android:id="@+id/action_mainFeed_to_maps"
+            app:destination="@id/mapsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGameFragment"
@@ -133,4 +136,9 @@
             android:id="@+id/action_loadingFragment_to_mainFeedFragment"
             app:destination="@id/mainFeedFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.gamechanger.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>
