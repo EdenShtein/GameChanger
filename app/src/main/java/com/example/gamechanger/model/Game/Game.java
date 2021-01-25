@@ -44,14 +44,24 @@ public class Game {
 
     //private long lastUpdated;
 
+    @ColumnInfo(name = "game_latitude")
+    @SerializedName("latitude")
+    private double latitude;
+
+    @ColumnInfo(name = "game_longitude")
+    @SerializedName("longitude")
+    private double longitude;
+
+
     @Ignore
     String ownedBy;
 
     @Ignore
     String UserId = Model.instance.getUserId();
 
-    //private double latitude;
-    //private double longitude;
+
+
+
 
     public Game(){
 
@@ -69,6 +79,8 @@ public class Game {
         result.put("gameName", name);
         result.put("gamePrice", price);
         result.put("imgUrl", imageURL);
+        result.put("latitude", latitude);
+        result.put("longitude", longitude);
         /*result.put("lastUpdated", FieldValue.serverTimestamp());*/
         result.put("OwnedBy", UserId);
         return result;
@@ -79,6 +91,8 @@ public class Game {
         name = (String)map.get("gameName");
         price = (String)map.get("gamePrice");
         imageURL = (String)map.get("imageUrl");
+        latitude = (double)map.get("latitude");
+        longitude = (double)map.get("longitude");
         /*Timestamp ts = (Timestamp)map.get("lastUpdated");
         lastUpdated = ts.getSeconds();*/
         UserId = (String) map.get("OwnedBy");
@@ -124,6 +138,24 @@ public class Game {
     public void setLastUpdated(long lastUpdated) {
         this.lastUpdated = lastUpdated;
     }*/
+
+
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
 
     public String getOwnedBy() {
         return ownedBy;

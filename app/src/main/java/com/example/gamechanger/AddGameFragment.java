@@ -35,6 +35,8 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class AddGameFragment extends Fragment {
+    private View view;
+    Game game;
     Button cancelBtn;
     Button saveBtn;
 
@@ -46,11 +48,18 @@ public class AddGameFragment extends Fragment {
     ImageView avatarImageView;
     ImageButton editImage;
 
+    static int mapFlag =0;
+
+    public int getFlag(){
+        return mapFlag;
+    }
+    public void setFlag(int flag){ this.mapFlag = flag; }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_add_game, container, false);
+         view = inflater.inflate(R.layout.fragment_add_game, container, false);
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add new Game");
 
@@ -98,7 +107,7 @@ public class AddGameFragment extends Fragment {
                         if (url == null){
                             displayFailedError();
                         }else{
-                            Game game= new Game(title,price,url);
+                             game= new Game(title,price,url);
                             //game.setImageURL(url);
 
                             AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections
@@ -147,13 +156,24 @@ public class AddGameFragment extends Fragment {
 
             }
         });
-        Bundle bundle = getArguments();
-        if(bundle!=null) {
-            Double latitude;
-            latitude = bundle.getDouble("latitude");
+        if(getFlag()==1){
+            checkForNewCordinates();
+            game.setLatitude(latidute);
+            game.setLongitude(latlong);
+            this.setFlag(0);
         }
+
         return view;
     }
+
+    double latidute;
+    double latlong;
+    public void checkForNewCordinates(){
+        latidute = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
+        latlong = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();
+    }
+
+
 
     private void displayFailedError() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());

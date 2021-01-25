@@ -18,6 +18,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,6 +67,7 @@ public class MapsFragment extends Fragment  {
             ActivityCompat.requestPermissions(getActivity(),
                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
         }
+
         return view;
     }
 
@@ -131,7 +133,12 @@ public class MapsFragment extends Fragment  {
                                     googleMap.addMarker(markerOptions);
 //                                    bundle.putDouble("latitude",latLng.latitude);
 //                                    bundle.putDouble("longitude",latLng.longitude);
-
+                                    MapsFragmentDirections.ActionMapsToAddGame action = MapsFragmentDirections.actionMapsToAddGame(
+                                            latLng.latitude,latLng.longitude
+                                    );
+                                    AddGameFragment addGameFragment = new AddGameFragment();
+                                    addGameFragment.setFlag(1);
+                                    Navigation.findNavController(view).navigate(action);
 
 
                                 }
