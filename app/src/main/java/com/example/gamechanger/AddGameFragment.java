@@ -172,11 +172,11 @@ public class AddGameFragment extends Fragment {
 
 
     public void checkForNewCoordinates(){
-        Bundle bundle = getArguments();
+        /*Bundle bundle = getArguments();
         latitude = bundle.getDouble("latitude",latitude);
-        longitude = bundle.getDouble("longitude",longitude);
-        /*latidute = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
-        latlong = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();*/
+        longitude = bundle.getDouble("longitude",longitude);*/
+        latitude = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
+        longitude = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();
     }
 
 
