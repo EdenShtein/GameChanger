@@ -108,6 +108,8 @@ public class AddGameFragment extends Fragment {
                             displayFailedError();
                         }else{
                              game= new Game(title,price,url);
+                            game.setLatitude(latidute);
+                            game.setLongitude(latlong);;
                             //game.setImageURL(url);
 
                             AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections
@@ -158,8 +160,6 @@ public class AddGameFragment extends Fragment {
         });
         if(getFlag()==1){
             checkForNewCordinates();
-            game.setLatitude(latidute);
-            game.setLongitude(latlong);
             this.setFlag(0);
         }
 
