@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -31,9 +33,15 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-public class MapsFragment extends Fragment {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+public class MapsFragment extends Fragment  {
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
+    GoogleMap googleMap;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
@@ -42,7 +50,7 @@ public class MapsFragment extends Fragment {
 
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 
-        client = LocationServices.getFusedLocationProviderClient(getActivity());;
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
 
         if(ActivityCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED)
@@ -54,29 +62,9 @@ public class MapsFragment extends Fragment {
             ActivityCompat.requestPermissions(getActivity(),
                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
         }
-        /*
-        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-                LatLng jerusalem = new LatLng(31.771959, 35.217018);
-                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-                    @Override
-                    public void onMapClick(LatLng latLng) {
-                        MarkerOptions markerOptions = new MarkerOptions();
-                        markerOptions.position(latLng);
-                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-                        markerOptions.title(latLng.latitude + " : "+ latLng.longitude);
-                        googleMap.clear();
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                               latLng,7
-                        ));
-                        googleMap.addMarker(markerOptions);
-                    }
-                });
-            }
-        });*/
         return view;
     }
+
 
     private void getCurrentLocation() {
 
@@ -89,6 +77,41 @@ public class MapsFragment extends Fragment {
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
+                            googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                                @Override
+                                public void onMapLongClick(LatLng latLng) {
+                                    Geocoder geocoder = new Geocoder(getActivity().getApplicationContext(), Locale.getDefault());
+
+                                    String address = "";
+
+                                    try {
+
+                                        List<Address> listAdddresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
+
+                                        if (listAdddresses != null && listAdddresses.size() > 0) {
+                                            if (listAdddresses.get(0).getThoroughfare() != null) {
+                                                if (listAdddresses.get(0).getSubThoroughfare() != null) {
+                                                    address += listAdddresses.get(0).getSubThoroughfare() + " ";
+                                                }
+                                                address += listAdddresses.get(0).getThoroughfare();
+                                            }
+                                        }
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    if (address.equals("")) {
+                                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm yyyy-MM-dd");
+                                        address += sdf.format(new Date());
+                                    }
+
+                                    MarkerOptions markerOptions = new MarkerOptions();
+                                    markerOptions.position(latLng);
+                                    markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                                    googleMap.addMarker(markerOptions);
+                                }
+                            });
                             LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
                             googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                                 @Override
@@ -104,6 +127,7 @@ public class MapsFragment extends Fragment {
                                 }
                             });
                         }
+
                     });
                 }
             }
@@ -121,4 +145,6 @@ public class MapsFragment extends Fragment {
                 }
             }
     }
+
+
 }
