@@ -91,7 +91,15 @@ public class Model {
         });
     }
 
-    public List<Game> showUserGames(final AddGameListener listener){
+    public interface FbGamesListener {
+            void onComplete(List<Game> userGames);
+    }
+
+    public List<Game> showAllFbGames(final FbGamesListener listener){
+        return fireBase.showAllFbGames(listener);
+    }
+
+    public List<Game> showUserGames(final FbGamesListener listener){
         return fireBase.showUserGames(listener);
     }
 

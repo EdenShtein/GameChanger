@@ -143,7 +143,12 @@
         android:id="@+id/userProfileFragment"
         android:name="com.example.gamechanger.UserProfileFragment"
         android:label="fragment_user_profile"
-        tools:layout="@layout/fragment_user_profile" />
+        tools:layout="@layout/fragment_user_profile" >
+        <action
+            android:id="@+id/action_userProfile_to_mainFeed"
+            app:destination="@id/mainFeedFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.example.gamechanger.MapsFragment"

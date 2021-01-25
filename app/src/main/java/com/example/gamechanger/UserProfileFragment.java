@@ -1,18 +1,27 @@
 package com.example.gamechanger;
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
 import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Game.GameAdapter;
 import com.example.gamechanger.model.Game.GameViewModel;
 import com.example.gamechanger.model.Model;
-import java.util.LinkedList;
+
 import java.util.List;
 
 public class UserProfileFragment extends Fragment {
@@ -20,8 +29,7 @@ public class UserProfileFragment extends Fragment {
     public GameViewModel gameViewModel;
     public RecyclerView gamesList_rv;
 
-    public List<Game> userGames= new LinkedList<Game>();
-
+    Button back_btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,15 +38,21 @@ public class UserProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
 
         String email = Model.instance.getUserEmail();
-        String id = Model.instance.getUserId();
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(email);
+
+        back_btn = view.findViewById(R.id.userprofile_back_btn);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_userProfile_to_mainFeed);
+            }
+        });
 
         gamesList_rv = view.findViewById(R.id.userprofile_posts_rv);
         gamesList_rv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         gamesList_rv.setLayoutManager(layoutManager);
-
 
         ////----------------------------------------------/////
 
@@ -47,16 +61,51 @@ public class UserProfileFragment extends Fragment {
 
         //Query query = gamesRef.whereEqualTo("OwnedBy", id);
 
-        Model.instance.showUserGames(new Model.AddGameListener() {
+        GameAdapter gamesAdapter = new GameAdapter();
+
+        Model.instance.showUserGames(new Model.FbGamesListener() {
             @Override
-            public void onComplete() {
-                GameAdapter gamesAdapter = new GameAdapter();
+            public void onComplete(List<Game> userGames) {
                 gamesAdapter.setGamesData(userGames);
                 gamesList_rv.setAdapter(gamesAdapter);
             }
+
         });
 
+        gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
+        gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
+            @Override
+            public void onChanged(List<Game> games) {
+                //update RecyclerView
+                gamesAdapter.setGamesData(games);
+            }
+        });
 
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                gameViewModel.delete(gamesAdapter.getGames(viewHolder.getAdapterPosition()));
+                Toast.makeText(getActivity(), "Post has been deleted", Toast.LENGTH_SHORT).show();
+            }
+        }).attachToRecyclerView(gamesList_rv);
+
+
+        gamesAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Game game, View v) {
+                String title = game.getName();
+                String price = game.getPrice();
+                String Id = game.getId();
+               /* MainFeedFragmentDirections.ActionMainFeedToEditGame action = MainFeedFragmentDirections.actionMainFeedToEditGame(title, price, Id);
+                Navigation.findNavController(view).navigate(action);*/
+                Navigation.findNavController(v).navigate(R.id.mainFeedFragment);
+            }
+        });
 
 
 

@@ -40,7 +40,7 @@ public class Game {
     @SerializedName("img")
     private String imageURL;
 
-    private long lastUpdated;
+    //private long lastUpdated;
 
     @Ignore
     String ownedBy;
@@ -65,7 +65,7 @@ public class Game {
         result.put("gameName", name);
         result.put("gamePrice", price);
         result.put("imgUrl", imageURL);
-        result.put("lastUpdated", FieldValue.serverTimestamp());
+        /*result.put("lastUpdated", FieldValue.serverTimestamp());*/
         result.put("OwnedBy", UserId);
         return result;
     }
@@ -75,8 +75,8 @@ public class Game {
         name = (String)map.get("gameName");
         price = (String)map.get("gamePrice");
         imageURL = (String)map.get("imageUrl");
-        Timestamp ts = (Timestamp)map.get("lastUpdated");
-        lastUpdated = ts.getSeconds();
+        /*Timestamp ts = (Timestamp)map.get("lastUpdated");
+        lastUpdated = ts.getSeconds();*/
         UserId = (String) map.get("OwnedBy");
     }
 
@@ -113,13 +113,13 @@ public class Game {
         this.imageURL = imageURL;
     }
 
-    public long getLastUpdated() {
+    /*public long getLastUpdated() {
         return lastUpdated;
     }
 
     public void setLastUpdated(long lastUpdated) {
         this.lastUpdated = lastUpdated;
-    }
+    }*/
 
     public String getOwnedBy() {
         return ownedBy;

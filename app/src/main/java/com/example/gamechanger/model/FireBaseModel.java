@@ -195,10 +195,10 @@ public class FireBaseModel {
 
     public String getId(){return mAuth.getCurrentUser().getUid();}
 
-    public List<Game> showUserGames(final Model.AddGameListener listener){
+    public List<Game> showUserGames(final Model.FbGamesListener listener){
         String id = Model.instance.getUserId();
         List<Game> userGames = new LinkedList<Game>();
-        db.collection("games").whereEqualTo("OwnedBy", id).get().addOnCompleteListener((new OnCompleteListener<QuerySnapshot>() {
+        db.collection("Games").whereEqualTo("OwnedBy", id).get().addOnCompleteListener((new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){
@@ -209,7 +209,27 @@ public class FireBaseModel {
                         Log.d("TAG","game: " + game.getId());
                     }
                 }
-                listener.onComplete();
+                listener.onComplete(userGames);
+            }
+        }));
+        return userGames;
+    }
+
+    public List<Game> showAllFbGames(final Model.FbGamesListener listener){
+        String id = Model.instance.getUserId();
+        List<Game> userGames = new LinkedList<Game>();
+        db.collection("Games").get().addOnCompleteListener((new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    for (DocumentSnapshot doc : task.getResult()){
+                        Game game = new Game();
+                        game.fromMap(doc.getData());
+                        userGames.add(game);
+                        Log.d("TAG","game: " + game.getId());
+                    }
+                }
+                listener.onComplete(userGames);
             }
         }));
         return userGames;

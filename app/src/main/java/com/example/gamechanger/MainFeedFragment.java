@@ -61,6 +61,15 @@ public class MainFeedFragment extends Fragment {
         final GameAdapter gamesAdapter = new GameAdapter();
         gamesList_rv.setAdapter(gamesAdapter);
 
+        Model.instance.showAllFbGames(new Model.FbGamesListener() {
+            @Override
+            public void onComplete(List<Game> userGames) {
+                gamesAdapter.setGamesData(userGames);
+                gamesList_rv.setAdapter(gamesAdapter);
+            }
+
+        });
+
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
         gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
             @Override
@@ -69,6 +78,8 @@ public class MainFeedFragment extends Fragment {
                 gamesAdapter.setGamesData(games);
             }
         });
+
+
 
         addGamebtn = view.findViewById(R.id.mainfeed_addgame_btn);
         addGamebtn.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +113,7 @@ public class MainFeedFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 gameViewModel.delete(gamesAdapter.getGames(viewHolder.getAdapterPosition()));
-                Toast.makeText(getActivity(), "Ad has been deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Post has been deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(gamesList_rv);
 
