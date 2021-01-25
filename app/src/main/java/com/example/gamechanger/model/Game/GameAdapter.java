@@ -18,7 +18,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
 
     public static List<Game> gamesData = new LinkedList<Game>();
     private static OnItemClickListener listener;
-    Context context;
 
     public void setOnItemClickListener(OnItemClickListener listener){
         this.listener = listener;

@@ -131,14 +131,13 @@ public class MapsFragment extends Fragment  {
                                             latLng,7
                                     ));
                                     googleMap.addMarker(markerOptions);
-//                                    bundle.putDouble("latitude",latLng.latitude);
-//                                    bundle.putDouble("longitude",latLng.longitude);
-                                    MapsFragmentDirections.ActionMapsToAddGame action = MapsFragmentDirections.actionMapsToAddGame(
-                                            latLng.latitude,latLng.longitude
-                                    );
+                                    bundle.putDouble("latitude",latLng.latitude);
+                                    bundle.putDouble("longitude",latLng.longitude);
+                                    /*MapsFragmentDirections.ActionMapsToAddGame action = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude
+                                    );*/
                                     AddGameFragment addGameFragment = new AddGameFragment();
                                     addGameFragment.setFlag(1);
-                                    Navigation.findNavController(view).navigate(action);
+                                    Navigation.findNavController(view).popBackStack();
 
 
                                 }

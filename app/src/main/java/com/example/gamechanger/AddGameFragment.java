@@ -48,6 +48,9 @@ public class AddGameFragment extends Fragment {
     ImageView avatarImageView;
     ImageButton editImage;
 
+    double latitude;
+    double longitude;
+
     static int mapFlag =0;
 
     public int getFlag(){
@@ -107,9 +110,10 @@ public class AddGameFragment extends Fragment {
                         if (url == null){
                             displayFailedError();
                         }else{
-                             game= new Game(title,price,url);
-                            game.setLatitude(latidute);
-                            game.setLongitude(latlong);;
+
+                            game= new Game(title,price,url);
+                            game.setLatitude(latitude);
+                            game.setLongitude(longitude);;
                             //game.setImageURL(url);
 
                             AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections
@@ -159,18 +163,20 @@ public class AddGameFragment extends Fragment {
             }
         });
         if(getFlag()==1){
-            checkForNewCordinates();
+            checkForNewCoordinates();
             this.setFlag(0);
         }
 
         return view;
     }
 
-    double latidute;
-    double latlong;
-    public void checkForNewCordinates(){
-        latidute = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
-        latlong = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();
+
+    public void checkForNewCoordinates(){
+        Bundle bundle = getArguments();
+        latitude = bundle.getDouble("latitude",latitude);
+        longitude = bundle.getDouble("longitude",longitude);
+        /*latidute = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
+        latlong = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();*/
     }
 
 
