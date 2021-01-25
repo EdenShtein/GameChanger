@@ -125,11 +125,25 @@
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/addgame_mapview"
-        android:layout_width="98dp"
+        android:layout_width="0dp"
         android:layout_height="91dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/add_map"
+        app:layout_constraintStart_toEndOf="@+id/add_map"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addgame_location_text" />
+
+    <Button
+        android:id="@+id/add_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="10dp"
+        android:text="Clickme"
+        app:layout_constraintBottom_toBottomOf="@+id/addgame_mapview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addgame_mapview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

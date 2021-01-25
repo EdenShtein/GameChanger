@@ -6,7 +6,9 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import com.example.gamechanger.model.Model;
 import com.example.gamechanger.model.User.User;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FieldValue;
@@ -46,8 +48,10 @@ public class Game {
     String ownedBy;
 
     @Ignore
-    FirebaseAuth mAuth=FirebaseAuth.getInstance();
-    String UserId = mAuth.getCurrentUser().getUid();
+    String UserId = Model.instance.getUserId();
+
+    //private double latitude;
+    //private double longitude;
 
     public Game(){
 

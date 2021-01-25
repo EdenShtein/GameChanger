@@ -38,6 +38,8 @@ public class AddGameFragment extends Fragment {
     Button cancelBtn;
     Button saveBtn;
 
+    Button mapBtn;
+
     EditText gameTitle;
     EditText gamePrice;
 
@@ -137,7 +139,19 @@ public class AddGameFragment extends Fragment {
                 //Navigation.findNavController(view).navigate(R.id.action_addGame_to_mainFeed);
             }
         });
+        mapBtn=view.findViewById(R.id.add_map);
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_addGame_to_maps);
 
+            }
+        });
+        Bundle bundle = getArguments();
+        if(bundle!=null) {
+            Double latitude;
+            latitude = bundle.getDouble("latitude");
+        }
         return view;
     }
 

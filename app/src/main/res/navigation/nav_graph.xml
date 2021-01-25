@@ -75,6 +75,17 @@
         <action
             android:id="@+id/action_addGameFragment_to_loadingFragment"
             app:destination="@id/loadingFragment" />
+        <action
+            android:id="@+id/action_addGame_to_maps"
+            app:destination="@id/mapsFragment" />
+        <argument
+            android:name="latitude"
+            app:argType="java.lang.Double"
+            app:nullable="true" />
+        <argument
+            android:name="longitude"
+            app:argType="java.lang.Double"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/forgetPassFragment"

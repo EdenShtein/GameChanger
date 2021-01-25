@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.Manifest;
 import android.content.Context;
@@ -24,6 +26,7 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
@@ -42,11 +45,12 @@ public class MapsFragment extends Fragment  {
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
     GoogleMap googleMap;
+    private View view;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_maps, container, false);
+         view =  inflater.inflate(R.layout.fragment_maps, container, false);
 
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
 
@@ -120,10 +124,16 @@ public class MapsFragment extends Fragment  {
                                     markerOptions.position(latLng);
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                                     markerOptions.title(latLng.latitude + " : "+ latLng.longitude);
+                                    Bundle bundle= new Bundle();
                                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                                             latLng,7
                                     ));
                                     googleMap.addMarker(markerOptions);
+//                                    bundle.putDouble("latitude",latLng.latitude);
+//                                    bundle.putDouble("longitude",latLng.longitude);
+
+
+
                                 }
                             });
                         }
