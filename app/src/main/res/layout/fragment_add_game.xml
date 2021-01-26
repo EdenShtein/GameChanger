@@ -15,7 +15,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:backgroundTint="#FF5722"
         android:ems="10"
@@ -26,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/add_map" />
 
     <EditText
         android:id="@+id/addgame_price_input"
@@ -50,49 +49,49 @@
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="48dp"
         android:layout_weight="1"
         android:backgroundTint="#FF5722"
         android:text="Cancel"
         android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addgame_save_btn"
-        app:layout_constraintTop_toBottomOf="@+id/addgame_mapview" />
+        app:layout_constraintStart_toEndOf="@+id/addgame_save_btn" />
 
     <Button
         android:id="@+id/addgame_save_btn"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="48dp"
         android:layout_weight="1"
         android:backgroundTint="#FF5722"
         android:text="Save"
         android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/addgame_cancel_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addgame_mapview" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/addgame_edit_image_btn"
         style="@android:style/Widget.Holo.ImageButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="48dp"
         android:backgroundTint="#00FF9800"
         android:scaleType="fitXY"
         android:src="@android:drawable/ic_menu_edit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addgame_price_input" />
+        app:layout_constraintTop_toTopOf="@+id/addgame_avatar_imv" />
 
     <ImageView
         android:id="@+id/addgame_avatar_imv"
-        android:layout_width="146dp"
-        android:layout_height="128dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="151dp"
+        android:layout_height="137dp"
+        android:layout_marginTop="56dp"
         android:background="#22CA841E"
         android:src="@drawable/gamechangerlogo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -104,7 +103,7 @@
         android:layout_width="165dp"
         android:layout_height="35dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
         android:text="Image Preview:"
         android:textColor="#FF9800"
         android:textSize="18sp"
@@ -115,35 +114,24 @@
         android:id="@+id/addgame_location_text"
         android:layout_width="235dp"
         android:layout_height="34dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="24dp"
         android:text="Choose your location:"
         android:textColor="#FF9800"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/addgame_title_input"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addgame_avatar_imv" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.586" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/addgame_mapview"
-        android:layout_width="0dp"
-        android:layout_height="91dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/add_map"
-        app:layout_constraintStart_toEndOf="@+id/add_map"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addgame_location_text" />
-
-    <Button
+    <ImageView
         android:id="@+id/add_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="10dp"
-        android:text="Clickme"
-        app:layout_constraintBottom_toBottomOf="@+id/addgame_mapview"
+        android:layout_width="68dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="32dp"
+        android:src="@android:drawable/ic_dialog_map"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/addgame_mapview" />
+        app:layout_constraintHorizontal_bias="0.44"
+        app:layout_constraintStart_toEndOf="@+id/addgame_location_text"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
