@@ -40,13 +40,14 @@ public class AddGameFragment extends Fragment {
     Button cancelBtn;
     Button saveBtn;
 
-    Button mapBtn;
+
 
     EditText gameTitle;
     EditText gamePrice;
 
     ImageView avatarImageView;
     ImageButton editImage;
+    ImageView mapBtn;
 
     double latitude;
     double longitude;
@@ -159,9 +160,9 @@ public class AddGameFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_addGame_to_maps);
-
             }
         });
+
         if(getFlag()==1){
             checkForNewCoordinates();
             this.setFlag(0);
