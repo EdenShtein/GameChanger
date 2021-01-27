@@ -62,25 +62,25 @@ public class UserProfileFragment extends Fragment {
         //Query query = gamesRef.whereEqualTo("OwnedBy", id);
 
         GameAdapter gamesAdapter = new GameAdapter();
+        gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
         Model.instance.showUserGames(new Model.FbGamesListener() {
             @Override
             public void onComplete(List<Game> userGames) {
                 gamesAdapter.setGamesData(userGames);
                 gamesList_rv.setAdapter(gamesAdapter);
-                gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
-                gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
-                    @Override
-                    public void onChanged(List<Game> userGames) {
-                        //update RecyclerView
-                        gamesAdapter.setGamesData(userGames);
-                    }
-                });
+
             }
 
         });
 
-        gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
+        gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
+            @Override
+            public void onChanged(List<Game> userGames) {
+                //update RecyclerView
+                gamesAdapter.setGamesData(userGames);
+            }
+        });
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override

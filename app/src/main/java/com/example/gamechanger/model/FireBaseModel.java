@@ -216,7 +216,6 @@ public class FireBaseModel {
     }
 
     public List<Game> showAllFbGames(final Model.FbGamesListener listener){
-        String id = Model.instance.getUserId();
         List<Game> userGames = new LinkedList<Game>();
         db.collection("Games").get().addOnCompleteListener((new OnCompleteListener<QuerySnapshot>() {
             @Override

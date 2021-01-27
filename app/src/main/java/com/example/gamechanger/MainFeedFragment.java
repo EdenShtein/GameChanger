@@ -61,25 +61,24 @@ public class MainFeedFragment extends Fragment {
         final GameAdapter gamesAdapter = new GameAdapter();
         gamesList_rv.setAdapter(gamesAdapter);
 
+        gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
+
         Model.instance.showAllFbGames(new Model.FbGamesListener() {
             @Override
             public void onComplete(List<Game> userGames) {
                 gamesAdapter.setGamesData(userGames);
                 gamesList_rv.setAdapter(gamesAdapter);
-                gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
-                gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
-                    @Override
-                    public void onChanged(List<Game> userGames) {
-                        //update RecyclerView
-                        gamesAdapter.setGamesData(userGames);
-                    }
-                });
 
             }
 
         });
-
-            gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
+        gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
+            @Override
+            public void onChanged(List<Game> userGames) {
+                //update RecyclerView
+                gamesAdapter.setGamesData(userGames);
+            }
+        });
 
 
 

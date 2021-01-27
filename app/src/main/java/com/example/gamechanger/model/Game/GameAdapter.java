@@ -91,6 +91,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
             gameText.setText(game.getName());
             gameSubText.setText(game.getPrice());
             gameImage.setImageResource(R.drawable.gamechangersimple);
+            String url = game.getImageURL();
             if (game.getImageURL() != null){
                 Picasso.get().load(game.getImageURL()).placeholder(R.drawable.gamechangersimple).into(gameImage);
             }
