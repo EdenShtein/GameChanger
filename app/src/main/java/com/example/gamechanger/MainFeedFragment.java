@@ -76,7 +76,7 @@ public class MainFeedFragment extends Fragment {
             @Override
             public void onChanged(List<Game> userGames) {
                 //update RecyclerView
-                gamesAdapter.setGamesData(userGames);
+                //gamesAdapter.setGamesData(userGames);
             }
         });
 

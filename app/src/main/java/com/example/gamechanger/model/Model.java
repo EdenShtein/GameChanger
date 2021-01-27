@@ -95,12 +95,12 @@ public class Model {
             void onComplete(List<Game> userGames);
     }
 
-    public List<Game> showAllFbGames(final FbGamesListener listener){
-        return fireBase.showAllFbGames(listener);
+    public void showAllFbGames(final FbGamesListener listener){
+        fireBase.showAllFbGames(listener);
     }
 
-    public List<Game> showUserGames(final FbGamesListener listener){
-        return fireBase.showUserGames(listener);
+    public void showUserGames(final FbGamesListener listener){
+        fireBase.showUserGames(listener);
     }
 
 }

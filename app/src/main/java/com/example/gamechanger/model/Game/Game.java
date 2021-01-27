@@ -78,7 +78,7 @@ public class Game {
         result.put("id", id);
         result.put("gameName", name);
         result.put("gamePrice", price);
-        result.put("imgUrl", imageURL);
+        result.put("imageUrl", imageURL);
         result.put("latitude", latitude);
         result.put("longitude", longitude);
         /*result.put("lastUpdated", FieldValue.serverTimestamp());*/
