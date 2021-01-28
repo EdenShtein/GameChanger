@@ -114,8 +114,7 @@ public class AddGameFragment extends Fragment {
 
                             game= new Game(title,price,url);
                             game.setLatitude(latitude);
-                            game.setLongitude(longitude);;
-                            game.toMap();
+                            game.setLongitude(longitude);
 
                             AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections
                                     .actionAddGameToMainFeed(title, price, url);

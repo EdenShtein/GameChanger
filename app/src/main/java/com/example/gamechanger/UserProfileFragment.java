@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.gamechanger.model.Game.Game;
@@ -29,7 +30,7 @@ public class UserProfileFragment extends Fragment {
     public GameViewModel gameViewModel;
     public RecyclerView gamesList_rv;
 
-    Button back_btn;
+    ImageView back_btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

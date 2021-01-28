@@ -81,8 +81,8 @@ public class Game {
         result.put("imageUrl", imageURL);
         result.put("latitude", latitude);
         result.put("longitude", longitude);
-        /*result.put("lastUpdated", FieldValue.serverTimestamp());*/
         result.put("OwnedBy", UserId);
+        /*result.put("lastUpdated", FieldValue.serverTimestamp());*/
         return result;
     }
 
@@ -93,9 +93,9 @@ public class Game {
         imageURL = (String)map.get("imageUrl");
         latitude = (double)map.get("latitude");
         longitude = (double)map.get("longitude");
+        UserId = (String) map.get("OwnedBy");
         /*Timestamp ts = (Timestamp)map.get("lastUpdated");
         lastUpdated = ts.getSeconds();*/
-        UserId = (String) map.get("OwnedBy");
     }
 
     public void setName(String name) {

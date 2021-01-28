@@ -222,7 +222,6 @@ public class FireBaseModel {
                 if (task.isSuccessful()){
                     for (DocumentSnapshot doc : task.getResult()){
                         Game game = new Game();
-                        Object imageUrl = doc.get("imageUrl");
                         game.fromMap(doc.getData());
                         userGames.add(game);
                         Log.d("TAG","game: " + game.getId());
@@ -231,5 +230,21 @@ public class FireBaseModel {
                 listener.onComplete(userGames);
             }
         });
+    }
+
+    public void getOwnerId(String gameId, Model.FbGamesListener listener){
+        db.collection("Games").document(gameId).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    DocumentSnapshot doc = task.getResult();
+                    String ownedBy = doc.getString("OwnedBy");
+                    //listener.onComplete(ownedBy);
+                }
+            }
+
+        });
+
     }
 }
