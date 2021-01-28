@@ -11,6 +11,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -39,6 +41,7 @@ public class MainFeedFragment extends Fragment {
     ImageView mapBtn;
     static int flag =0;
     private View view;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public int getMainFeedFlag(){
         return flag;
@@ -64,22 +67,43 @@ public class MainFeedFragment extends Fragment {
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
         Model.instance.showAllFbGames(new Model.FbGamesListener() {
+                    @Override
+                    public void onComplete(List<Game> userGames) {
+                        gamesAdapter.setGamesData(userGames);
+                        gamesList_rv.setAdapter(gamesAdapter);
+                    }
+                });
+
+
+        swipeRefreshLayout = view.findViewById(R.id.mainfeed_refresh_layout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.design_default_color_primary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onComplete(List<Game> userGames) {
-                gamesAdapter.setGamesData(userGames);
-                gamesList_rv.setAdapter(gamesAdapter);
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                Model.instance.showAllFbGames(new Model.FbGamesListener() {
+                    @Override
+                    public void onComplete(List<Game> userGames) {
+                        gamesAdapter.setGamesData(userGames);
+                        gamesList_rv.setAdapter(gamesAdapter);
+                    }
+                });
+                addGamebtn.setEnabled(true);
+                swipeRefreshLayout.setRefreshing(false);
 
             }
-
         });
-        gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
+
+        /*gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
             @Override
             public void onChanged(List<Game> userGames) {
                 //update RecyclerView
                 //gamesAdapter.setGamesData(userGames);
             }
-        });
-
+        });*/
 
 
         addGamebtn = view.findViewById(R.id.mainfeed_addgame_btn);
@@ -96,14 +120,14 @@ public class MainFeedFragment extends Fragment {
             }
         });
 
-        if (getMainFeedFlag() == 1) {
+      /*  if (getMainFeedFlag() == 1) {
             checkForNewGame(view);
             this.setMainFeedFlag(0);
         }
         if (getMainFeedFlag() == 2) {
             checkForNewUpdate(view);
             this.setMainFeedFlag(0);
-        }
+        }*/
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
@@ -144,36 +168,6 @@ public class MainFeedFragment extends Fragment {
         return view;
     }
 
-    /*public void GetDataFromFirebase(){
-
-        Query query = myRef.child("Games");
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //ClearAll();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-
-                    Game game = new Game();
-                    game.setImageURL(snapshot.child("imgUrl").getValue().toString());
-                    game.setName(snapshot.child("gameName").getValue().toString());
-                    game.setPrice(snapshot.child("gamePrice").getValue().toString());
-
-                    gmList.add(game);
-                }
-
-                gameAdapter = new GameAdapter(gmList,getActivity().getApplicationContext());
-                gamesList_rv.setAdapter(gameAdapter);
-                gameAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-    }*/
 
     private void checkForNewGame(View view) {
 

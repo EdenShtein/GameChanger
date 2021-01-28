@@ -73,9 +73,6 @@
             android:id="@+id/action_addGame_to_mainFeed"
             app:destination="@id/mainFeedFragment" />
         <action
-            android:id="@+id/action_addGameFragment_to_loadingFragment"
-            app:destination="@id/loadingFragment" />
-        <action
             android:id="@+id/action_addGame_to_maps"
             app:destination="@id/mapsFragment" />
         <argument
@@ -135,19 +132,7 @@
         android:label="fragment_trade_game"
         tools:layout="@layout/fragment_trade_game" >
         <action
-            android:id="@+id/action_tradeGameFragment_to_loadingFragment"
-            app:destination="@id/loadingFragment" />
-        <action
             android:id="@+id/action_tradeGame_to_mainFeed"
-            app:destination="@id/mainFeedFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/loadingFragment"
-        android:name="com.example.gamechanger.LoadingFragment"
-        android:label="fragment_loading"
-        tools:layout="@layout/fragment_loading" >
-        <action
-            android:id="@+id/action_loadingFragment_to_mainFeedFragment"
             app:destination="@id/mainFeedFragment" />
     </fragment>
     <fragment
@@ -169,4 +154,9 @@
             android:id="@+id/action_maps_to_addGame"
             app:destination="@id/addGameFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/gameDetailsFragment"
+        android:name="com.example.gamechanger.GameDetailsFragment"
+        android:label="fragment_game_details"
+        tools:layout="@layout/fragment_game_details" />
 </navigation>
