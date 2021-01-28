@@ -1,7 +1,12 @@
 package com.example.gamechanger;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -87,7 +92,29 @@ public class GameDetailsFragment extends Fragment {
             }
         });
 
+        contact_btn = view.findViewById(R.id.gamedetails_contact_btn);
+        contact_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                phoneCalls("972507168433");
+            }
+        });
+
+
 
         return view;
+    }
+
+    public void phoneCalls(String phoneNumber)
+    {
+        if(ActivityCompat.checkSelfPermission(getActivity(),Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.CALL_PHONE},100);
+            return;
+        }
+        String uri = "tel:" + phoneNumber.trim() ;
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse(uri));
+        startActivity(intent);
     }
 }
