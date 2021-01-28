@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.gamechanger.model.Model;
 import com.squareup.picasso.Picasso;
 
 
@@ -29,12 +30,18 @@ public class GameDetailsFragment extends Fragment {
     Button contact_btn;
 
     String imageUrl;
+    String gameId;
+    String ownerId;
+    String ownerName;
+    String gameDate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_game_details, container, false);
+
+        gameId = GameDetailsFragmentArgs.fromBundle(getArguments()).getGameDetailsId();
 
         back_btn = view.findViewById(R.id.gamedetails_close_btn);
         back_btn.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +64,28 @@ public class GameDetailsFragment extends Fragment {
         }
 
         postedBy = view.findViewById(R.id.gamedetails_postby_input);
+        Model.instance.getOwnerId(gameId, new Model.StringListener() {
+            @Override
+            public void onComplete(String string) {
+                ownerId = string;
+                Model.instance.getOwnerName(ownerId, new Model.StringListener() {
+                    @Override
+                    public void onComplete(String string) {
+                        ownerName = string;
+                        postedBy.setText(ownerName);
+                    }
+                });
+            }
+        });
+
+        postDate = view.findViewById(R.id.gamedetails_date_input);
+        Model.instance.getGameDate(gameId, new Model.StringListener() {
+            @Override
+            public void onComplete(String string) {
+                gameDate = string;
+                postDate.setText(gameDate);
+            }
+        });
 
 
         return view;

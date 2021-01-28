@@ -8,6 +8,7 @@ import com.example.gamechanger.model.User.User;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 public class Model {
@@ -101,6 +102,22 @@ public class Model {
 
     public void showUserGames(final FbGamesListener listener){
         fireBase.showUserGames(listener);
+    }
+
+    public interface StringListener {
+        void onComplete(String string);
+    }
+
+    public void getOwnerId(String gameId, StringListener string){
+        fireBase.getOwnerId(gameId,string);
+    }
+
+    public void getOwnerName(String ownerId, StringListener string){
+        fireBase.getOwnerName(ownerId,string);
+    }
+
+    public void getGameDate(String gameId, StringListener string){
+        fireBase.getGameDate(gameId,string);
     }
 
 }

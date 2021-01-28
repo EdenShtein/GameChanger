@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -34,6 +35,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -232,7 +234,7 @@ public class FireBaseModel {
         });
     }
 
-    public void getOwnerId(String gameId, Model.FbGamesListener listener){
+    public void getOwnerId(String gameId, Model.StringListener listener){
         db.collection("Games").document(gameId).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -240,11 +242,42 @@ public class FireBaseModel {
                 if (task.isSuccessful()){
                     DocumentSnapshot doc = task.getResult();
                     String ownedBy = doc.getString("OwnedBy");
-                    //listener.onComplete(ownedBy);
+                    listener.onComplete(ownedBy);
                 }
             }
-
         });
-
     }
+
+    public void getOwnerName(String ownerId, Model.StringListener listener){
+        db.collection("Users").document(ownerId).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot doc = task.getResult();
+                            String firstName = doc.getString("fName");
+                            String LastName = doc.getString("lName");
+                            String fullName = firstName + " " + LastName;
+                            listener.onComplete(fullName);
+                        }
+                    }
+                });
+    }
+
+    public void getGameDate(String gameId, Model.StringListener listener){
+        db.collection("Games").document(gameId).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot doc = task.getResult();
+                            Timestamp timestamp = (Timestamp)doc.get("Posted At");
+                            Date date = timestamp.toDate();
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                            listener.onComplete(sdf.format(date));
+                        }
+                    }
+                });
+    }
+
 }

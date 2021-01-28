@@ -42,8 +42,6 @@ public class Game {
     @SerializedName("img")
     private String imageURL;
 
-    //private long lastUpdated;
-
     @ColumnInfo(name = "game_latitude")
     @SerializedName("latitude")
     private double latitude;
@@ -59,7 +57,8 @@ public class Game {
     @Ignore
     String UserId = Model.instance.getUserId();
 
-
+    @Ignore
+    private long lastUpdated;
 
 
 
@@ -82,7 +81,7 @@ public class Game {
         result.put("latitude", latitude);
         result.put("longitude", longitude);
         result.put("OwnedBy", UserId);
-        /*result.put("lastUpdated", FieldValue.serverTimestamp());*/
+        result.put("Posted At", FieldValue.serverTimestamp());
         return result;
     }
 
@@ -94,8 +93,8 @@ public class Game {
         latitude = (double)map.get("latitude");
         longitude = (double)map.get("longitude");
         UserId = (String) map.get("OwnedBy");
-        /*Timestamp ts = (Timestamp)map.get("lastUpdated");
-        lastUpdated = ts.getSeconds();*/
+        Timestamp ts = (Timestamp)map.get("Posted At");
+        lastUpdated = ts.getSeconds();
     }
 
     public void setName(String name) {
@@ -131,13 +130,13 @@ public class Game {
         this.imageURL = imageURL;
     }
 
-    /*public long getLastUpdated() {
+    public long getLastUpdated() {
         return lastUpdated;
     }
 
     public void setLastUpdated(long lastUpdated) {
         this.lastUpdated = lastUpdated;
-    }*/
+    }
 
 
 

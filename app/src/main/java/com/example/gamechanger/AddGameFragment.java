@@ -42,8 +42,6 @@ public class AddGameFragment extends Fragment {
     Button cancelBtn;
     Button saveBtn;
 
-
-
     EditText gameTitle;
     EditText gamePrice;
 
