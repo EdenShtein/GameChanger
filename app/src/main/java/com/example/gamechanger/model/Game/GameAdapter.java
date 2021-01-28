@@ -1,8 +1,6 @@
 package com.example.gamechanger.model.Game;
 
 
-import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,9 +68,9 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
 
         public GameHolder(@NonNull View itemView) {
             super(itemView);
-            gameImage = itemView.findViewById(R.id.listrow_image_v);
-            gameText = itemView.findViewById(R.id.listrow_text_v);
-            gameSubText = itemView.findViewById(R.id.listrow_subtext_v);
+            gameImage = itemView.findViewById(R.id.gamedetails_game_image);
+            gameText = itemView.findViewById(R.id.gamedetails_game_title);
+            gameSubText = itemView.findViewById(R.id.gamedetails_game_price);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

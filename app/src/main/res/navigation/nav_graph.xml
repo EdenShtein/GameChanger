@@ -63,6 +63,9 @@
         <action
             android:id="@+id/action_mainFeed_to_maps"
             app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_mainFeed_to_gameDetails"
+            app:destination="@id/gameDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGameFragment"
@@ -158,5 +161,21 @@
         android:id="@+id/gameDetailsFragment"
         android:name="com.example.gamechanger.GameDetailsFragment"
         android:label="fragment_game_details"
-        tools:layout="@layout/fragment_game_details" />
+        tools:layout="@layout/fragment_game_details" >
+        <action
+            android:id="@+id/action_gameDetails_to_mainFeed"
+            app:destination="@id/mainFeedFragment" />
+        <argument
+            android:name="gameDetailsTitle"
+            app:argType="string" />
+        <argument
+            android:name="gameDetailsPrice"
+            app:argType="string" />
+        <argument
+            android:name="gameDetailsId"
+            app:argType="string" />
+        <argument
+            android:name="gameDetailsImage"
+            app:argType="string" />
+    </fragment>
 </navigation>
