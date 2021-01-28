@@ -13,10 +13,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FF9800">
+        android:background="@drawable/customborder"
+        android:backgroundTint="#FF9800">
 
         <TextView
-            android:id="@+id/listrow_text_v"
+            android:id="@+id/gamedetails_game_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -27,16 +28,13 @@
             android:textColor="#000000"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/listrow_image_v"
+            app:layout_constraintStart_toEndOf="@+id/gamedetails_game_image"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/listrow_image_v"
+            android:id="@+id/gamedetails_game_image"
             android:layout_width="78dp"
             android:layout_height="75dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:background="#FF9800"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -44,21 +42,21 @@
             app:srcCompat="@android:drawable/ic_menu_upload" />
 
         <TextView
-            android:id="@+id/listrow_subtext_v"
+            android:id="@+id/gamedetails_game_price"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.387"
-            app:layout_constraintStart_toEndOf="@+id/listrow_image_v"
-            app:layout_constraintTop_toBottomOf="@+id/listrow_text_v" />
+            app:layout_constraintStart_toEndOf="@+id/gamedetails_game_image"
+            app:layout_constraintTop_toBottomOf="@+id/gamedetails_game_title" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

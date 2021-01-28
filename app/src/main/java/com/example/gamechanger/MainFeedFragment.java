@@ -149,7 +149,9 @@ public class MainFeedFragment extends Fragment {
                 String title = game.getName();
                 String price = game.getPrice();
                 String Id = game.getId();
-                MainFeedFragmentDirections.ActionMainFeedToEditGame action = MainFeedFragmentDirections.actionMainFeedToEditGame(title, price, Id);
+                String imageUrl = game.getImageURL();
+                MainFeedFragmentDirections.ActionMainFeedToGameDetails action = MainFeedFragmentDirections.actionMainFeedToGameDetails(title,price,Id,imageUrl);
+                //MainFeedFragmentDirections.ActionMainFeedToEditGame action = MainFeedFragmentDirections.actionMainFeedToEditGame(title, price, Id);
                 Navigation.findNavController(view).navigate(action);
             }
         });

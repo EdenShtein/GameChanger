@@ -29,10 +29,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainfeed_image" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/mainfeed_addgame_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="28dp"
+        android:backgroundTintMode="add"
+        android:clickable="true"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="#774242"
+        app:backgroundTint="#FF5722"
+        app:backgroundTintMode="add"
+        app:fabSize="mini"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:maxImageSize="36dp"
+        app:rippleColor="#FF9800" />
+
+    <ImageView
+        android:id="@+id/mainfeed_map_btn"
+        android:layout_width="48dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:src="@android:drawable/ic_dialog_map"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/mainfeed_refresh_layout"
-        android:layout_width="404dp"
+        android:layout_width="0dp"
         android:layout_height="491dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,34 +80,6 @@
             tools:listitem="@layout/mainfeed_list_row" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/mainfeed_addgame_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="28dp"
-        android:backgroundTintMode="add"
-        android:clickable="true"
-        android:src="@android:drawable/ic_input_add"
-        android:tint="#774242"
-        app:backgroundTint="#FF5722"
-        app:backgroundTintMode="add"
-        app:fabSize="mini"
-        app:layout_constraintBottom_toTopOf="@+id/mainfeed_gameslist_rv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.562"
-        app:maxImageSize="36dp"
-        app:rippleColor="#FF9800" />
 
-    <ImageView
-        android:id="@+id/mainfeed_map_btn"
-        android:layout_width="48dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
-        android:src="@android:drawable/ic_dialog_map"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

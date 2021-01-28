@@ -3,62 +3,62 @@ package com.example.gamechanger;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link GameDetailsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.squareup.picasso.Picasso;
+
+
 public class GameDetailsFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    TextView title;
+    TextView price;
+    TextView postedBy;
+    TextView postDate;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    ImageView gameImage;
+    ImageView back_btn;
+    ImageView edit_btn;
 
-    public GameDetailsFragment() {
-        // Required empty public constructor
-    }
+    Button contact_btn;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment GameDetailsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static GameDetailsFragment newInstance(String param1, String param2) {
-        GameDetailsFragment fragment = new GameDetailsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    String imageUrl;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_game_details, container, false);
+        View view = inflater.inflate(R.layout.fragment_game_details, container, false);
+
+        back_btn = view.findViewById(R.id.gamedetails_close_btn);
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.mainFeedFragment);
+            }
+        });
+
+        title = view.findViewById(R.id.gamedetails_game_title);
+        title.setText(GameDetailsFragmentArgs.fromBundle(getArguments()).getGameDetailsTitle());
+
+        price = view.findViewById(R.id.gamedetails_game_price);
+        price.setText(GameDetailsFragmentArgs.fromBundle(getArguments()).getGameDetailsPrice());
+
+        gameImage = view.findViewById(R.id.gamedetails_game_image);
+        imageUrl = GameDetailsFragmentArgs.fromBundle(getArguments()).getGameDetailsImage();
+        if (imageUrl != null){
+            Picasso.get().load(imageUrl).placeholder(R.drawable.gamechangersimple).into(gameImage);
+        }
+
+        postedBy = view.findViewById(R.id.gamedetails_postby_input);
+
+
+        return view;
     }
 }
