@@ -222,11 +222,13 @@ public class FireBaseModel {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){
-                    for (DocumentSnapshot doc : task.getResult()){
-                        Game game = new Game();
-                        game.fromMap(doc.getData());
-                        userGames.add(game);
-                        Log.d("TAG","game: " + game.getId());
+                    if (task.getResult().isEmpty() == false){
+                        for (DocumentSnapshot doc : task.getResult()){
+                            Game game = new Game();
+                            game.fromMap(doc.getData());
+                            userGames.add(game);
+                            Log.d("TAG","game: " + game.getId());
+                        }
                     }
                 }
                 listener.onComplete(userGames);

@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
@@ -45,6 +46,7 @@ public class GameDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_game_details, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Game Details");
 
         gameId = GameDetailsFragmentArgs.fromBundle(getArguments()).getGameDetailsId();
 
@@ -88,7 +90,7 @@ public class GameDetailsFragment extends Fragment {
             @Override
             public void onComplete(String string) {
                 gameDate = string;
-                postDate.setText(gameDate);
+                postDate.setText(gameDate + " UTC");
             }
         });
 
