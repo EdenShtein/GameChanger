@@ -30,6 +30,8 @@ import android.widget.Toast;
 import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Model;
 
+import java.io.InputStream;
+
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
@@ -227,19 +229,17 @@ public class AddGameFragment extends Fragment {
                     break;
                 case 1:
                     if (resultCode == RESULT_OK && data != null) {
-                        Uri selectedImage =  data.getData();
-                        String[] filePathColumn = {MediaStore.Images.Media.DATA};
-                        if (selectedImage != null) {
-                            Cursor cursor = getActivity().getContentResolver().query(selectedImage,
-                                    filePathColumn, null, null, null);
-
-                                cursor.moveToFirst();
-                                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                                String picturePath = cursor.getString(columnIndex);
-                                avatarImageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-                                cursor.close();
+                        try {
+                            final Uri imageUri = data.getData();
+                            final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                            final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                            avatarImageView.setImageBitmap(selectedImage);
+                        } catch (Exception e) {
+                            e.printStackTrace();
 
                         }
+
+
                     }
                     break;
             }
