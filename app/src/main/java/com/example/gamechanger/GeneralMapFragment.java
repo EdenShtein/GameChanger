@@ -3,6 +3,7 @@ package com.example.gamechanger;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.LinkedList;
@@ -50,6 +52,16 @@ public class GeneralMapFragment extends Fragment {
                             markerOptions.position(location);
                             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                             googleMap.addMarker(markerOptions);
+                            googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                @Override
+                                public boolean onMarkerClick(Marker marker) {
+                                    if(marker.equals(markerOptions))
+                                    {
+                                        Navigation.findNavController(view).navigate(R.id.action_generalMap_to_gameDetails);
+                                    }
+                                    return false;
+                                }
+                            });
 
                         }
                     }

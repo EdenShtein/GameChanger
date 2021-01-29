@@ -185,5 +185,9 @@
         android:id="@+id/generalMapFragment"
         android:name="com.example.gamechanger.GeneralMapFragment"
         android:label="fragment_general_map"
-        tools:layout="@layout/fragment_general_map" />
+        tools:layout="@layout/fragment_general_map" >
+        <action
+            android:id="@+id/action_generalMap_to_gameDetails"
+            app:destination="@id/gameDetailsFragment" />
+    </fragment>
 </navigation>
