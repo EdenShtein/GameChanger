@@ -163,7 +163,7 @@ public class FireBaseModel {
         });
     }
 
-    public void addGame(Game game, final Model.AddGameListener listener) {
+    public void addGame(Game game, final Model.GameListener listener) {
         db.collection("Games").document(String.valueOf(game.getId()))
                 .set(game.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -292,6 +292,22 @@ public class FireBaseModel {
                             String phoneNumber = doc.getString("phone");
                             listener.onComplete(phoneNumber);
                         }
+                    }
+                });
+    }
+
+    public void deleteFbGame(String gameId, Model.GameListener listener){
+        db.collection("Games").document(gameId).delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "Game successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "Error deleting game");
                     }
                 });
     }

@@ -147,6 +147,9 @@
             android:id="@+id/action_userProfile_to_mainFeed"
             app:destination="@id/mainFeedFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_userProfile_to_gameDetails"
+            app:destination="@id/gameDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"

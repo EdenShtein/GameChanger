@@ -131,7 +131,7 @@ public class AddGameFragment extends Fragment {
 
                             Navigation.findNavController(view).navigate(action);
 
-                            Model.instance.addGame(game, new Model.AddGameListener() {
+                            Model.instance.addGame(game, new Model.GameListener() {
                                 @Override
                                 public void onComplete() {
                                     //mainFeedFragment.GetDataFromFirebase();

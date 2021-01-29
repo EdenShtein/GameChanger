@@ -129,7 +129,9 @@ public class MainFeedFragment extends Fragment {
             this.setMainFeedFlag(0);
         }*/
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        // SWIPE OFF
+
+        /*new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -140,7 +142,7 @@ public class MainFeedFragment extends Fragment {
                 gameViewModel.delete(gamesAdapter.getGames(viewHolder.getAdapterPosition()));
                 Toast.makeText(getActivity(), "Post has been deleted", Toast.LENGTH_SHORT).show();
             }
-        }).attachToRecyclerView(gamesList_rv);
+        }).attachToRecyclerView(gamesList_rv);*/
 
         //For Editing Game
         gamesAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {

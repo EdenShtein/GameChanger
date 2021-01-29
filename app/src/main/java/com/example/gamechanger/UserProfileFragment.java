@@ -55,13 +55,6 @@ public class UserProfileFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         gamesList_rv.setLayoutManager(layoutManager);
 
-        ////----------------------------------------------/////
-
-        //RecyclerView recyclerView = view.findViewById(R.id.userprofile_posts_rv);
-        //recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
-        //Query query = gamesRef.whereEqualTo("OwnedBy", id);
-
         GameAdapter gamesAdapter = new GameAdapter();
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
@@ -92,6 +85,12 @@ public class UserProfileFragment extends Fragment {
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 gameViewModel.delete(gamesAdapter.getGames(viewHolder.getAdapterPosition()));
+                String gameId = gamesAdapter.getGames(viewHolder.getAdapterPosition()).getId();
+                Model.instance.deleteFbGame(gameId, new Model.GameListener() {
+                    @Override
+                    public void onComplete() {
+                    }
+                });
                 Toast.makeText(getActivity(), "Post has been deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(gamesList_rv);
@@ -103,9 +102,9 @@ public class UserProfileFragment extends Fragment {
                 String title = game.getName();
                 String price = game.getPrice();
                 String Id = game.getId();
-               /* MainFeedFragmentDirections.ActionMainFeedToEditGame action = MainFeedFragmentDirections.actionMainFeedToEditGame(title, price, Id);
-                Navigation.findNavController(view).navigate(action);*/
-                Navigation.findNavController(v).navigate(R.id.mainFeedFragment);
+                String imageUrl = game.getImageURL();
+                UserProfileFragmentDirections.ActionUserProfileToGameDetails action = UserProfileFragmentDirections.actionUserProfileToGameDetails(title,price,Id,imageUrl);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 

@@ -66,12 +66,12 @@ public class Model {
         fireBase.uploadImage(imageBmp, name, listener);
     }
 
-    public interface AddGameListener {
+    public interface GameListener {
         void onComplete();
     }
 
-    public void addGame(final Game game, final AddGameListener listener) {
-        fireBase.addGame(game, new AddGameListener() {
+    public void addGame(final Game game, final GameListener listener) {
+        fireBase.addGame(game, new GameListener() {
             @Override
             public void onComplete() {
                 listener.onComplete();
@@ -122,6 +122,10 @@ public class Model {
 
     public void getOwnerPhone(String ownerId, StringListener listener){
         fireBase.getOwnerPhone(ownerId,listener);
+    }
+
+    public void deleteFbGame(String gameId, GameListener listener){
+        fireBase.deleteFbGame(gameId,listener);
     }
 
 
