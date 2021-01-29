@@ -158,6 +158,8 @@ public class AddGameFragment extends Fragment {
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MapsFragment mapsFragment = new MapsFragment();
+                mapsFragment.setAdd_flag(1);
                 Navigation.findNavController(view).navigate(R.id.action_addGame_to_maps);
             }
         });

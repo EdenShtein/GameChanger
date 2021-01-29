@@ -46,6 +46,8 @@ public class MapsFragment extends Fragment  {
     SupportMapFragment supportMapFragment;
     FusedLocationProviderClient client;
     GoogleMap googleMap;
+    static int add_flag = 0;
+    static int edit_flag = 0;
     private View view;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -126,19 +128,24 @@ public class MapsFragment extends Fragment  {
                                     markerOptions.position(latLng);
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                                     markerOptions.title(latLng.latitude + " : "+ latLng.longitude);
-                                    Bundle bundle= new Bundle();
                                     googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                                             latLng,7
                                     ));
                                     googleMap.addMarker(markerOptions);
-                                    /*bundle.putDouble("latitude",latLng.latitude);
-                                    bundle.putDouble("longitude",latLng.longitude);*/
-                                    MapsFragmentDirections.ActionMapsToAddGame action = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude
-                                    );
+                                    MapsFragmentDirections.ActionMapsToAddGame action_add = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude);
+                                    MapsFragmentDirections.ActionMapsToEditGame action_edit = MapsFragmentDirections.actionMapsToEditGame(null, null, null, null, latLng.latitude, latLng.longitude);
+
                                     AddGameFragment addGameFragment = new AddGameFragment();
                                     addGameFragment.setFlag(1);
-                                    Navigation.findNavController(view).navigate(action);
 
+                                    if (getAdd_flag() == 1){
+                                        setAdd_flag(0);
+                                        Navigation.findNavController(view).navigate(action_add);
+                                    }
+                                    if (getEdit_flag() == 1){
+                                        setEdit_flag(0);
+                                        Navigation.findNavController(view).navigate(action_edit);
+                                    }
 
                                 }
                             });
@@ -162,5 +169,20 @@ public class MapsFragment extends Fragment  {
             }
     }
 
+    public int getAdd_flag() {
+        return add_flag;
+    }
+
+    public void setAdd_flag(int add_flag) {
+        MapsFragment.add_flag = add_flag;
+    }
+
+    public int getEdit_flag() {
+        return edit_flag;
+    }
+
+    public void setEdit_flag(int edit_flag) {
+        MapsFragment.edit_flag = edit_flag;
+    }
 
 }

@@ -54,7 +54,7 @@ public class GameDetailsFragment extends Fragment {
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).popBackStack();
+                Navigation.findNavController(view).navigate(R.id.mainFeedFragment);
             }
         });
 
@@ -107,7 +107,16 @@ public class GameDetailsFragment extends Fragment {
             }
         });
 
-
+        edit_btn = view.findViewById(R.id.gamedetails_edit_btn);
+        edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String title = GameDetailsFragmentArgs.fromBundle(getArguments()).getGameDetailsTitle();
+                String price = GameDetailsFragmentArgs.fromBundle(getArguments()).getGameDetailsPrice();
+                GameDetailsFragmentDirections.ActionGameDetailsToEditGame action = GameDetailsFragmentDirections.actionGameDetailsToEditGame(title,price,imageUrl,gameId, null , null);
+                Navigation.findNavController(view).navigate(action);
+            }
+        });
 
         return view;
     }

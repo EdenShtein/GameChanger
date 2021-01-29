@@ -49,9 +49,6 @@
             android:name="gamePrice"
             app:argType="string" />
         <action
-            android:id="@+id/action_mainFeed_to_editGame"
-            app:destination="@id/editGameFragment" />
-        <action
             android:id="@+id/action_mainFeed_to_decision"
             app:destination="@id/decisionFragment" />
         <argument
@@ -102,17 +99,35 @@
         android:label="fragment_edit_game"
         tools:layout="@layout/fragment_edit_game" >
         <action
-            android:id="@+id/action_editGame_to_mainFeed"
-            app:destination="@id/mainFeedFragment" />
+            android:id="@+id/action_editGame_to_gameDetails"
+            app:destination="@id/gameDetailsFragment" />
         <argument
             android:name="editGameTitle"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true" />
         <argument
             android:name="editGamePrice"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="editGameImage"
+            app:argType="string"
+            app:nullable="true" />
         <argument
             android:name="editGameId"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_editGame_to_maps"
+            app:destination="@id/mapsFragment" />
+        <argument
+            android:name="latitude"
+            app:argType="java.lang.Double"
+            app:nullable="true" />
+        <argument
+            android:name="longitude"
+            app:argType="java.lang.Double"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/decisionFragment"
@@ -159,6 +174,9 @@
         <action
             android:id="@+id/action_maps_to_addGame"
             app:destination="@id/addGameFragment" />
+        <action
+            android:id="@+id/action_maps_to_editGame"
+            app:destination="@id/editGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameDetailsFragment"
@@ -180,6 +198,9 @@
         <argument
             android:name="gameDetailsImage"
             app:argType="string" />
+        <action
+            android:id="@+id/action_gameDetails_to_editGame"
+            app:destination="@id/editGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/generalMapFragment"

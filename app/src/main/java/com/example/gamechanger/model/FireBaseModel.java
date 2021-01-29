@@ -151,13 +151,13 @@ public class FireBaseModel {
                 .set(user.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Log.d("TAG","student added successfully");
+                Log.d("TAG","User added successfully");
                 listener.onComplete();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("TAG","fail adding student");
+                Log.d("TAG","fail adding User");
                 listener.onComplete();
             }
         });
@@ -168,13 +168,13 @@ public class FireBaseModel {
                 .set(game.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Log.d("TAG","student added successfully");
+                Log.d("TAG","Game added successfully");
                 listener.onComplete();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Log.d("TAG","fail adding student");
+                Log.d("TAG","failed adding Game");
                 listener.onComplete();
             }
         });
