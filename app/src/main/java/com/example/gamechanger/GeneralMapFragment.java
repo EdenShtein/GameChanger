@@ -3,55 +3,76 @@ package com.example.gamechanger;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
+import com.example.gamechanger.model.Model;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class GeneralMapFragment extends Fragment {
 
-    private OnMapReadyCallback callback = new OnMapReadyCallback() {
+    LinkedList<Double> latPoints = new LinkedList<>();
+    LinkedList<Double> longPoints = new LinkedList<>();
+    private View view;
 
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
-        @Override
-        public void onMapReady(GoogleMap googleMap) {
-            LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        }
-    };
+    SupportMapFragment supportMapFragment;
+    GoogleMap googleMap;
 
-    @Nullable
-    @Override
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_general_map, container, false);
+        view = inflater.inflate(R.layout.fragment_general_map, container, false);
+        supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+
+        Model.instance.getLatLongPoint(new Model.LatLongListener() {
+            @Override
+            public void onComplete(List<Double> latitudePoint, List<Double> longitudePoints) {
+                latPoints.addAll(latitudePoint);
+                longPoints.addAll(longitudePoints);
+                supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        for(int i=0;i<longPoints.size();i++){
+                            LatLng location = new LatLng(latPoints.get(i),longPoints.get(i));
+                            MarkerOptions markerOptions = new MarkerOptions();
+                            markerOptions.position(location);
+                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                            googleMap.addMarker(markerOptions);
+                            googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                                @Override
+                                public boolean onMarkerClick(Marker marker) {
+                                    if(marker.equals(markerOptions))
+                                    {
+                                        Navigation.findNavController(view).navigate(R.id.action_generalMap_to_gameDetails);
+                                    }
+                                    return false;
+                                }
+                            });
+
+                        }
+                    }
+                });
+            }
+        });
+
+
+
+       return view;
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        SupportMapFragment mapFragment =
-                (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(callback);
-        }
-    }
+
 }

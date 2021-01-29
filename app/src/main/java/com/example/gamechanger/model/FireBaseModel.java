@@ -312,4 +312,26 @@ public class FireBaseModel {
                 });
     }
 
+
+    public void getLatLong(final Model.LatLongListener listener){
+        String id = Model.instance.getUserId();
+        List<Double> latitudePoints = new LinkedList<Double>();
+        List<Double> longitudePoints = new LinkedList<Double>();
+        db.collection("Games").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    for (QueryDocumentSnapshot querySnapshot : task.getResult()){
+                        Game game = new Game();
+                        game.fromMap(querySnapshot.getData());
+                        latitudePoints.add(game.getLatitude());
+                        longitudePoints.add(game.getLongitude());
+
+                    }
+                }
+                listener.onComplete(latitudePoints,longitudePoints);
+            }
+        });
+    }
+
 }
