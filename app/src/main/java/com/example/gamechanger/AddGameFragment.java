@@ -54,10 +54,10 @@ public class AddGameFragment extends Fragment {
 
     static int mapFlag =0;
 
-    public int getFlag(){
+    public int getMapFlag(){
         return mapFlag;
     }
-    public void setFlag(int flag){ this.mapFlag = flag; }
+    public void setMapFlag(int flag){ this.mapFlag = flag; }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -164,9 +164,9 @@ public class AddGameFragment extends Fragment {
             }
         });
 
-        if(getFlag()==1){
+        if(getMapFlag()==1){
             checkForNewCoordinates();
-            this.setFlag(0);
+            this.setMapFlag(0);
         }
 
         return view;

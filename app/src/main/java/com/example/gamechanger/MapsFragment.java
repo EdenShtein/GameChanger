@@ -85,14 +85,14 @@ public class MapsFragment extends Fragment  {
 
                                     try {
 
-                                        List<Address> listAdddresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
+                                        List<Address> listAddresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
 
-                                        if (listAdddresses != null && listAdddresses.size() > 0) {
-                                            if (listAdddresses.get(0).getThoroughfare() != null) {
-                                                if (listAdddresses.get(0).getSubThoroughfare() != null) {
-                                                    address += listAdddresses.get(0).getSubThoroughfare() + " ";
+                                        if (listAddresses != null && listAddresses.size() > 0) {
+                                            if (listAddresses.get(0).getThoroughfare() != null) {
+                                                if (listAddresses.get(0).getSubThoroughfare() != null) {
+                                                    address += listAddresses.get(0).getSubThoroughfare() + " ";
                                                 }
-                                                address += listAdddresses.get(0).getThoroughfare();
+                                                address += listAddresses.get(0).getThoroughfare();
                                             }
                                         }
 
@@ -123,19 +123,24 @@ public class MapsFragment extends Fragment  {
                                             latLng,7
                                     ));
                                     googleMap.addMarker(markerOptions);
-                                    MapsFragmentDirections.ActionMapsToAddGame action_add = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude);
-                                    MapsFragmentDirections.ActionMapsToEditGame action_edit = MapsFragmentDirections.actionMapsToEditGame(null, null, null, null, latLng.latitude, latLng.longitude);
 
-                                    AddGameFragment addGameFragment = new AddGameFragment();
-                                    addGameFragment.setFlag(1);
 
                                     if (getAdd_flag() == 1){
                                         setAdd_flag(0);
+                                        MapsFragmentDirections.ActionMapsToAddGame action_add = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude);
+                                        AddGameFragment addGameFragment = new AddGameFragment();
+                                        addGameFragment.setMapFlag(1);
                                         Navigation.findNavController(view).navigate(action_add);
                                     }
                                     if (getEdit_flag() == 1){
                                         setEdit_flag(0);
-                                        Navigation.findNavController(view).navigate(action_edit);
+                                        String title = MapsFragmentArgs.fromBundle(getArguments()).getGameTitle();
+                                        String price = MapsFragmentArgs.fromBundle(getArguments()).getGamePrice();
+                                        String Id = MapsFragmentArgs.fromBundle(getArguments()).getGameId();
+                                        MapsFragmentDirections.ActionMapsToEditGame action = MapsFragmentDirections.actionMapsToEditGame(title,price,null,Id,latLng.latitude,latLng.longitude);
+                                        EditGameFragment editGameFragment =  new EditGameFragment();
+                                        editGameFragment.setMap_flag(1);
+                                        Navigation.findNavController(view).navigate(action);
                                     }
 
                                 }

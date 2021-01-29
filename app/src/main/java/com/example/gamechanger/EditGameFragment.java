@@ -40,9 +40,14 @@ public class EditGameFragment extends AddGameFragment {
 
     ImageView avatarImageView;
     ImageView map_Btn;
-
     ImageView editImageBtn;
+
     String gameId;
+    String title;
+    String price;
+
+    static int map_flag =0;
+
 
     double latitude;
     double longitude;
@@ -59,11 +64,11 @@ public class EditGameFragment extends AddGameFragment {
         gameId = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameId();
 
         gameTitle = view.findViewById(R.id.editgame_title_input);
-        String title = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameTitle();
+        title = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameTitle();
         gameTitle.setText(title);
 
         gamePrice = view.findViewById(R.id.editgame_price_input);
-        String price = EditGameFragmentArgs.fromBundle(getArguments()).getEditGamePrice();
+        price = EditGameFragmentArgs.fromBundle(getArguments()).getEditGamePrice();
         gamePrice.setText(price);
 
         avatarImageView = view.findViewById(R.id.editgame_avatar_imv);
@@ -133,11 +138,17 @@ public class EditGameFragment extends AddGameFragment {
             public void onClick(View v) {
                 MapsFragment mapsFragment = new MapsFragment();
                 mapsFragment.setEdit_flag(1);
-                Navigation.findNavController(view).navigate(R.id.action_editGame_to_maps);
+                EditGameFragmentDirections.ActionEditGameToMaps action = EditGameFragmentDirections.actionEditGameToMaps(title,price,gameId);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 
         UpdateGame(view);
+
+        if(getMap_flag()==1){
+            checkForNewCoordinates();
+            this.setMap_flag(0);
+        }
 
        /* editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -227,5 +238,17 @@ public class EditGameFragment extends AddGameFragment {
                     break;
             }
         }
+    }
+    public void checkForNewCoordinates(){
+        latitude = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
+        longitude = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();
+    }
+
+    public int getMap_flag() {
+        return map_flag;
+    }
+
+    public void setMap_flag(int map_flag) {
+        this.map_flag = map_flag;
     }
 }

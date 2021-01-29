@@ -177,6 +177,18 @@
         <action
             android:id="@+id/action_maps_to_editGame"
             app:destination="@id/editGameFragment" />
+        <argument
+            android:name="gameTitle"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="gamePrice"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="gameId"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/gameDetailsFragment"

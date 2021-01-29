@@ -144,7 +144,7 @@ public class MainFeedFragment extends Fragment {
             }
         }).attachToRecyclerView(gamesList_rv);*/
 
-        //For Editing Game
+        //For Details Game
         gamesAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Game game, View v) {
