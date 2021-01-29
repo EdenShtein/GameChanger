@@ -200,16 +200,20 @@
             app:destination="@id/mainFeedFragment" />
         <argument
             android:name="gameDetailsTitle"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true" />
         <argument
             android:name="gameDetailsPrice"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true" />
         <argument
             android:name="gameDetailsId"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true" />
         <argument
             android:name="gameDetailsImage"
-            app:argType="string" />
+            app:argType="string"
+            app:nullable="true" />
         <action
             android:id="@+id/action_gameDetails_to_editGame"
             app:destination="@id/editGameFragment" />

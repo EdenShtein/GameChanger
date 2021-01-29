@@ -129,7 +129,7 @@ public class Model {
     }
 
     public interface LatLongListener {
-        void onComplete(List<Double> latitudePoint,List<Double> longitudePoints);
+        void onComplete(List<Double> latitudePoint,List<Double> longitudePoints,List<String> gameIDS);
     }
 
     public void getLatLongPoint(LatLongListener listener)
@@ -137,5 +137,13 @@ public class Model {
         fireBase.getLatLong(listener);
     }
 
+    public interface GameDataListener {
+        void onComplete(Game game);
+    }
+
+    public void getGameData(String gameID,GameDataListener listener)
+    {
+        fireBase.getGameDetails(gameID,listener);
+    }
 
 }

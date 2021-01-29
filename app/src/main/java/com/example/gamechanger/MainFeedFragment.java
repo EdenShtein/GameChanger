@@ -153,6 +153,7 @@ public class MainFeedFragment extends Fragment {
                 String Id = game.getId();
                 String imageUrl = game.getImageURL();
                 MainFeedFragmentDirections.ActionMainFeedToGameDetails action = MainFeedFragmentDirections.actionMainFeedToGameDetails(title,price,Id,imageUrl);
+
                 //MainFeedFragmentDirections.ActionMainFeedToEditGame action = MainFeedFragmentDirections.actionMainFeedToEditGame(title, price, Id);
                 Navigation.findNavController(view).navigate(action);
             }

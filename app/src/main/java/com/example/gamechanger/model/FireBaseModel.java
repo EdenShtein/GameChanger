@@ -317,6 +317,7 @@ public class FireBaseModel {
         String id = Model.instance.getUserId();
         List<Double> latitudePoints = new LinkedList<Double>();
         List<Double> longitudePoints = new LinkedList<Double>();
+        List<String> gameID = new LinkedList<String>();
         db.collection("Games").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -326,12 +327,34 @@ public class FireBaseModel {
                         game.fromMap(querySnapshot.getData());
                         latitudePoints.add(game.getLatitude());
                         longitudePoints.add(game.getLongitude());
+                        gameID.add(game.getId());
 
                     }
                 }
-                listener.onComplete(latitudePoints,longitudePoints);
+                listener.onComplete(latitudePoints,longitudePoints,gameID);
             }
         });
+    }
+
+    public void getGameDetails(String gameId,final Model.GameDataListener listener){
+        db.collection("Games").document(gameId).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+
+                                DocumentSnapshot doc = task.getResult();
+                                    Game game = new Game();
+                                    game.fromMap(doc.getData());
+
+                                listener.onComplete(game);
+
+
+                            }
+
+
+                    }
+                });
     }
 
 }

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Model;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -26,6 +27,7 @@ public class GeneralMapFragment extends Fragment {
 
     LinkedList<Double> latPoints = new LinkedList<>();
     LinkedList<Double> longPoints = new LinkedList<>();
+    LinkedList<String> gameID = new LinkedList<>();
     private View view;
 
     SupportMapFragment supportMapFragment;
@@ -40,9 +42,10 @@ public class GeneralMapFragment extends Fragment {
 
         Model.instance.getLatLongPoint(new Model.LatLongListener() {
             @Override
-            public void onComplete(List<Double> latitudePoint, List<Double> longitudePoints) {
+            public void onComplete(List<Double> latitudePoint, List<Double> longitudePoints,List<String> gameIDS) {
                 latPoints.addAll(latitudePoint);
                 longPoints.addAll(longitudePoints);
+                gameID.addAll(gameIDS);
                 supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                     @Override
                     public void onMapReady(GoogleMap googleMap) {
@@ -55,11 +58,27 @@ public class GeneralMapFragment extends Fragment {
                             googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                 @Override
                                 public boolean onMarkerClick(Marker marker) {
-                                    if(marker.equals(markerOptions))
-                                    {
-                                        Navigation.findNavController(view).navigate(R.id.action_generalMap_to_gameDetails);
-                                    }
-                                    return false;
+                                    double lat = marker.getPosition().latitude;
+                                    double longitu = marker.getPosition().longitude;
+                                   for(int i=0;i<gameID.size();i++)
+                                   {
+                                       if(latPoints.get(i)==lat && longPoints.get(i)==longitu)
+                                       {
+
+                                            Model.instance.getGameData(gameID.get(i), new Model.GameDataListener() {
+                                                @Override
+                                                public void onComplete(Game game) {
+                                                    GeneralMapFragmentDirections.ActionGeneralMapToGameDetails action =
+                                                            GeneralMapFragmentDirections.actionGeneralMapToGameDetails(
+                                                                    game.getName(),game.getPrice(),game.getId(),game.getImageURL());
+                                                     Navigation.findNavController(view).navigate(action);
+                                                }
+                                            });
+                                       }
+                                   }
+
+
+                                    return true;
                                 }
                             });
 
