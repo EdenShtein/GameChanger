@@ -105,19 +105,25 @@ public class Model {
     }
 
     public interface StringListener {
-        void onComplete(String string);
+        void onComplete(String data);
     }
 
-    public void getOwnerId(String gameId, StringListener string){
-        fireBase.getOwnerId(gameId,string);
+    public void getOwnerId(String gameId, StringListener data){
+        fireBase.getOwnerId(gameId,data);
     }
 
-    public void getOwnerName(String ownerId, StringListener string){
-        fireBase.getOwnerName(ownerId,string);
+    public void getOwnerName(String ownerId, StringListener data){
+        fireBase.getOwnerName(ownerId,data);
     }
 
-    public void getGameDate(String gameId, StringListener string){
-        fireBase.getGameDate(gameId,string);
+    public void getGameDate(String gameId, StringListener data){
+        fireBase.getGameDate(gameId,data);
     }
+
+    public void getOwnerPhone(String ownerId, StringListener listener){
+        fireBase.getOwnerPhone(ownerId,listener);
+    }
+
+
 
 }

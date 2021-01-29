@@ -282,4 +282,18 @@ public class FireBaseModel {
                 });
     }
 
+    public void getOwnerPhone(String ownerId, Model.StringListener listener){
+        db.collection("Users").document(ownerId).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot doc = task.getResult();
+                            String phoneNumber = doc.getString("phone");
+                            listener.onComplete(phoneNumber);
+                        }
+                    }
+                });
+    }
+
 }

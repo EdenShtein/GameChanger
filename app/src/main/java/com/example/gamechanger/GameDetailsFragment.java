@@ -98,7 +98,12 @@ public class GameDetailsFragment extends Fragment {
         contact_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                phoneCalls("972507168433");
+                Model.instance.getOwnerPhone(ownerId, new Model.StringListener() {
+                    @Override
+                    public void onComplete(String data) {
+                        phoneCalls(data);
+                    }
+                });
             }
         });
 
