@@ -162,7 +162,7 @@ public class MainFeedFragment extends Fragment {
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_maps);
+                Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_generalMap);
             }
         });
 

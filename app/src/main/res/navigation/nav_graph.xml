@@ -61,11 +61,11 @@
             android:id="@+id/action_mainFeed_to_userProfile"
             app:destination="@id/userProfileFragment" />
         <action
-            android:id="@+id/action_mainFeed_to_maps"
-            app:destination="@id/mapsFragment" />
-        <action
             android:id="@+id/action_mainFeed_to_gameDetails"
             app:destination="@id/gameDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFeed_to_generalMap"
+            app:destination="@id/generalMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGameFragment"
@@ -178,4 +178,9 @@
             android:name="gameDetailsImage"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/generalMapFragment"
+        android:name="com.example.gamechanger.GeneralMapFragment"
+        android:label="fragment_general_map"
+        tools:layout="@layout/fragment_general_map" />
 </navigation>
