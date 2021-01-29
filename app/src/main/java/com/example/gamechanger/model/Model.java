@@ -128,6 +128,14 @@ public class Model {
         fireBase.deleteFbGame(gameId,listener);
     }
 
+    public interface LatLongListener {
+        void onComplete(List<Double> latitudePoint,List<Double> longitudePoints);
+    }
+
+    public void getLatLongPoint(LatLongListener listener)
+    {
+        fireBase.getLatLong(listener);
+    }
 
 
 }
