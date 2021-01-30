@@ -206,6 +206,9 @@
         <action
             android:id="@+id/action_gameDetails_to_generalMap"
             app:destination="@id/generalMapFragment" />
+        <action
+            android:id="@+id/action_gameDetails_to_userProfile"
+            app:destination="@id/userProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/generalMapFragment"

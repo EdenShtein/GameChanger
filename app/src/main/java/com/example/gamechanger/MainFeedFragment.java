@@ -167,6 +167,8 @@ public class MainFeedFragment extends Fragment {
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                GameDetailsFragment gameDetailsFragment  = new GameDetailsFragment();
+                gameDetailsFragment.setMap_flag(1);
                 Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_generalMap);
             }
         });

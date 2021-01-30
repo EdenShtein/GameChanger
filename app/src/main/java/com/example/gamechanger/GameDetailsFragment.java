@@ -43,6 +43,7 @@ public class GameDetailsFragment extends Fragment {
 
     static int feed_flag = 0;
     static int user_flag = 0;
+    static int map_flag = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,15 +59,17 @@ public class GameDetailsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (getFeed_flag() == 1) {
-                    Navigation.findNavController(view).navigate(R.id.mainFeedFragment);
                     setFeed_flag(0);
+                    Navigation.findNavController(view).navigate(R.id.action_gameDetails_to_mainFeed);
                 }
                 if (getUser_flag() == 1){
-                    Navigation.findNavController(view).navigate(R.id.userProfileFragment);
                     setUser_flag(0);
+                    Navigation.findNavController(view).navigate(R.id.userProfileFragment);
                 }
                 else
-                    Navigation.findNavController(view).navigate(R.id.action_gameDetails_to_generalMap);
+                    Navigation.findNavController(view).navigate(R.id.mainFeedFragment);
+
+
             }
         });
 
@@ -160,5 +163,13 @@ public class GameDetailsFragment extends Fragment {
 
     public void setUser_flag(int user_flag) {
         GameDetailsFragment.user_flag = user_flag;
+    }
+
+    public int getMap_flag() {
+        return map_flag;
+    }
+
+    public void setMap_flag(int map_flag) {
+        GameDetailsFragment.map_flag = map_flag;
     }
 }
