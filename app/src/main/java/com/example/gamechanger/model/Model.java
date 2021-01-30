@@ -9,7 +9,9 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Model {
 
@@ -153,6 +155,10 @@ public class Model {
     public void getGameData(String gameID,GameDataListener listener)
     {
         fireBase.getGameDetails(gameID,listener);
+    }
+
+    public void editGame(String gameId, Map<String, Object> map, GameListener listener){
+        fireBase.editGame(gameId, map, listener);
     }
 
 }

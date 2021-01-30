@@ -24,8 +24,13 @@ import android.widget.Toast;
 
 import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Model;
+import com.google.firebase.firestore.FieldValue;
 
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
@@ -45,9 +50,11 @@ public class EditGameFragment extends AddGameFragment {
     String gameId;
     String title;
     String price;
+    String ownerId;
 
     static int map_flag =0;
 
+    Map<String, Object> editGameMap;
 
     double latitude;
     double longitude;
@@ -62,6 +69,7 @@ public class EditGameFragment extends AddGameFragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Edit Game");
 
         gameId = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameId();
+        ownerId = Model.instance.getUserId();
 
         gameTitle = view.findViewById(R.id.editgame_title_input);
         title = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameTitle();
@@ -108,10 +116,30 @@ public class EditGameFragment extends AddGameFragment {
                             game.setLatitude(latitude);
                             game.setLongitude(longitude);
 
-                            EditGameFragmentDirections.ActionEditGameToGameDetails action = EditGameFragmentDirections.actionEditGameToGameDetails(title,price,gameId,url);
+                            //////////////////////
+                            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                            Date date = new Date();
+                            editGameMap = new HashMap<>();
+                            editGameMap.put("id", gameId);
+                            editGameMap.put("gameName", title);
+                            editGameMap.put("gamePrice", price);
+                            editGameMap.put("imageUrl", url);
+                            editGameMap.put("Posted At", formatter.format(date));
+                            editGameMap.put("latitude", latitude);
+                            editGameMap.put("longitude", longitude);
+                            editGameMap.put("OwnedBy", ownerId);
 
-                            Navigation.findNavController(view).navigate(action);
-                            Model.instance.addGame(game, new Model.GameListener() {
+
+                            Model.instance.editGame(gameId, editGameMap, new Model.GameListener() {
+                                @Override
+                                public void onComplete() {
+                                    EditGameFragmentDirections.ActionEditGameToGameDetails action = EditGameFragmentDirections.actionEditGameToGameDetails(title,price,gameId,url);
+                                    Navigation.findNavController(view).navigate(action);
+                                    Toast.makeText(getActivity(), "Game Edited Successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+                            /*Model.instance.addGame(game, new Model.GameListener() {
                                 @Override
                                 public void onComplete() {
 
@@ -124,7 +152,7 @@ public class EditGameFragment extends AddGameFragment {
                                     });
 
                                 }
-                            });
+                            });*/
 
                         }
                     }

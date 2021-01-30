@@ -117,7 +117,7 @@ public class GameDetailsFragment extends Fragment {
             @Override
             public void onComplete(String string) {
                 gameDate = string;
-                postDate.setText(gameDate + " UTC");
+                postDate.setText(gameDate);
             }
         });
 

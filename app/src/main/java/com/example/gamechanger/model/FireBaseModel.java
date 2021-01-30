@@ -307,10 +307,8 @@ public class FireBaseModel {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()){
                             DocumentSnapshot doc = task.getResult();
-                            Timestamp timestamp = (Timestamp)doc.get("Posted At");
-                            Date date = timestamp.toDate();
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                            listener.onComplete(sdf.format(date));
+                            String date = doc.get("Posted At").toString();
+                            listener.onComplete(date);
                         }
                     }
                 });
@@ -330,30 +328,17 @@ public class FireBaseModel {
                 });
     }
 
-    /*public void editGame(String gameId, Game game, Model.GameListener listener){
-        Map<String, Object> editgame = new HashMap<>();
-        String title = game.getId();
-        String price = game.getPrice();
-        String image = game.getImageURL();
-        String id = gameId;
-        Double lat = game.getLatitude();
-        Double longi = game.getLongitude();
+    public void editGame(String gameId, Map<String,Object> map, Model.GameListener listener){
 
-        edituser.put("id", id);
-        edituser.put("fName", firstName);
-        edituser.put("lName", lastName);
-        edituser.put("email", email);
-        edituser.put("lastUpdated", FieldValue.serverTimestamp());
-        edituser.put("phone", phoneNumber);
-
-        db.collection("Games").document(game.getId())
-                .update().addOnSuccessListener(new OnSuccessListener<Void>() {
+        db.collection("Games").document(gameId)
+                .update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
 
             }
         });
-    }*/
+        listener.onComplete();
+    }
 
     public void deleteFbGame(String gameId, Model.GameListener listener){
         db.collection("Games").document(gameId).delete()
