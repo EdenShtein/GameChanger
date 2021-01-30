@@ -27,6 +27,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -39,8 +40,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
@@ -149,6 +152,37 @@ public class FireBaseModel {
     public void addUser(User user, final Model.AddUserListener listener) {
         db.collection("Users").document(user.getId())
                 .set(user.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("TAG","User added successfully");
+                listener.onComplete();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.d("TAG","fail adding User");
+                listener.onComplete();
+            }
+        });
+    }
+
+    public void updateUser(User user, final Model.AddUserListener listener) {
+        Map<String, Object> edituser = new HashMap<>();
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
+        String email = user.getEmail();
+        String id = mAuth.getCurrentUser().getUid();
+        String phoneNumber = user.getPhoneNumber();
+
+        edituser.put("id", id);
+        edituser.put("fName", firstName);
+        edituser.put("lName", lastName);
+        edituser.put("email", email);
+        edituser.put("lastUpdated", FieldValue.serverTimestamp());
+        edituser.put("phone", phoneNumber);
+
+        db.collection("Users").document(id)
+                .update(edituser).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d("TAG","User added successfully");
@@ -295,6 +329,31 @@ public class FireBaseModel {
                     }
                 });
     }
+
+    /*public void editGame(String gameId, Game game, Model.GameListener listener){
+        Map<String, Object> editgame = new HashMap<>();
+        String title = game.getId();
+        String price = game.getPrice();
+        String image = game.getImageURL();
+        String id = gameId;
+        Double lat = game.getLatitude();
+        Double longi = game.getLongitude();
+
+        edituser.put("id", id);
+        edituser.put("fName", firstName);
+        edituser.put("lName", lastName);
+        edituser.put("email", email);
+        edituser.put("lastUpdated", FieldValue.serverTimestamp());
+        edituser.put("phone", phoneNumber);
+
+        db.collection("Games").document(game.getId())
+                .update().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+            }
+        });
+    }*/
 
     public void deleteFbGame(String gameId, Model.GameListener listener){
         db.collection("Games").document(gameId).delete()

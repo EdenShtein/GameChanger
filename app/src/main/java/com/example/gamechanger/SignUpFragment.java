@@ -28,7 +28,6 @@ public class SignUpFragment extends Fragment {
     EditText fName;
     EditText lName;
     EditText phonenumber;
-    EditText city;
     Button signup;
 
     @Override
@@ -46,7 +45,6 @@ public class SignUpFragment extends Fragment {
         fName=view.findViewById(R.id.signup_fname_input);
         lName=view.findViewById(R.id.signup_lname_input);
         phonenumber=view.findViewById(R.id.signup_phonenumber_input);
-        city=view.findViewById(R.id.signup_city_input);
 
 
 
@@ -58,12 +56,11 @@ public class SignUpFragment extends Fragment {
                 String firstName=fName.getText().toString();
                 String lastName=lName.getText().toString();
                 String phoneNumber=phonenumber.getText().toString();
-                String cityName=city.getText().toString();
-                if (useremail.equals("") && userpassword.equals("")) {
+                if (useremail.equals("") || userpassword.equals("")) {
                     Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    final User user = new User(firstName, lastName, useremail, cityName, phoneNumber);
+                    final User user = new User(firstName, lastName, useremail, phoneNumber);
                     Model.instance.signUpFB(user,userpassword);
                     Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
                 }

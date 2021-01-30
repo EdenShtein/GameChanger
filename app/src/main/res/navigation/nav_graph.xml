@@ -33,7 +33,14 @@
         android:id="@+id/edituserfragment"
         android:name="com.example.gamechanger.EditUserFragment"
         android:label="fragment_edit_user"
-        tools:layout="@layout/fragment_edit_user" />
+        tools:layout="@layout/fragment_edit_user" >
+        <argument
+            android:name="email"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_edituser_to_userProfile"
+            app:destination="@id/userProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainFeedFragment"
         android:name="com.example.gamechanger.MainFeedFragment"
@@ -151,6 +158,9 @@
         <action
             android:id="@+id/action_userProfile_to_gameDetails"
             app:destination="@id/gameDetailsFragment" />
+        <action
+            android:id="@+id/action_userProfile_to_edituser"
+            app:destination="@id/edituserfragment" />
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"

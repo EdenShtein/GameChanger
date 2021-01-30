@@ -34,6 +34,7 @@ public class UserProfileFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
 
     ImageView back_btn;
+    ImageView edit_btn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +51,15 @@ public class UserProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_userProfile_to_mainFeed);
+            }
+        });
+
+        edit_btn = view.findViewById(R.id.userprofile_edit_btn);
+        edit_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserProfileFragmentDirections.ActionUserProfileToEdituser action = UserProfileFragmentDirections.actionUserProfileToEdituser(email);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 

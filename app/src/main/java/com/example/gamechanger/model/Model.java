@@ -92,6 +92,15 @@ public class Model {
         });
     }
 
+    public void updateUser(final User user, final AddUserListener listener) {
+        fireBase.updateUser(user, new AddUserListener() {
+            @Override
+            public void onComplete() {
+                listener.onComplete();
+            }
+        });
+    }
+
     public interface FbGamesListener {
             void onComplete(List<Game> userGames);
     }

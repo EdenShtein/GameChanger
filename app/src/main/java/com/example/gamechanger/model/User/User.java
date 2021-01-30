@@ -21,16 +21,14 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
-    private String city;
     private String phoneNumber;
     private long lastUpdated;
 
 
-    public User(String firstName, String lastName, String email, String city, String phoneNumber) {
+    public User(String firstName, String lastName, String email, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.city = city;
         this.phoneNumber = phoneNumber;
 
     }
@@ -41,7 +39,6 @@ public class User {
         result.put("fName", firstName);
         result.put("lName", lastName);
         result.put("email", email);
-        result.put("city", city);
         result.put("phone", phoneNumber);
         result.put("lastUpdated", FieldValue.serverTimestamp());
         return result;
@@ -52,7 +49,6 @@ public class User {
         firstName = (String)map.get("fName");
         lastName = (String)map.get("lName");
         email = (String)map.get("email");
-        city = (String)map.get("city");
         phoneNumber = (String)map.get("phone");
         Timestamp ts = (Timestamp)map.get("lastUpdated");
         lastUpdated = ts.getSeconds();
@@ -80,14 +76,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getPhoneNumber() {
