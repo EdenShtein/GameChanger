@@ -71,32 +71,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:text="Location:"
         android:textColor="#FF9800"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gamedetails_main_row" />
 
-    <ImageView
-        android:id="@+id/gamedetails_map"
-        android:layout_width="51dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="32dp"
-        android:src="@android:drawable/ic_dialog_map"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.688"
-        app:layout_constraintStart_toEndOf="@+id/gamedetails_location_text"
-        app:layout_constraintTop_toBottomOf="@+id/gamedetails_main_row" />
-
     <Button
         android:id="@+id/gamedetails_contact_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginBottom="15dp"
         android:backgroundTint="#FF5722"
         android:text="Contact"
         android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gamedetails_sub_row" />
@@ -104,8 +94,10 @@
     <ImageView
         android:id="@+id/gamedetails_logo_img"
         android:layout_width="100dp"
-        android:layout_height="74dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="221dp"
         android:src="@drawable/gamechangersimple"
+        app:layout_constraintBottom_toTopOf="@+id/gamedetails_mapview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -138,16 +130,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/gamedetails_sub_row"
         android:layout_width="0dp"
-        android:layout_height="93dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/customborder"
         android:backgroundTint="#FF9800"
+        app:layout_constraintBottom_toTopOf="@+id/gamedetails_contact_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gamedetails_location_text">
+        app:layout_constraintTop_toBottomOf="@+id/gamedetails_mapview">
 
         <TextView
             android:id="@+id/gamedetails_date_input"
@@ -201,5 +194,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/gamedetails_mapview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@+id/gamedetails_sub_row"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gamedetails_logo_img" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

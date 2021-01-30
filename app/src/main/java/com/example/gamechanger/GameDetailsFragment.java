@@ -18,7 +18,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Model;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.squareup.picasso.Picasso;
 
 
@@ -32,6 +42,7 @@ public class GameDetailsFragment extends Fragment {
     ImageView gameImage;
     ImageView back_btn;
     ImageView edit_btn;
+    MapView gameMap;
 
     Button contact_btn;
 
@@ -40,6 +51,7 @@ public class GameDetailsFragment extends Fragment {
     String ownerId;
     String ownerName;
     String gameDate;
+
 
     static int feed_flag = 0;
     static int user_flag = 0;
@@ -133,7 +145,63 @@ public class GameDetailsFragment extends Fragment {
             }
         });
 
+
+
+        gameMap = (MapView) view.findViewById(R.id.gamedetails_mapview);
+        gameMap.onCreate(savedInstanceState);
+
+        Model.instance.getGameData(gameId, new Model.GameDataListener() {
+            @Override
+            public void onComplete(Game game) {
+                double latitude = game.getLatitude();
+                double longitude = game.getLongitude();
+                gameMap.getMapAsync(new OnMapReadyCallback() {
+                    @Override
+                    public void onMapReady(GoogleMap googleMap) {
+                        LatLng gameLocation = new LatLng(latitude,longitude);
+                        googleMap.getUiSettings().setZoomControlsEnabled(true);
+                        googleMap.addMarker(new MarkerOptions().position(gameLocation));
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gameLocation,15));
+
+                    }
+
+                });
+
+            }
+        });
+
+
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        gameMap.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        gameMap.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        gameMap.onDestroy();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        gameMap.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        gameMap.onLowMemory();
     }
 
     public void phoneCalls(String phoneNumber)
