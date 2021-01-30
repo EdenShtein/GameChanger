@@ -168,7 +168,7 @@ public class EditGameFragment extends AddGameFragment {
     private void UpdateGame(View view) {
         /*String title = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameTitle();
         String price = EditGameFragmentArgs.fromBundle(getArguments()).getEditGamePrice();
-        String  id = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameId();
+        String id = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameId();
 
         gameTitle.setText(title);
         gamePrice.setText(price);*/
