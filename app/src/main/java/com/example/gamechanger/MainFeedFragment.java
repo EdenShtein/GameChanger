@@ -110,7 +110,7 @@ public class MainFeedFragment extends Fragment {
         addGamebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_decision);
+                Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_addGame);
                 /*DecisionFragment decisionFragment = new DecisionFragment();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -148,6 +148,8 @@ public class MainFeedFragment extends Fragment {
         gamesAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Game game, View v) {
+                GameDetailsFragment gameDetailsFragment = new GameDetailsFragment();
+                gameDetailsFragment.setFeed_flag(1);
                 String title = game.getName();
                 String price = game.getPrice();
                 String Id = game.getId();

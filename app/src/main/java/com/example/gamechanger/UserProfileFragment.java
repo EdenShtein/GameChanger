@@ -99,6 +99,8 @@ public class UserProfileFragment extends Fragment {
         gamesAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Game game, View v) {
+                GameDetailsFragment gameDetailsFragment = new GameDetailsFragment();
+                gameDetailsFragment.setUser_flag(1);
                 String title = game.getName();
                 String price = game.getPrice();
                 String Id = game.getId();

@@ -28,7 +28,7 @@ public class TradeGameFragment extends Fragment {
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.action_tradeGame_to_mainFeed);
+               // Navigation.findNavController(view).navigate(R.id.action_tradeGame_to_mainFeed);
             }
         });
 

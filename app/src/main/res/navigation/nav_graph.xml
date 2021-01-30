@@ -48,9 +48,6 @@
         <argument
             android:name="gamePrice"
             app:argType="string" />
-        <action
-            android:id="@+id/action_mainFeed_to_decision"
-            app:destination="@id/decisionFragment" />
         <argument
             android:name="imageUrl"
             app:argType="string" />
@@ -63,6 +60,9 @@
         <action
             android:id="@+id/action_mainFeed_to_generalMap"
             app:destination="@id/generalMapFragment" />
+        <action
+            android:id="@+id/action_mainFeed_to_addGame"
+            app:destination="@id/addGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGameFragment"
@@ -133,26 +133,12 @@
         android:id="@+id/decisionFragment"
         android:name="com.example.gamechanger.DecisionFragment"
         android:label="fragment_decision"
-        tools:layout="@layout/fragment_decision" >
-        <action
-            android:id="@+id/action_decision_to_addGame"
-            app:destination="@id/addGameFragment" />
-        <action
-            android:id="@+id/action_decision_to_tradeGame"
-            app:destination="@id/tradeGameFragment" />
-        <action
-            android:id="@+id/action_decision_to_mainFeed"
-            app:destination="@id/mainFeedFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_decision" />
     <fragment
         android:id="@+id/tradeGameFragment"
         android:name="com.example.gamechanger.TradeGameFragment"
         android:label="fragment_trade_game"
-        tools:layout="@layout/fragment_trade_game" >
-        <action
-            android:id="@+id/action_tradeGame_to_mainFeed"
-            app:destination="@id/mainFeedFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_trade_game" />
     <fragment
         android:id="@+id/userProfileFragment"
         android:name="com.example.gamechanger.UserProfileFragment"
@@ -217,6 +203,9 @@
         <action
             android:id="@+id/action_gameDetails_to_editGame"
             app:destination="@id/editGameFragment" />
+        <action
+            android:id="@+id/action_gameDetails_to_generalMap"
+            app:destination="@id/generalMapFragment" />
     </fragment>
     <fragment
         android:id="@+id/generalMapFragment"

@@ -41,6 +41,9 @@ public class GameDetailsFragment extends Fragment {
     String ownerName;
     String gameDate;
 
+    static int feed_flag = 0;
+    static int user_flag = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,7 +57,16 @@ public class GameDetailsFragment extends Fragment {
         back_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(view).navigate(R.id.mainFeedFragment);
+                if (getFeed_flag() == 1) {
+                    Navigation.findNavController(view).navigate(R.id.mainFeedFragment);
+                    setFeed_flag(0);
+                }
+                if (getUser_flag() == 1){
+                    Navigation.findNavController(view).navigate(R.id.userProfileFragment);
+                    setUser_flag(0);
+                }
+                else
+                    Navigation.findNavController(view).navigate(R.id.action_gameDetails_to_generalMap);
             }
         });
 
@@ -132,5 +144,21 @@ public class GameDetailsFragment extends Fragment {
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse(uri));
         startActivity(intent);
+    }
+
+    public int getFeed_flag() {
+        return feed_flag;
+    }
+
+    public void setFeed_flag(int feed_flag) {
+        GameDetailsFragment.feed_flag = feed_flag;
+    }
+
+    public int getUser_flag() {
+        return user_flag;
+    }
+
+    public void setUser_flag(int user_flag) {
+        GameDetailsFragment.user_flag = user_flag;
     }
 }

@@ -35,7 +35,7 @@ public class DecisionFragment extends Fragment {
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        tradeBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_decision_to_tradeGame));
+        //tradeBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_decision_to_tradeGame));
        /* tradeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +47,7 @@ public class DecisionFragment extends Fragment {
         });*/
 
 
-        sellBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_decision_to_addGame));
+        //sellBtn.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_decision_to_addGame));
        /* sellBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +59,7 @@ public class DecisionFragment extends Fragment {
         });*/
 
 
-        cancelLink.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_decision_to_mainFeed));
+       // cancelLink.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_decision_to_mainFeed));
        /* cancelLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
