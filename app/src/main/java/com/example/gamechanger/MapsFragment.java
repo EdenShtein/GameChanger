@@ -54,6 +54,56 @@ public class MapsFragment extends Fragment  {
                 Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED)
         {
             getCurrentLocation();
+            /*client.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
+                @Override
+                public void onSuccess(Location location) {
+                    if(location!=null)
+                    {
+                        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+                            @Override
+                            public void onMapReady(GoogleMap googleMap) {
+                                LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
+                                googleMap.addMarker(new MarkerOptions().position(latLng).title("You current location"));
+                                googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                                googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                                    @Override
+                                    public void onMapClick(LatLng latLng) {
+                                        MarkerOptions markerOptions = new MarkerOptions();
+                                        markerOptions.position(latLng);
+                                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                                        markerOptions.title(latLng.latitude + " : "+ latLng.longitude);
+                                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                                                latLng,7
+                                        ));
+                                        googleMap.addMarker(markerOptions);
+
+
+                                        if (getAdd_flag() == 1){
+                                            setAdd_flag(0);
+                                            MapsFragmentDirections.ActionMapsToAddGame action_add = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude);
+                                            AddGameFragment addGameFragment = new AddGameFragment();
+                                            addGameFragment.setMapFlag(1);
+                                            Navigation.findNavController(view).navigate(action_add);
+                                        }
+                                        if (getEdit_flag() == 1){
+                                            setEdit_flag(0);
+                                            String title = MapsFragmentArgs.fromBundle(getArguments()).getGameTitle();
+                                            String price = MapsFragmentArgs.fromBundle(getArguments()).getGamePrice();
+                                            String Id = MapsFragmentArgs.fromBundle(getArguments()).getGameId();
+                                            MapsFragmentDirections.ActionMapsToEditGame action = MapsFragmentDirections.actionMapsToEditGame(title,price,null,Id,latLng.latitude,latLng.longitude);
+                                            EditGameFragment editGameFragment =  new EditGameFragment();
+                                            editGameFragment.setMap_flag(1);
+                                            Navigation.findNavController(view).navigate(action);
+                                        }
+
+                                    }
+                                });
+                            }
+
+                        });
+                    }
+                }
+            });*/
         }
         else
         {
@@ -76,7 +126,7 @@ public class MapsFragment extends Fragment  {
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
-                            googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+                            /*googleMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
                                 @Override
                                 public void onMapLongClick(LatLng latLng) {
                                     Geocoder geocoder = new Geocoder(getActivity().getApplicationContext(), Locale.getDefault());
@@ -110,8 +160,10 @@ public class MapsFragment extends Fragment  {
                                     markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
                                     googleMap.addMarker(markerOptions);
                                 }
-                            });
+                            });*/
                             LatLng latLng = new LatLng(location.getLatitude(),location.getLongitude());
+                            googleMap.addMarker(new MarkerOptions().position(latLng).title("You current location"));
+                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                             googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                                 @Override
                                 public void onMapClick(LatLng latLng) {
