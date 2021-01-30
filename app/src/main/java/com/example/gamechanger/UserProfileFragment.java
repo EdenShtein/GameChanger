@@ -11,6 +11,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,7 @@ public class UserProfileFragment extends Fragment {
 
     public GameViewModel gameViewModel;
     public RecyclerView gamesList_rv;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     ImageView back_btn;
 
@@ -59,13 +62,31 @@ public class UserProfileFragment extends Fragment {
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
         Model.instance.showUserGames(new Model.FbGamesListener() {
+                    @Override
+                    public void onComplete(List<Game> userGames) {
+                        gamesAdapter.setGamesData(userGames);
+                        gamesList_rv.setAdapter(gamesAdapter);
+                    }
+                });
+
+        swipeRefreshLayout = view.findViewById(R.id.userprofile_refresh_layout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.design_default_color_primary,
+                android.R.color.holo_green_dark,
+                android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_dark);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onComplete(List<Game> userGames) {
-                gamesAdapter.setGamesData(userGames);
-                gamesList_rv.setAdapter(gamesAdapter);
-
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                Model.instance.showUserGames(new Model.FbGamesListener() {
+                    @Override
+                    public void onComplete(List<Game> userGames) {
+                        gamesAdapter.setGamesData(userGames);
+                        gamesList_rv.setAdapter(gamesAdapter);
+                    }
+                });
+                swipeRefreshLayout.setRefreshing(false);
             }
-
         });
 
         gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
