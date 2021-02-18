@@ -11,6 +11,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,7 @@ public class GameDetailsFragment extends Fragment {
     String ownerId;
     String ownerName;
     String gameDate;
-
+    String currentUserId;
 
     static int feed_flag = 0;
     static int user_flag = 0;
@@ -134,6 +135,17 @@ public class GameDetailsFragment extends Fragment {
             }
         });
 
+        currentUserId = Model.instance.getUserId();
+        Model.instance.getOwnerId(gameId, new Model.StringListener() {
+            @Override
+            public void onComplete(String data) {
+                if (!currentUserId.equals(data)){
+                    edit_btn.setEnabled(false);
+                    edit_btn.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
         edit_btn = view.findViewById(R.id.gamedetails_edit_btn);
         edit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,7 +156,6 @@ public class GameDetailsFragment extends Fragment {
                 Navigation.findNavController(view).navigate(action);
             }
         });
-
 
 
         gameMap = (MapView) view.findViewById(R.id.gamedetails_mapview);
@@ -170,6 +181,20 @@ public class GameDetailsFragment extends Fragment {
             }
         });
 
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
 
         return view;
     }

@@ -57,7 +57,7 @@ public class MainFeedFragment extends Fragment {
 
         view =  inflater.inflate(R.layout.fragment_main_feed, container, false);
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Main Feed");
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Games Feed");
         setHasOptionsMenu(true);
         gamesList_rv = view.findViewById(R.id.mainfeed_gameslist_rv);
         gamesList_rv.setHasFixedSize(true);

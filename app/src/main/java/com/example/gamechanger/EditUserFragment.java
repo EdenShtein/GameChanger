@@ -46,7 +46,7 @@ public class EditUserFragment extends Fragment {
 
         Model.instance.getUserData(Model.instance.getUserId(), new Model.userDataListener() {
             @Override
-            public void onComplete(String fname, String lname, String phone, String city) {
+            public void onComplete(String fname, String lname, String phone) {
                 fName.setText(fname);
                 lName.setText(lname);
                 phoneNum.setText(phone);
