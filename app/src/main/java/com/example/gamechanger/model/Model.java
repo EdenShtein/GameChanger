@@ -165,4 +165,12 @@ public class Model {
         fireBase.editGame(gameId, map, listener);
     }
 
+    public interface userDataListener {
+        void onComplete(String fname, String lname, String phone, String city);
+    }
+
+    public void getUserData(String userId, userDataListener listener){
+        fireBase.getUserData(userId,listener);
+    }
+
 }

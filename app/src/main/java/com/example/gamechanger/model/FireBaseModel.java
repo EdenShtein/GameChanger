@@ -300,6 +300,23 @@ public class FireBaseModel {
                 });
     }
 
+    public void getUserData(String userId, Model.userDataListener listener){
+        db.collection("Users").document(userId).get()
+               .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                   @Override
+                   public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                       if (task.isSuccessful()){
+                           DocumentSnapshot doc = task.getResult();
+                           String firstName = doc.getString("fName");
+                           String LastName = doc.getString("lName");
+                           String phoneNum = doc.getString("phone");
+                           String city = doc.getString("city");
+                           listener.onComplete(firstName,LastName,phoneNum,city);
+                       }
+                   }
+               });
+    }
+
     public void getGameDate(String gameId, Model.StringListener listener){
         db.collection("Games").document(gameId).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {

@@ -23,7 +23,7 @@ public class EditUserFragment extends Fragment {
 
     EditText fName;
     EditText lName;
-    EditText phone;
+    EditText phoneNum;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,7 +42,16 @@ public class EditUserFragment extends Fragment {
 
         fName = view.findViewById(R.id.edituser_fname_input);
         lName = view.findViewById(R.id.edituser_lname_input);
-        phone = view.findViewById(R.id.edituser_phonenumber_input);
+        phoneNum = view.findViewById(R.id.edituser_phonenumber_input);
+
+        Model.instance.getUserData(Model.instance.getUserId(), new Model.userDataListener() {
+            @Override
+            public void onComplete(String fname, String lname, String phone, String city) {
+                fName.setText(fname);
+                lName.setText(lname);
+                phoneNum.setText(phone);
+            }
+        });
 
         save_btn = view.findViewById(R.id.edituser_save_btn);
         save_btn.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +59,7 @@ public class EditUserFragment extends Fragment {
             public void onClick(View v) {
                 String firstName = fName.getText().toString();
                 String lastName = lName.getText().toString();
-                String phoneNumber = phone.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
                 String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
                 User user = new User(firstName,lastName,email,phoneNumber);
 
