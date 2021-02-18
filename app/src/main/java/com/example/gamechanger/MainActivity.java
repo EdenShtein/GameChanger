@@ -1,10 +1,13 @@
 package com.example.gamechanger;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
 import com.example.gamechanger.model.Model;
 
 
