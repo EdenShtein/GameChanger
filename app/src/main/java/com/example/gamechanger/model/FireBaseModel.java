@@ -324,9 +324,7 @@ public class FireBaseModel {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()){
                             DocumentSnapshot doc = task.getResult();
-                            Timestamp ts = (Timestamp) doc.get("Posted At");
-                            Date dateFormat = ts.toDate();
-                            String date = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(dateFormat);
+                            String date = doc.get("Posted At").toString();
                             listener.onComplete(date);
                         }
                     }

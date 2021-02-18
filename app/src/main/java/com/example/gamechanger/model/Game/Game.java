@@ -15,6 +15,8 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.annotations.SerializedName;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -73,6 +75,8 @@ public class Game {
     }
 
     public Map<String, Object> toMap() {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
         HashMap<String, Object> result = new HashMap<>();
         result.put("id", id);
         result.put("gameName", name);
@@ -81,7 +85,7 @@ public class Game {
         result.put("latitude", latitude);
         result.put("longitude", longitude);
         result.put("OwnedBy", UserId);
-        result.put("Posted At", FieldValue.serverTimestamp());
+        result.put("Posted At", formatter.format(date));
         return result;
     }
 
