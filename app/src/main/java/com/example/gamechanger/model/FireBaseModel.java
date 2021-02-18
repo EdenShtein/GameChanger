@@ -421,7 +421,7 @@ public class FireBaseModel {
     public void getSearchableGame(String query,Model.FbGamesListener listener)
     {
         List<Game> matchGames = new LinkedList<Game>();
-        db.collection("Games").whereEqualTo("gameName", query).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("Games").whereEqualTo("search", query.toLowerCase()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){

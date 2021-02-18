@@ -80,6 +80,7 @@ public class Game {
         HashMap<String, Object> result = new HashMap<>();
         result.put("id", id);
         result.put("gameName", name);
+        result.put("search",name.toLowerCase());
         result.put("gamePrice", price);
         result.put("imageUrl", imageURL);
         result.put("latitude", latitude);

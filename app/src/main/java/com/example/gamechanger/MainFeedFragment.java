@@ -219,13 +219,26 @@ public class MainFeedFragment extends Fragment {
             @Override
             //Called when we press search button
             public boolean onQueryTextSubmit(String query) {
-                Model.instance.searchGame(query, new Model.FbGamesListener() {
-                    @Override
-                    public void onComplete(List<Game> searchGames) {
-                        gamesAdapter.setGamesData(searchGames);
-                        gamesList_rv.setAdapter(gamesAdapter);
-                    }
-                });
+                if(query.isEmpty())
+                {
+                    Model.instance.showAllFbGames(new Model.FbGamesListener() {
+                        @Override
+                        public void onComplete(List<Game> userGames) {
+                            gamesAdapter.setGamesData(userGames);
+                            gamesList_rv.setAdapter(gamesAdapter);
+                        }
+                    });
+                }
+                else
+                {
+                    Model.instance.searchGame(query, new Model.FbGamesListener() {
+                        @Override
+                        public void onComplete(List<Game> searchGames) {
+                            gamesAdapter.setGamesData(searchGames);
+                            gamesList_rv.setAdapter(gamesAdapter);
+                        }
+                    });
+                }
                 return false;
             }
             //Called as and when we type even a single letter
