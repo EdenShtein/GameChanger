@@ -92,13 +92,13 @@ public class AddGameFragment extends Fragment {
                     String userInput = "" + s.toString().replaceAll("[^\\d]", "");
                     StringBuilder cashAmountBuilder = new StringBuilder(userInput);
 
-                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
+                    while (cashAmountBuilder.length() > 0 && cashAmountBuilder.charAt(0) == '0') {
                         cashAmountBuilder.deleteCharAt(0);
                     }
-                    while (cashAmountBuilder.length() < 3) {
+                    while (cashAmountBuilder.length() < 0) {
                         cashAmountBuilder.insert(0, '0');
                     }
-                    cashAmountBuilder.insert(cashAmountBuilder.length() - 2, '.');
+                    cashAmountBuilder.insert(cashAmountBuilder.length() - 0, "");
 
                     gamePrice.removeTextChangedListener(this);
                     gamePrice.setText(cashAmountBuilder.toString());
