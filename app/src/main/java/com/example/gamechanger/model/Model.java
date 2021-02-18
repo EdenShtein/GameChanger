@@ -166,7 +166,7 @@ public class Model {
     }
 
     public interface userDataListener {
-        void onComplete(String fname, String lname, String phone, String city);
+        void onComplete(String fname, String lname, String phone);
     }
 
     public void getUserData(String userId, userDataListener listener){

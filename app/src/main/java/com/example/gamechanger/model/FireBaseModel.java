@@ -311,7 +311,7 @@ public class FireBaseModel {
                            String LastName = doc.getString("lName");
                            String phoneNum = doc.getString("phone");
                            String city = doc.getString("city");
-                           listener.onComplete(firstName,LastName,phoneNum,city);
+                           listener.onComplete(firstName,LastName,phoneNum);
                        }
                    }
                });
