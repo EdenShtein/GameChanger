@@ -82,6 +82,7 @@ public class Game {
         result.put("gameName", name);
         result.put("search",name.toLowerCase());
         result.put("gamePrice", price);
+        result.put("price",Integer.parseInt(price.replace("$","")));
         result.put("imageUrl", imageURL);
         result.put("latitude", latitude);
         result.put("longitude", longitude);

@@ -41,6 +41,8 @@ public class MainFeedFragment extends Fragment {
     String gamePrice;
     String imageUrl;
     ImageView mapBtn;
+    ImageView nameSort;
+    ImageView priceSort;
     static int flag =0;
     private View view;
     SwipeRefreshLayout swipeRefreshLayout;
@@ -99,6 +101,35 @@ public class MainFeedFragment extends Fragment {
 
             }
         });
+
+        nameSort = view.findViewById(R.id.mainfeed_name_sort);
+        nameSort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Model.instance.sortByName(new Model.FbGamesListener() {
+                    @Override
+                    public void onComplete(List<Game> userGames) {
+                        gamesAdapter.setGamesData(userGames);
+                        gamesList_rv.setAdapter(gamesAdapter);
+                    }
+                });
+            }
+        });
+
+        priceSort = view.findViewById(R.id.mainfeed_price_sort);
+        priceSort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Model.instance.sortByPrice(new Model.FbGamesListener() {
+                    @Override
+                    public void onComplete(List<Game> userGames) {
+                        gamesAdapter.setGamesData(userGames);
+                        gamesList_rv.setAdapter(gamesAdapter);
+                    }
+                });
+            }
+        });
+
 
         /*gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
             @Override

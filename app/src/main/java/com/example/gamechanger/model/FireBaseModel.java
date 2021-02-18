@@ -437,6 +437,43 @@ public class FireBaseModel {
         });
     }
 
+    public void sortByName(final Model.FbGamesListener listener){
+        List<Game> userGames = new LinkedList<Game>();
+        db.collection("Games").orderBy("search", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    if (task.getResult().isEmpty() == false){
+                        for (DocumentSnapshot doc : task.getResult()){
+                            Game game = new Game();
+                            game.fromMap(doc.getData());
+                            userGames.add(game);
+                        }
+                    }
+                }
+                listener.onComplete(userGames);
+            }
+        });
+    }
+
+    public void sortByPrice(final Model.FbGamesListener listener){
+        List<Game> userGames = new LinkedList<Game>();
+        db.collection("Games").orderBy("price", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    if (task.getResult().isEmpty() == false){
+                        for (DocumentSnapshot doc : task.getResult()){
+                            Game game = new Game();
+                            game.fromMap(doc.getData());
+                            userGames.add(game);
+                        }
+                    }
+                }
+                listener.onComplete(userGames);
+            }
+        });
+    }
 
 
 }

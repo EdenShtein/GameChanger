@@ -178,6 +178,12 @@ public class Model {
         fireBase.getSearchableGame(query,listener);
     }
 
+    public void sortByName(final FbGamesListener listener){
+        fireBase.sortByName(listener);
+    }
 
+    public void sortByPrice(final FbGamesListener listener){
+        fireBase.sortByPrice(listener);
+    }
 
 }

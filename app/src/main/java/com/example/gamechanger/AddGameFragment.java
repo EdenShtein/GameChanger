@@ -109,7 +109,7 @@ public class AddGameFragment extends Fragment {
                     gamePrice.addTextChangedListener(this);
 
                     // getting the value as float
-                    //Float amount = Float.parseFloat(gamePrice.getText().toString().replace("$" ,""));
+                    Float amount = Float.parseFloat(gamePrice.getText().toString().replace("$" ,""));
             }
         }});
 
