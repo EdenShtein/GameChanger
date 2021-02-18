@@ -14,6 +14,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
+import android.text.Editable;
+import android.text.Selection;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +81,43 @@ public class EditGameFragment extends AddGameFragment {
         gamePrice = view.findViewById(R.id.editgame_price_input);
         price = EditGameFragmentArgs.fromBundle(getArguments()).getEditGamePrice();
         gamePrice.setText(price);
+        gamePrice.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!s.toString().matches("^\\$(\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")) {
+                    String userInput = "" + s.toString().replaceAll("[^\\d]", "");
+                    StringBuilder cashAmountBuilder = new StringBuilder(userInput);
+
+                    while (cashAmountBuilder.length() > 3 && cashAmountBuilder.charAt(0) == '0') {
+                        cashAmountBuilder.deleteCharAt(0);
+                    }
+                    while (cashAmountBuilder.length() < 3) {
+                        cashAmountBuilder.insert(0, '0');
+                    }
+                    cashAmountBuilder.insert(cashAmountBuilder.length() - 2, '.');
+
+                    gamePrice.removeTextChangedListener(this);
+                    gamePrice.setText(cashAmountBuilder.toString());
+
+                    gamePrice.setTextKeepState("$" + cashAmountBuilder.toString());
+                    Selection.setSelection(gamePrice.getText(), cashAmountBuilder.toString().length() + 1);
+
+                    gamePrice.addTextChangedListener(this);
+
+                    // getting the value as float
+                    //Float amount = Float.parseFloat(gamePrice.getText().toString().replace("$" ,""));
+                }
+            }});
 
         avatarImageView = view.findViewById(R.id.editgame_avatar_imv);
 
