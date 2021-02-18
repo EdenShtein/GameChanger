@@ -124,7 +124,7 @@ public class FireBaseModel {
 
     public void uploadImage(Bitmap imageBmp, String name, final Model.UploadImageListener listener){
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-        final StorageReference imagesRef = storage.getReference(mAuth.getCurrentUser().getEmail()).child("game"+ timeStamp.toString());
+        final StorageReference imagesRef = storage.getReference(mAuth.getCurrentUser().getEmail()).child("game"+ timeStamp);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
@@ -307,7 +307,9 @@ public class FireBaseModel {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()){
                             DocumentSnapshot doc = task.getResult();
-                            String date = doc.get("Posted At").toString();
+                            Timestamp ts = (Timestamp) doc.get("Posted At");
+                            Date dateFormat = ts.toDate();
+                            String date = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(dateFormat);
                             listener.onComplete(date);
                         }
                     }

@@ -15,6 +15,10 @@ import java.util.Map;
 
 public class Model {
 
+    public interface Listener<T>{
+        void onComplete(T t);
+    }
+
     public interface SuccessListener{
         void onComplete(boolean result);
     }
