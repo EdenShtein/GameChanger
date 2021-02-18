@@ -97,6 +97,16 @@ public class GameDetailsFragment extends Fragment {
         if (imageUrl != null){
             Picasso.get().load(imageUrl).placeholder(R.drawable.gamechangersimple).into(gameImage);
         }
+        gameImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = GameDetailsFragmentArgs.fromBundle(getArguments()).getGameDetailsTitle();
+                String url = "http://www.google.com/search?q=" + name + " review";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
 
         postedBy = view.findViewById(R.id.gamedetails_postby_input);
         Model.instance.getOwnerId(gameId, new Model.StringListener() {
