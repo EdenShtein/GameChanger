@@ -173,4 +173,11 @@ public class Model {
         fireBase.getUserData(userId,listener);
     }
 
+    public void searchGame(String query,FbGamesListener listener)
+    {
+        fireBase.getSearchableGame(query,listener);
+    }
+
+
+
 }

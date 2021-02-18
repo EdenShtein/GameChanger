@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <item
-                android:id="@+id/searchmenu"
-                android:title="Search"
-                android:icon="@android:drawable/ic_menu_search"
-                app:showAsAction="always"
-                app:actionViewClass="android.widget.SearchView"/>
+            android:id="@+id/searchmenu"
+            android:title="Search"
+            android:icon="@android:drawable/ic_menu_search"
+            app:showAsAction="always"
+            app:actionViewClass="android.widget.SearchView"/>
 
         <item
-                android:id="@+id/myprofilemenu"
-                android:title="My Profile" />
+            android:id="@+id/myprofilemenu"
+            android:title="My Profile" />
         <item
-                android:id="@+id/signoutmenu"
-                android:title="Sign Out"></item>
+            android:id="@+id/signoutmenu"
+            android:title="Sign Out"></item>
 </menu>

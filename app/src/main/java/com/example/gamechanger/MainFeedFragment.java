@@ -4,6 +4,7 @@ import android.media.Image;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.Toast;
 import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Game.GameAdapter;
@@ -42,6 +44,7 @@ public class MainFeedFragment extends Fragment {
     static int flag =0;
     private View view;
     SwipeRefreshLayout swipeRefreshLayout;
+    GameAdapter gamesAdapter;
 
     public int getMainFeedFlag(){
         return flag;
@@ -61,7 +64,7 @@ public class MainFeedFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         gamesList_rv.setLayoutManager(layoutManager);
 
-        final GameAdapter gamesAdapter = new GameAdapter();
+        gamesAdapter = new GameAdapter();
         gamesList_rv.setAdapter(gamesAdapter);
 
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
@@ -210,6 +213,27 @@ public class MainFeedFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.main_menu, menu);
+        MenuItem search = menu.findItem(R.id.searchmenu);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(search);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            //Called when we press search button
+            public boolean onQueryTextSubmit(String query) {
+                Model.instance.searchGame(query, new Model.FbGamesListener() {
+                    @Override
+                    public void onComplete(List<Game> searchGames) {
+                        gamesAdapter.setGamesData(searchGames);
+                        gamesList_rv.setAdapter(gamesAdapter);
+                    }
+                });
+                return false;
+            }
+            //Called as and when we type even a single letter
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         super.onCreateOptionsMenu(menu,inflater);
 
     }
