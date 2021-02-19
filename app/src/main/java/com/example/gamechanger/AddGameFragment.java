@@ -275,9 +275,8 @@ public class AddGameFragment extends Fragment {
                             e.printStackTrace();
 
                         }
-
-
                     }
+
                     break;
             }
         }
