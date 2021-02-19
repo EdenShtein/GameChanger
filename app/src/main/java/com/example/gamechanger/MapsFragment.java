@@ -3,6 +3,7 @@ package com.example.gamechanger;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -14,9 +15,15 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
+import com.example.gamechanger.model.Game.Game;
+import com.example.gamechanger.model.Model;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -48,6 +55,7 @@ public class MapsFragment extends Fragment  {
          view =  inflater.inflate(R.layout.fragment_maps, container, false);
 
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
 
         client = LocationServices.getFusedLocationProviderClient(getActivity());
 
@@ -246,6 +254,29 @@ public class MapsFragment extends Fragment  {
 
     public void setEdit_flag(int edit_flag) {
         MapsFragment.edit_flag = edit_flag;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.map_menu, menu);
+        MenuItem back_btn = menu.findItem(R.id.map_menu_back);
+        super.onCreateOptionsMenu(menu,inflater);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.map_menu_back:
+                if(view != null) {
+                    Navigation.findNavController(view).popBackStack();
+                }
+                break;
+
+            default:
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

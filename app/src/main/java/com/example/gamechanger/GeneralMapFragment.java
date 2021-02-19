@@ -7,6 +7,9 @@ import androidx.navigation.Navigation;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -39,6 +42,7 @@ public class GeneralMapFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_general_map, container, false);
         supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
 
         Model.instance.getLatLongPoint(new Model.LatLongListener() {
             @Override
@@ -91,6 +95,30 @@ public class GeneralMapFragment extends Fragment {
 
 
        return view;
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.map_menu, menu);
+        MenuItem back_btn = menu.findItem(R.id.map_menu_back);
+        super.onCreateOptionsMenu(menu,inflater);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.map_menu_back:
+                if(view != null) {
+                    Navigation.findNavController(view).popBackStack();
+                }
+                break;
+
+            default:
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
