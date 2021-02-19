@@ -211,7 +211,6 @@ public class AddGameFragment extends Fragment {
         return view;
     }
 
-
     public void checkForNewCoordinates(){
         /*Bundle bundle = getArguments();
         latitude = bundle.getDouble("latitude",latitude);
