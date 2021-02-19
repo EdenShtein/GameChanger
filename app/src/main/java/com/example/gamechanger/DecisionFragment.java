@@ -70,7 +70,6 @@ public class DecisionFragment extends Fragment {
             }
         });*/
 
-
         return view;
     }
 }
