@@ -123,7 +123,6 @@ public class AddGameFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.addgame_layout, mainFeedFragment);
                 fragmentTransaction.commit();*/
-
             }
         });
 
