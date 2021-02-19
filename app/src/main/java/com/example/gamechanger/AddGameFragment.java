@@ -152,7 +152,6 @@ public class AddGameFragment extends Fragment {
                             if (url == null) {
                                 displayFailedError();
                             } else {
-
                                 game = new Game(title, price, url);
                                 game.setLatitude(latitude);
                                 game.setLongitude(longitude);
@@ -187,12 +186,10 @@ public class AddGameFragment extends Fragment {
                                         fragmentTransaction.commit();*/
                                     }
                                 });
-
                             }
                         }
                     });
                 }
-
                 //Navigation.findNavController(view).navigate(R.id.action_addGame_to_mainFeed);
             }
         });
