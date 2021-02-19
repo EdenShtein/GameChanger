@@ -40,7 +40,6 @@ import static android.app.Activity.RESULT_OK;
 
 public class EditGameFragment extends AddGameFragment {
 
-    Button cancelBtn;
     Button saveBtn;
 
     EditText gameTitle;
@@ -120,14 +119,6 @@ public class EditGameFragment extends AddGameFragment {
             }});
 
         avatarImageView = view.findViewById(R.id.editgame_avatar_imv);
-
-        cancelBtn = view.findViewById(R.id.editgame_cancel_btn);
-        cancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(view).popBackStack();
-            }
-        });
 
         editImageBtn = view.findViewById(R.id.editgame_edit_image_btn);
         editImageBtn.setOnClickListener(new View.OnClickListener() {
