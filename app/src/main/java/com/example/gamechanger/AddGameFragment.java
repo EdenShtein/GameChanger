@@ -220,8 +220,6 @@ public class AddGameFragment extends Fragment {
         longitude = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();
     }
 
-
-
     private void displayFailedError() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Operation Failed");
@@ -284,5 +282,4 @@ public class AddGameFragment extends Fragment {
             }
         }
     }
-
 }
