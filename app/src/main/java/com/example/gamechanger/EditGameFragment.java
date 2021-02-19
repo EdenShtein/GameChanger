@@ -143,41 +143,45 @@ public class EditGameFragment extends AddGameFragment {
             public void onClick(View v) {
                 String title = gameTitle.getText().toString();
                 String price = gamePrice.getText().toString();
-                BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();
-                Bitmap bitmap = drawable.getBitmap();
-                Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
-                    @Override
-                    public void onComplete(String url) {
-                        if (url == null){
-                            displayFailedError();
-                        }else{
+                if (title.equals("") || price.equals("") || price.equals("$")) {
+                    Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    BitmapDrawable drawable = (BitmapDrawable) avatarImageView.getDrawable();
+                    Bitmap bitmap = drawable.getBitmap();
+                    Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
+                        @Override
+                        public void onComplete(String url) {
+                            if (url == null) {
+                                displayFailedError();
+                            } else {
 
-                            game= new Game(title,price,url);
-                            game.setLatitude(latitude);
-                            game.setLongitude(longitude);
+                                game = new Game(title, price, url);
+                                game.setLatitude(latitude);
+                                game.setLongitude(longitude);
 
-                            //////////////////////
-                            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                            Date date = new Date();
-                            editGameMap = new HashMap<>();
-                            editGameMap.put("id", gameId);
-                            editGameMap.put("gameName", title);
-                            editGameMap.put("gamePrice", price);
-                            editGameMap.put("imageUrl", url);
-                            editGameMap.put("Posted At", formatter.format(date));
-                            editGameMap.put("latitude", latitude);
-                            editGameMap.put("longitude", longitude);
-                            editGameMap.put("OwnedBy", ownerId);
+                                //////////////////////
+                                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                                Date date = new Date();
+                                editGameMap = new HashMap<>();
+                                editGameMap.put("id", gameId);
+                                editGameMap.put("gameName", title);
+                                editGameMap.put("gamePrice", price);
+                                editGameMap.put("imageUrl", url);
+                                editGameMap.put("Posted At", formatter.format(date));
+                                editGameMap.put("latitude", latitude);
+                                editGameMap.put("longitude", longitude);
+                                editGameMap.put("OwnedBy", ownerId);
 
 
-                            Model.instance.editGame(gameId, editGameMap, new Model.GameListener() {
-                                @Override
-                                public void onComplete() {
-                                    EditGameFragmentDirections.ActionEditGameToGameDetails action = EditGameFragmentDirections.actionEditGameToGameDetails(title,price,gameId,url);
-                                    Navigation.findNavController(view).navigate(action);
-                                    Toast.makeText(getActivity(), "Game Edited Successfully", Toast.LENGTH_SHORT).show();
-                                }
-                            });
+                                Model.instance.editGame(gameId, editGameMap, new Model.GameListener() {
+                                    @Override
+                                    public void onComplete() {
+                                        EditGameFragmentDirections.ActionEditGameToGameDetails action = EditGameFragmentDirections.actionEditGameToGameDetails(title, price, gameId, url);
+                                        Navigation.findNavController(view).navigate(action);
+                                        Toast.makeText(getActivity(), "Game Edited Successfully", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
 
                             /*Model.instance.addGame(game, new Model.GameListener() {
                                 @Override
@@ -194,9 +198,10 @@ public class EditGameFragment extends AddGameFragment {
                                 }
                             });*/
 
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
 
         });

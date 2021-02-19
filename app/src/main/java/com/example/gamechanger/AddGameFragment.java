@@ -109,7 +109,7 @@ public class AddGameFragment extends Fragment {
                     gamePrice.addTextChangedListener(this);
 
                     // getting the value as float
-                    Float amount = Float.parseFloat(gamePrice.getText().toString().replace("$" ,""));
+                    //Float amount = Float.parseFloat(gamePrice.getText().toString().replace("$" ,""));
             }
         }});
 
@@ -140,56 +140,61 @@ public class AddGameFragment extends Fragment {
             public void onClick(View v) {
                 String title = gameTitle.getText().toString();
                 String price = gamePrice.getText().toString();
-                BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();
-                Bitmap bitmap = drawable.getBitmap();
-                //final Game game= new Game(title,price,null);
-                //AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections
-                // .actionAddGameToMainFeed(title, price, null);
-                Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
-                    @Override
-                    public void onComplete(String url) {
-                        if (url == null){
-                            displayFailedError();
-                        }else{
+                if (title.equals("") || price.equals("")) {
+                    Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();
+                    Bitmap bitmap = drawable.getBitmap();
+                    //final Game game= new Game(title,price,null);
+                    //AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections
+                    // .actionAddGameToMainFeed(title, price, null);
+                    Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
+                        @Override
+                        public void onComplete(String url) {
+                            if (url == null) {
+                                displayFailedError();
+                            } else {
 
-                            game= new Game(title,price,url);
-                            game.setLatitude(latitude);
-                            game.setLongitude(longitude);
+                                game = new Game(title, price, url);
+                                game.setLatitude(latitude);
+                                game.setLongitude(longitude);
 
-                            AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections
-                                    .actionAddGameToMainFeed(title, price, url);
+                                AddGameFragmentDirections.ActionAddGameToMainFeed action = AddGameFragmentDirections
+                                        .actionAddGameToMainFeed(title, price, url);
 
-                            /*Bundle bundle = new Bundle();
-                            bundle.putString("gameTitle",title);
-                            bundle.putString("gamePrice",price);
-                            bundle.putString("imageUrl",url);*/
+                                /*Bundle bundle = new Bundle();
+                                bundle.putString("gameTitle",title);
+                                bundle.putString("gamePrice",price);
+                                bundle.putString("imageUrl",url);*/
 
-                            Toast.makeText(getActivity(), "image url saved", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "image url saved", Toast.LENGTH_SHORT).show();
 
-                            MainFeedFragment mainFeedFragment = new MainFeedFragment();
-                            mainFeedFragment.setMainFeedFlag(1);
+                                MainFeedFragment mainFeedFragment = new MainFeedFragment();
+                                mainFeedFragment.setMainFeedFlag(1);
 
-                            Navigation.findNavController(view).navigate(action);
+                                Navigation.findNavController(view).navigate(action);
 
-                            Model.instance.addGame(game, new Model.GameListener() {
-                                @Override
-                                public void onComplete() {
-                                    //mainFeedFragment.GetDataFromFirebase();
-                                    Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
-                                    /*
-                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                    mainFeedFragment.setArguments(bundle);
-                                    fragmentTransaction.replace(R.id.addgame_layout, mainFeedFragment);
-                                    cancelBtn.setVisibility(v.GONE);
-                                    saveBtn.setVisibility(v.GONE);
-                                    fragmentTransaction.commit();*/
-                                }
-                            });
+                                Model.instance.addGame(game, new Model.GameListener() {
+                                    @Override
+                                    public void onComplete() {
+                                        //mainFeedFragment.GetDataFromFirebase();
+                                        Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
+                                        /*
+                                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                        mainFeedFragment.setArguments(bundle);
+                                        fragmentTransaction.replace(R.id.addgame_layout, mainFeedFragment);
+                                        cancelBtn.setVisibility(v.GONE);
+                                        saveBtn.setVisibility(v.GONE);
+                                        fragmentTransaction.commit();*/
+                                    }
+                                });
 
+                            }
                         }
-                    }
-                });
+                    });
+                }
 
                 //Navigation.findNavController(view).navigate(R.id.action_addGame_to_mainFeed);
             }
