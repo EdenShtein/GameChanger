@@ -36,7 +36,6 @@ public class GeneralMapFragment extends Fragment {
     SupportMapFragment supportMapFragment;
     GoogleMap googleMap;
 
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
