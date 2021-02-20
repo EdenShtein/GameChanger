@@ -91,11 +91,8 @@ public class GeneralMapFragment extends Fragment {
             }
         });
 
-
-
        return view;
     }
-
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
