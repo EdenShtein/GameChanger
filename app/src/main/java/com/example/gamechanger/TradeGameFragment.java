@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+// TODO remove this fragment - NOT INCLUED AFTER ALL
 
 public class TradeGameFragment extends Fragment {
 
@@ -21,7 +22,6 @@ public class TradeGameFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_trade_game, container, false);
-
         saveBtn = view.findViewById(R.id.tradegame_save_btn);
         cancelBtn = view.findViewById(R.id.tradegame_cancel_btn);
 
@@ -31,8 +31,6 @@ public class TradeGameFragment extends Fragment {
                // Navigation.findNavController(view).navigate(R.id.action_tradeGame_to_mainFeed);
             }
         });
-
-
 
         return view;
     }
