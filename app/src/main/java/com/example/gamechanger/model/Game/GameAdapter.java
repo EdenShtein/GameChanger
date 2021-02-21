@@ -27,8 +27,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
         return gamesData.get(position);
     }
 
-    public void setGamesData(List<Game> games)
-    {
+    public void setGamesData(List<Game> games) {
         this.gamesData = games;
         notifyDataSetChanged();
     }
@@ -57,7 +56,6 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
         void onItemClick(Game game, View view);
     }
 
-
     //---------------GameHolder----------------//
 
     public static class GameHolder extends RecyclerView.ViewHolder{
@@ -76,21 +74,19 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION)
-                    {
+                    if (listener != null && position != RecyclerView.NO_POSITION) {
                         listener.onItemClick(gamesData.get(position), v);
                     }
                 }
             });
         }
 
-
         public void bindData(Game game, int position){
             gameText.setText(game.getName());
             gameSubText.setText(game.getPrice());
             gameImage.setImageResource(R.drawable.gamechangersimple);
             String url = game.getImageURL();
-            if (game.getImageURL() != null){
+            if (game.getImageURL() != null) {
                 Picasso.get().load(game.getImageURL()).placeholder(R.drawable.gamechangersimple).into(gameImage);
             }
 
@@ -112,6 +108,5 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
 
             this.position = position;
         }
-
     }
 }

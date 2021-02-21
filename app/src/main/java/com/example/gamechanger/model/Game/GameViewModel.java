@@ -16,7 +16,6 @@ public class GameViewModel extends AndroidViewModel {
 
     public GameViewModel(@NonNull Application application) {
         super(application);
-
         repository = new AppRepository(application);
         gamesList = repository.getAllGames();
     }
