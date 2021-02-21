@@ -77,12 +77,10 @@ public class AddGameFragment extends Fragment {
         gamePrice = view.findViewById(R.id.addgame_price_input);
         gamePrice.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -138,7 +136,7 @@ public class AddGameFragment extends Fragment {
                 String title = gameTitle.getText().toString();
                 String price = gamePrice.getText().toString();
                 if (title.equals("") || price.equals("")) {
-                    Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Please Enter Full Data", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();
@@ -203,7 +201,7 @@ public class AddGameFragment extends Fragment {
             }
         });
 
-        if(getMapFlag()==1){
+        if(getMapFlag() == 1) {
             checkForNewCoordinates();
             this.setMapFlag(0);
         }
