@@ -46,8 +46,6 @@ public class SignUpFragment extends Fragment {
         lName=view.findViewById(R.id.signup_lname_input);
         phonenumber=view.findViewById(R.id.signup_phonenumber_input);
 
-
-
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +64,7 @@ public class SignUpFragment extends Fragment {
                 }
             }
         });
+
         signinLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,9 +72,6 @@ public class SignUpFragment extends Fragment {
             }
         });
 
-
         return view;
     }
-
-
 }
