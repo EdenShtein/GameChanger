@@ -22,15 +22,15 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract GameDao gameDao();
     public abstract UserDao userDao();
 
-    public static synchronized AppDatabase getInstance(Context context){
-
-        if(instance == null){
+    public static synchronized AppDatabase getInstance(Context context) {
+        if(instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     AppDatabase.class, "app_database").fallbackToDestructiveMigration()
                     /*.addMigrations(MIGRATION_5_6)*/
                     .addCallback(roomCallBack)
                     .build();
         }
+
         return instance;
     }
 
@@ -42,23 +42,18 @@ public abstract class AppDatabase extends RoomDatabase {
         }
     };
 
-    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void>
-    {
+    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
         private GameDao gameDao;
         private UserDao userDao;
 
-        private PopulateDbAsyncTask(AppDatabase database)
-        {
+        private PopulateDbAsyncTask(AppDatabase database) {
             gameDao = database.gameDao();
             userDao = database.userDao();
-
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
             //gameDao.Insert(new Game("Title 1", "Price 1", ""));
-
-
             return null;
         }
     }

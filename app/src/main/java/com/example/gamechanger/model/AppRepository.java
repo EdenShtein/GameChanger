@@ -19,16 +19,12 @@ public class AppRepository {
     private UserDao userDao;
     private LiveData<List<User>> users;
 
-    public AppRepository(Application application)
-    {
+    public AppRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
-
         gameDao = database.gameDao();
         games = gameDao.getAllGames();
-
         userDao = database.userDao();
         users = userDao.getAllUsers();
-
     }
 
     public void insert(Game game)
@@ -55,7 +51,6 @@ public class AppRepository {
     }
     public void delete(User user) { new DeleteUserAsyncTask(userDao).execute(user); }
 
-
     public LiveData<List<Game>> getAllGames()
     {
         return games;
@@ -66,11 +61,8 @@ public class AppRepository {
     }
 
     //-----------------Games-------------------///
-
-    private static class InsertGameAsyncTask extends AsyncTask<Game, Void, Void>
-    {
+    private static class InsertGameAsyncTask extends AsyncTask<Game, Void, Void> {
         private GameDao gameDao;
-
         private InsertGameAsyncTask(GameDao gameDao)
         {
             this.gameDao = gameDao;
@@ -83,10 +75,8 @@ public class AppRepository {
         }
     }
 
-    private static class UpdateGameAsyncTask extends AsyncTask<Game, Void, Void>
-    {
+    private static class UpdateGameAsyncTask extends AsyncTask<Game, Void, Void> {
         private GameDao gameDao;
-
         private UpdateGameAsyncTask(GameDao gameDao)
         {
             this.gameDao = gameDao;
@@ -99,10 +89,8 @@ public class AppRepository {
         }
     }
 
-    private static class DeleteGameAsyncTask extends AsyncTask<Game, Void, Void>
-    {
+    private static class DeleteGameAsyncTask extends AsyncTask<Game, Void, Void> {
         private GameDao gameDao;
-
         private DeleteGameAsyncTask(GameDao gameDao)
         {
             this.gameDao = gameDao;
@@ -116,11 +104,8 @@ public class AppRepository {
     }
 
     //----------------------Users----------------------///
-
-    private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void>
-    {
+    private static class InsertUserAsyncTask extends AsyncTask<User, Void, Void> {
         private UserDao userDao;
-
         private InsertUserAsyncTask(UserDao userDao)
         {
             this.userDao = userDao;
@@ -133,10 +118,8 @@ public class AppRepository {
         }
     }
 
-    private static class UpdateUserAsyncTask extends AsyncTask<User, Void, Void>
-    {
+    private static class UpdateUserAsyncTask extends AsyncTask<User, Void, Void> {
         private UserDao userDao;
-
         private UpdateUserAsyncTask(UserDao userDao)
         {
             this.userDao = userDao;
@@ -149,10 +132,8 @@ public class AppRepository {
         }
     }
 
-    private static class DeleteUserAsyncTask extends AsyncTask<User, Void, Void>
-    {
+    private static class DeleteUserAsyncTask extends AsyncTask<User, Void, Void> {
         private UserDao userDao;
-
         private DeleteUserAsyncTask(UserDao userDao)
         {
             this.userDao = userDao;
@@ -164,5 +145,4 @@ public class AppRepository {
             return null;
         }
     }
-
 }

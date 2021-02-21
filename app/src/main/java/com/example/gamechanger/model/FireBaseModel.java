@@ -62,20 +62,16 @@ public class FireBaseModel {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             user.setId(mAuth.getCurrentUser().getUid());
-                            Model.instance.addUser(user,()->{
-                            });
+                            Model.instance.addUser(user,()->{ });
                             Toast.makeText(activity, "User Created Successfully", Toast.LENGTH_SHORT).show();
-
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(activity, "User Failed To Create", Toast.LENGTH_SHORT).show();
                         }
-
                         // ...
                     }
                 });
-
     }
 
     public void logInToFireBase (String email, String password, Activity activity, Model.SuccessListener listener){
@@ -94,7 +90,6 @@ public class FireBaseModel {
                             Toast.makeText(activity, "FAIL login Firebase:" + task.getException(), Toast.LENGTH_SHORT).show();
                             listener.onComplete(false);
                         }
-
                         // ...
                     }
                 });
@@ -119,8 +114,6 @@ public class FireBaseModel {
         });
 
     }
-
-
 
     public void uploadImage(Bitmap imageBmp, String name, final Model.UploadImageListener listener){
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
@@ -214,13 +207,14 @@ public class FireBaseModel {
         });
     }
 
-
     public Boolean isUserExist(){
-        if(mAuth.getCurrentUser()!=null)
-        {
+        if(mAuth.getCurrentUser() != null) {
             return true;
-        }else {return false;}
+        } else {
+            return false;
+        }
     }
+
     public String getEmail(){
         return mAuth.getCurrentUser().getEmail();
     }
@@ -237,7 +231,7 @@ public class FireBaseModel {
         db.collection("Games").whereEqualTo("OwnedBy", id).get().addOnCompleteListener((new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     for (QueryDocumentSnapshot querySnapshot : task.getResult()){
                         Game game = new Game();
                         game.fromMap(querySnapshot.getData());
@@ -255,9 +249,9 @@ public class FireBaseModel {
         db.collection("Games").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    if (task.getResult().isEmpty() == false){
-                        for (DocumentSnapshot doc : task.getResult()){
+                if (task.isSuccessful()) {
+                    if (task.getResult().isEmpty() == false) {
+                        for (DocumentSnapshot doc : task.getResult()) {
                             Game game = new Game();
                             game.fromMap(doc.getData());
                             userGames.add(game);
@@ -265,17 +259,18 @@ public class FireBaseModel {
                         }
                     }
                 }
+
                 listener.onComplete(userGames);
             }
         });
     }
 
-    public void getOwnerId(String gameId, Model.StringListener listener){
+    public void getOwnerId(String gameId, Model.StringListener listener) {
         db.collection("Games").document(gameId).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     DocumentSnapshot doc = task.getResult();
                     String ownedBy = doc.getString("OwnedBy");
                     listener.onComplete(ownedBy);
@@ -289,7 +284,7 @@ public class FireBaseModel {
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             DocumentSnapshot doc = task.getResult();
                             String firstName = doc.getString("fName");
                             String LastName = doc.getString("lName");
@@ -317,12 +312,12 @@ public class FireBaseModel {
                });
     }
 
-    public void getGameDate(String gameId, Model.StringListener listener){
+    public void getGameDate(String gameId, Model.StringListener listener) {
         db.collection("Games").document(gameId).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             DocumentSnapshot doc = task.getResult();
                             String date = doc.get("Posted At").toString();
                             listener.onComplete(date);
@@ -331,12 +326,12 @@ public class FireBaseModel {
                 });
     }
 
-    public void getOwnerPhone(String ownerId, Model.StringListener listener){
+    public void getOwnerPhone(String ownerId, Model.StringListener listener) {
         db.collection("Users").document(ownerId).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             DocumentSnapshot doc = task.getResult();
                             String phoneNumber = doc.getString("phone");
                             listener.onComplete(phoneNumber);
@@ -345,19 +340,17 @@ public class FireBaseModel {
                 });
     }
 
-    public void editGame(String gameId, Map<String,Object> map, Model.GameListener listener){
+    public void editGame(String gameId, Map<String,Object> map, Model.GameListener listener) {
 
         db.collection("Games").document(gameId)
                 .update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
-            public void onSuccess(Void aVoid) {
-
-            }
+            public void onSuccess(Void aVoid) { }
         });
         listener.onComplete();
     }
 
-    public void deleteFbGame(String gameId, Model.GameListener listener){
+    public void deleteFbGame(String gameId, Model.GameListener listener) {
         db.collection("Games").document(gameId).delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -374,7 +367,7 @@ public class FireBaseModel {
     }
 
 
-    public void getLatLong(final Model.LatLongListener listener){
+    public void getLatLong(final Model.LatLongListener listener) {
         String id = Model.instance.getUserId();
         List<Double> latitudePoints = new LinkedList<Double>();
         List<Double> longitudePoints = new LinkedList<Double>();
@@ -389,7 +382,6 @@ public class FireBaseModel {
                         latitudePoints.add(game.getLatitude());
                         longitudePoints.add(game.getLongitude());
                         gameID.add(game.getId());
-
                     }
                 }
                 listener.onComplete(latitudePoints,longitudePoints,gameID);
@@ -397,29 +389,22 @@ public class FireBaseModel {
         });
     }
 
-    public void getGameDetails(String gameId,final Model.GameDataListener listener){
+    public void getGameDetails(String gameId,final Model.GameDataListener listener) {
         db.collection("Games").document(gameId).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()){
-
+                        if (task.isSuccessful()) {
                                 DocumentSnapshot doc = task.getResult();
-                                    Game game = new Game();
-                                    game.fromMap(doc.getData());
-
+                                Game game = new Game();
+                                game.fromMap(doc.getData());
                                 listener.onComplete(game);
-
-
                             }
-
-
                     }
                 });
     }
 
-    public void getSearchableGame(String query,Model.FbGamesListener listener)
-    {
+    public void getSearchableGame(String query,Model.FbGamesListener listener) {
         List<Game> matchGames = new LinkedList<Game>();
         db.collection("Games").whereEqualTo("search", query.toLowerCase()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -429,7 +414,6 @@ public class FireBaseModel {
                         Game game = new Game();
                         game.fromMap(querySnapshot.getData());
                         matchGames.add(game);
-
                     }
                 }
                 listener.onComplete(matchGames);
@@ -437,33 +421,35 @@ public class FireBaseModel {
         });
     }
 
-    public void sortByName(final Model.FbGamesListener listener){
+    public void sortByName(final Model.FbGamesListener listener) {
         List<Game> userGames = new LinkedList<Game>();
-        db.collection("Games").orderBy("search", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("Games").orderBy("search", Query.Direction.ASCENDING).get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    if (task.getResult().isEmpty() == false){
-                        for (DocumentSnapshot doc : task.getResult()){
+                if (task.isSuccessful()) {
+                    if (task.getResult().isEmpty() == false) {
+                        for (DocumentSnapshot doc : task.getResult()) {
                             Game game = new Game();
                             game.fromMap(doc.getData());
                             userGames.add(game);
                         }
                     }
                 }
+
                 listener.onComplete(userGames);
             }
         });
     }
 
-    public void sortByPrice(final Model.FbGamesListener listener){
+    public void sortByPrice(final Model.FbGamesListener listener) {
         List<Game> userGames = new LinkedList<Game>();
         db.collection("Games").orderBy("price", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()){
-                    if (task.getResult().isEmpty() == false){
-                        for (DocumentSnapshot doc : task.getResult()){
+                if (task.isSuccessful()) {
+                    if (task.getResult().isEmpty() == false) {
+                        for (DocumentSnapshot doc : task.getResult()) {
                             Game game = new Game();
                             game.fromMap(doc.getData());
                             userGames.add(game);
@@ -474,6 +460,4 @@ public class FireBaseModel {
             }
         });
     }
-
-
 }
