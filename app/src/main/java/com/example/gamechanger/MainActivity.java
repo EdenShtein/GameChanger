@@ -15,8 +15,6 @@ public class MainActivity extends AppCompatActivity  {
 
     NavController navController;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,25 +23,18 @@ public class MainActivity extends AppCompatActivity  {
 
         navController = Navigation.findNavController(this,R.id.fragment);
 
-
         Intent intent = getIntent();
-        if(intent != null){
-            if(intent.getBooleanExtra("isLogin", false)){
+        if(intent != null) {
+            if(intent.getBooleanExtra("isLogin", false)) {
                 userIsLogin();
             }
         }
-
     }
 
     @Override
-    public void onBackPressed(){
-
-    }
-
+    public void onBackPressed(){ }
 
     public void userIsLogin(){
         navController.navigate(R.id.action_signin_to_mainFeed);
     }
-
-
 }
