@@ -37,13 +37,12 @@ public class ForgetPassFragment extends Fragment {
         resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String useremail = email.getText().toString();
-                if (useremail.equals("")) {
+                String userEmail = email.getText().toString();
+                if (userEmail.equals("")) {
                     Toast.makeText(getActivity(),"You must enter Email",Toast.LENGTH_SHORT).show();
                 }
-                else
-                {
-                    Model.instance.resetPass(useremail, new Model.SuccessListener() {
+                else {
+                    Model.instance.resetPass(userEmail, new Model.SuccessListener() {
                         @Override
                         public void onComplete(boolean result) {
                             if (result) {
@@ -59,5 +58,4 @@ public class ForgetPassFragment extends Fragment {
 
         return view;
     }
-
 }
