@@ -52,7 +52,7 @@ public class GeneralMapFragment extends Fragment {
                 supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                     @Override
                     public void onMapReady(GoogleMap googleMap) {
-                        for(int i=0;i<longPoints.size();i++){
+                        for(int i = 0; i < longPoints.size(); i++) {
                             LatLng location = new LatLng(latPoints.get(i),longPoints.get(i));
                             MarkerOptions markerOptions = new MarkerOptions();
                             markerOptions.position(location);
@@ -62,12 +62,9 @@ public class GeneralMapFragment extends Fragment {
                                 @Override
                                 public boolean onMarkerClick(Marker marker) {
                                     double lat = marker.getPosition().latitude;
-                                    double longitu = marker.getPosition().longitude;
-                                   for(int i=0;i<gameID.size();i++)
-                                   {
-                                       if(latPoints.get(i)==lat && longPoints.get(i)==longitu)
-                                       {
-
+                                    double longitude = marker.getPosition().longitude;
+                                   for(int i = 0; i < gameID.size(); i++) {
+                                       if(latPoints.get(i) == lat && longPoints.get(i) == longitude) {
                                             Model.instance.getGameData(gameID.get(i), new Model.GameDataListener() {
                                                 @Override
                                                 public void onComplete(Game game) {
@@ -80,11 +77,9 @@ public class GeneralMapFragment extends Fragment {
                                        }
                                    }
 
-
                                     return true;
                                 }
                             });
-
                         }
                     }
                 });
@@ -104,8 +99,7 @@ public class GeneralMapFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.map_menu_back:
                 if(view != null) {
                     Navigation.findNavController(view).popBackStack();
@@ -114,6 +108,7 @@ public class GeneralMapFragment extends Fragment {
 
             default:
         }
+
         return super.onOptionsItemSelected(item);
     }
 }
