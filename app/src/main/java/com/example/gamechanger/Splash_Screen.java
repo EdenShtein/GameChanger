@@ -20,10 +20,8 @@ public class Splash_Screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash__screen);
-
-        splash=findViewById(R.id.imageViewSplash);
-
-        Animation animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.splash_anim);
+        splash = findViewById(R.id.imageViewSplash);
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.splash_anim);
         splash.startAnimation(animation);
 
         new Handler().postDelayed(new Runnable() {
@@ -34,9 +32,8 @@ public class Splash_Screen extends AppCompatActivity {
                 if(Model.instance.isUserLogIn())
                     intent.putExtra("isLogin", true);
 
-                    startActivity(intent);
+                    startActivity(intent); // TODO is in if, if now tab+shift
                     finish();
-
             }
         },5000);
     }
