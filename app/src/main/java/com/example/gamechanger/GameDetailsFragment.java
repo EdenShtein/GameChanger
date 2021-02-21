@@ -75,14 +75,13 @@ public class GameDetailsFragment extends Fragment {
                     setFeed_flag(0);
                     Navigation.findNavController(view).navigate(R.id.action_gameDetails_to_mainFeed);
                 }
-                if (getUser_flag() == 1){
+                if (getUser_flag() == 1) {
                     setUser_flag(0);
                     Navigation.findNavController(view).navigate(R.id.userProfileFragment);
                 }
-                else
+                else {
                     Navigation.findNavController(view).navigate(R.id.mainFeedFragment);
-
-
+                }
             }
         });
 
@@ -94,7 +93,7 @@ public class GameDetailsFragment extends Fragment {
 
         gameImage = view.findViewById(R.id.gamedetails_game_image);
         imageUrl = GameDetailsFragmentArgs.fromBundle(getArguments()).getGameDetailsImage();
-        if (imageUrl != null){
+        if (imageUrl != null) {
             Picasso.get().load(imageUrl).placeholder(R.drawable.gamechangersimple).into(gameImage);
         }
         gameImage.setOnClickListener(new View.OnClickListener() {
@@ -149,7 +148,7 @@ public class GameDetailsFragment extends Fragment {
         Model.instance.getOwnerId(gameId, new Model.StringListener() {
             @Override
             public void onComplete(String data) {
-                if (!currentUserId.equals(data)){
+                if (!currentUserId.equals(data)) {
                     edit_btn.setEnabled(false);
                     edit_btn.setVisibility(View.INVISIBLE);
                 }
@@ -183,11 +182,8 @@ public class GameDetailsFragment extends Fragment {
                         googleMap.getUiSettings().setZoomControlsEnabled(true);
                         googleMap.addMarker(new MarkerOptions().position(gameLocation));
                         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(gameLocation,15));
-
                     }
-
                 });
-
             }
         });
 
@@ -198,7 +194,6 @@ public class GameDetailsFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
-
                         return true;
                     }
                 }
@@ -241,11 +236,11 @@ public class GameDetailsFragment extends Fragment {
 
     public void phoneCalls(String phoneNumber)
     {
-        if(ActivityCompat.checkSelfPermission(getActivity(),Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED)
-        {
+        if(ActivityCompat.checkSelfPermission(getActivity(),Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.CALL_PHONE},100);
             return;
         }
+
         String uri = "tel:" + phoneNumber.trim() ;
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse(uri));
