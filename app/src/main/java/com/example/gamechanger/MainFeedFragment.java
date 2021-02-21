@@ -79,7 +79,6 @@ public class MainFeedFragment extends Fragment {
                     }
                 });
 
-
         swipeRefreshLayout = view.findViewById(R.id.mainfeed_refresh_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.design_default_color_primary,
                 android.R.color.holo_green_dark,
@@ -98,7 +97,6 @@ public class MainFeedFragment extends Fragment {
                 });
                 addGamebtn.setEnabled(true);
                 swipeRefreshLayout.setRefreshing(false);
-
             }
         });
 
@@ -129,7 +127,6 @@ public class MainFeedFragment extends Fragment {
                 });
             }
         });
-
 
         /*gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
             @Override
@@ -195,8 +192,6 @@ public class MainFeedFragment extends Fragment {
             }
         });
 
-
-
         mapBtn= view.findViewById(R.id.mainfeed_map_btn);
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,10 +202,8 @@ public class MainFeedFragment extends Fragment {
             }
         });
 
-
         return view;
     }
-
 
     private void checkForNewGame(View view) {
 
@@ -240,7 +233,6 @@ public class MainFeedFragment extends Fragment {
         return;
     }
 
-
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.main_menu, menu);
@@ -260,8 +252,7 @@ public class MainFeedFragment extends Fragment {
                         }
                     });
                 }
-                else
-                {
+                else {
                     Model.instance.searchGame(query, new Model.FbGamesListener() {
                         @Override
                         public void onComplete(List<Game> searchGames) {
@@ -279,13 +270,11 @@ public class MainFeedFragment extends Fragment {
             }
         });
         super.onCreateOptionsMenu(menu,inflater);
-
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.signoutmenu:
                 if(view != null) {
                     Model.instance.signOutFB();
