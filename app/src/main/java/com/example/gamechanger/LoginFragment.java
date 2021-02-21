@@ -36,7 +36,6 @@ public class LoginFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("GameChanger");
 
-
             SignUpBtn = view.findViewById(R.id.signin_signup_btn);
             SignUpBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -51,12 +50,12 @@ public class LoginFragment extends Fragment {
             signInBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String useremail = email.getText().toString();
-                    String userpassword = password.getText().toString();
-                    if (useremail.equals("") && userpassword.equals("")) {
+                    String userEmail = email.getText().toString();
+                    String userPassword = password.getText().toString();
+                    if (userEmail.equals("") && userPassword.equals("")) {
                         Toast.makeText(getActivity(), "Please Enter Email and Password", Toast.LENGTH_SHORT).show();
                     } else {
-                        Model.instance.logInFB(useremail, userpassword, new Model.SuccessListener() {
+                        Model.instance.logInFB(userEmail, userPassword, new Model.SuccessListener() {
                             @Override
                             public void onComplete(boolean result) {
                                 if (result) {
@@ -78,10 +77,7 @@ public class LoginFragment extends Fragment {
                 }
             });
 
-
-
             return view;
-
     }
 
     @Override
