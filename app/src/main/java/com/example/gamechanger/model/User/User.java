@@ -24,7 +24,6 @@ public class User {
     private String phoneNumber;
     private long lastUpdated;
 
-
     public User(String firstName, String lastName, String email, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -44,7 +43,7 @@ public class User {
         return result;
     }
 
-    public void fromMap(Map<String, Object> map){
+    public void fromMap(Map<String, Object> map) {
         id = (String)map.get("id");
         firstName = (String)map.get("fName");
         lastName = (String)map.get("lName");
