@@ -60,8 +60,7 @@ public class MapsFragment extends Fragment  {
         client = LocationServices.getFusedLocationProviderClient(getActivity());
 
         if(ActivityCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED)
-        {
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             getCurrentLocation();
             /*client.getLastLocation().addOnSuccessListener(getActivity(), new OnSuccessListener<Location>() {
                 @Override
@@ -114,11 +113,11 @@ public class MapsFragment extends Fragment  {
                 }
             });*/
         }
-        else
-        {
+        else {
             ActivityCompat.requestPermissions(getActivity(),
                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
         }
+
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -126,10 +125,10 @@ public class MapsFragment extends Fragment  {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
-
                         return true;
                     }
                 }
+
                 return false;
             }
         });
@@ -137,15 +136,12 @@ public class MapsFragment extends Fragment  {
         return view;
     }
 
-
     private void getCurrentLocation() {
-
         Task<Location> task = client.getLastLocation();
         task.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                if(location!=null)
-                {
+                if(location!=null) {
                     supportMapFragment.getMapAsync(new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
@@ -199,15 +195,15 @@ public class MapsFragment extends Fragment  {
                                     ));
                                     googleMap.addMarker(markerOptions);
 
-
-                                    if (getAdd_flag() == 1){
+                                    if (getAdd_flag() == 1) {
                                         setAdd_flag(0);
                                         MapsFragmentDirections.ActionMapsToAddGame action_add = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude);
                                         AddGameFragment addGameFragment = new AddGameFragment();
                                         addGameFragment.setMapFlag(1);
                                         Navigation.findNavController(view).navigate(action_add);
                                     }
-                                    if (getEdit_flag() == 1){
+
+                                    if (getEdit_flag() == 1) {
                                         setEdit_flag(0);
                                         String title = MapsFragmentArgs.fromBundle(getArguments()).getGameTitle();
                                         String price = MapsFragmentArgs.fromBundle(getArguments()).getGamePrice();
@@ -217,24 +213,19 @@ public class MapsFragment extends Fragment  {
                                         editGameFragment.setMap_flag(1);
                                         Navigation.findNavController(view).navigate(action);
                                     }
-
                                 }
                             });
                         }
-
                     });
                 }
             }
         });
-
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-            if(requestCode==44)
-            {
-                if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED)
-                {
+            if(requestCode==44) {
+                if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED) {
                     getCurrentLocation();
                 }
             }
@@ -261,13 +252,11 @@ public class MapsFragment extends Fragment  {
         inflater.inflate(R.menu.map_menu, menu);
         MenuItem back_btn = menu.findItem(R.id.map_menu_back);
         super.onCreateOptionsMenu(menu,inflater);
-
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.map_menu_back:
                 if(view != null) {
                     Navigation.findNavController(view).popBackStack();
@@ -278,5 +267,4 @@ public class MapsFragment extends Fragment  {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
