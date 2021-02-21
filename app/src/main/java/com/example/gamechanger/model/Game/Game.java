@@ -52,7 +52,6 @@ public class Game {
     @SerializedName("longitude")
     private double longitude;
 
-
     @Ignore
     String ownedBy;
 
@@ -62,11 +61,7 @@ public class Game {
     @Ignore
     private long lastUpdated;
 
-
-
-    public Game(){
-
-    }
+    public Game(){ }
 
     public Game(String name, String price,@Nullable String imageURL) {
         this.name = name;
@@ -113,7 +108,6 @@ public class Game {
         this.price = price;
     }
 
-
     public String getId() {
         return id;
     }
@@ -145,8 +139,6 @@ public class Game {
     public void setLastUpdated(long lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
-
-
 
     public double getLatitude() {
         return latitude;
