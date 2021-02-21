@@ -82,14 +82,10 @@ public class EditGameFragment extends AddGameFragment {
         gamePrice.setText(price);
         gamePrice.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -209,7 +205,7 @@ public class EditGameFragment extends AddGameFragment {
 
         UpdateGame(view);
 
-        if(getMap_flag()==1){
+        if(getMap_flag() == 1){
             checkForNewCoordinates();
             this.setMap_flag(0);
         }
@@ -236,7 +232,6 @@ public class EditGameFragment extends AddGameFragment {
 
         gameTitle.setText(title);
         gamePrice.setText(price);*/
-
 
         return;
     }
@@ -296,13 +291,12 @@ public class EditGameFragment extends AddGameFragment {
                             e.printStackTrace();
 
                         }
-
-
                     }
                     break;
             }
         }
     }
+
     public void checkForNewCoordinates(){
         latitude = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
         longitude = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();
