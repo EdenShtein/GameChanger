@@ -32,7 +32,6 @@ public class UserProfileFragment extends Fragment {
     public GameViewModel gameViewModel;
     public RecyclerView gamesList_rv;
     SwipeRefreshLayout swipeRefreshLayout;
-
     ImageView back_btn;
     ImageView edit_btn;
 
@@ -109,7 +108,9 @@ public class UserProfileFragment extends Fragment {
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
 
@@ -119,13 +120,11 @@ public class UserProfileFragment extends Fragment {
                 String gameId = gamesAdapter.getGames(viewHolder.getAdapterPosition()).getId();
                 Model.instance.deleteFbGame(gameId, new Model.GameListener() {
                     @Override
-                    public void onComplete() {
-                    }
+                    public void onComplete() { }
                 });
                 Toast.makeText(getActivity(), "Post has been deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(gamesList_rv);
-
 
         gamesAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {
             @Override
@@ -140,9 +139,6 @@ public class UserProfileFragment extends Fragment {
                 Navigation.findNavController(view).navigate(action);
             }
         });
-
-
-
 
         /*FirestoreRecyclerOptions<Game> options = new FirestoreRecyclerOptions.Builder<Game>()
                 .setQuery(query, Game.class)
@@ -183,8 +179,6 @@ public class UserProfileFragment extends Fragment {
             }
         });*/
 
-
         return view;
     }
-
 }
