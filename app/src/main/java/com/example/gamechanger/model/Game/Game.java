@@ -96,8 +96,6 @@ public class Game {
         latitude = (double)map.get("latitude");
         longitude = (double)map.get("longitude");
         UserId = (String) map.get("OwnedBy");
-        /*Timestamp ts = (Timestamp)map.get("Posted At");
-        lastUpdated = ts.getSeconds();*/
     }
 
     public void setName(String name) {

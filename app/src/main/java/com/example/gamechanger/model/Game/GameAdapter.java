@@ -85,26 +85,9 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
             gameText.setText(game.getName());
             gameSubText.setText(game.getPrice());
             gameImage.setImageResource(R.drawable.gamechangersimple);
-            String url = game.getImageURL();
             if (game.getImageURL() != null) {
                 Picasso.get().load(game.getImageURL()).placeholder(R.drawable.gamechangersimple).into(gameImage);
             }
-
-           /* URL url = null;
-            try {
-                url = new URL(game.getImageURL());
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            BitmapDrawable drawable = (BitmapDrawable)gameImage.getDrawable();
-            Bitmap bmp = drawable.getBitmap();
-            try {
-                bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            gameImage.setImageBitmap(bmp);*/
 
             this.position = position;
         }
