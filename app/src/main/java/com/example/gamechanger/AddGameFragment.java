@@ -82,6 +82,7 @@ public class AddGameFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
+            //presenting dollar sign next to price
             @Override
             public void afterTextChanged(Editable s) {
                 if (!s.toString().matches("^\\$(\\d{1,3}(\\,\\d{3})*|(\\d+))(\\.\\d{2})?$")) {
@@ -114,11 +115,6 @@ public class AddGameFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_addGame_to_mainFeed);
-                /*MainFeedFragment mainFeedFragment = new MainFeedFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.addgame_layout, mainFeedFragment);
-                fragmentTransaction.commit();*/
             }
         });
 
@@ -157,38 +153,22 @@ public class AddGameFragment extends Fragment {
                                 AddGameFragmentDirections.ActionAddGameToMainFeed action = AddGameFragmentDirections
                                         .actionAddGameToMainFeed(title, price, url);
 
-                                /*Bundle bundle = new Bundle();
-                                bundle.putString("gameTitle",title);
-                                bundle.putString("gamePrice",price);
-                                bundle.putString("imageUrl",url);*/
-
-                                Toast.makeText(getActivity(), "image url saved", Toast.LENGTH_SHORT).show();
-
                                 MainFeedFragment mainFeedFragment = new MainFeedFragment();
                                 mainFeedFragment.setMainFeedFlag(1);
 
                                 Navigation.findNavController(view).navigate(action);
 
+                                //adding game to firebase collection
                                 Model.instance.addGame(game, new Model.GameListener() {
                                     @Override
                                     public void onComplete() {
-                                        //mainFeedFragment.GetDataFromFirebase();
                                         Toast.makeText(getActivity(), "Complete", Toast.LENGTH_SHORT).show();
-                                        /*
-                                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                        mainFeedFragment.setArguments(bundle);
-                                        fragmentTransaction.replace(R.id.addgame_layout, mainFeedFragment);
-                                        cancelBtn.setVisibility(v.GONE);
-                                        saveBtn.setVisibility(v.GONE);
-                                        fragmentTransaction.commit();*/
                                     }
                                 });
                             }
                         }
                     });
                 }
-                //Navigation.findNavController(view).navigate(R.id.action_addGame_to_mainFeed);
             }
         });
         mapBtn=view.findViewById(R.id.add_map);
@@ -201,18 +181,15 @@ public class AddGameFragment extends Fragment {
             }
         });
 
+        //updating main feed about new game
         if(getMapFlag() == 1) {
             checkForNewCoordinates();
             this.setMapFlag(0);
         }
-
         return view;
     }
 
     public void checkForNewCoordinates(){
-        /*Bundle bundle = getArguments();
-        latitude = bundle.getDouble("latitude",latitude);
-        longitude = bundle.getDouble("longitude",longitude);*/
         latitude = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
         longitude = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();
     }
@@ -273,10 +250,160 @@ public class AddGameFragment extends Fragment {
 
                         }
                     }
-
                     break;
             }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
