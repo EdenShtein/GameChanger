@@ -90,7 +90,6 @@ public class FireBaseModel {
                             Toast.makeText(activity, "FAIL login Firebase:" + task.getException(), Toast.LENGTH_SHORT).show();
                             listener.onComplete(false);
                         }
-                        // ...
                     }
                 });
     }
@@ -112,7 +111,6 @@ public class FireBaseModel {
                 }
             }
         });
-
     }
 
     public void uploadImage(Bitmap imageBmp, String name, final Model.UploadImageListener listener){
@@ -259,7 +257,6 @@ public class FireBaseModel {
                         }
                     }
                 }
-
                 listener.onComplete(userGames);
             }
         });
@@ -305,7 +302,6 @@ public class FireBaseModel {
                            String firstName = doc.getString("fName");
                            String LastName = doc.getString("lName");
                            String phoneNum = doc.getString("phone");
-                           String city = doc.getString("city");
                            listener.onComplete(firstName,LastName,phoneNum);
                        }
                    }
@@ -366,9 +362,7 @@ public class FireBaseModel {
                 });
     }
 
-
     public void getLatLong(final Model.LatLongListener listener) {
-        String id = Model.instance.getUserId();
         List<Double> latitudePoints = new LinkedList<Double>();
         List<Double> longitudePoints = new LinkedList<Double>();
         List<String> gameID = new LinkedList<String>();
@@ -436,7 +430,6 @@ public class FireBaseModel {
                         }
                     }
                 }
-
                 listener.onComplete(userGames);
             }
         });

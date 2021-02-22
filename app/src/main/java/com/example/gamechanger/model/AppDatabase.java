@@ -26,7 +26,6 @@ public abstract class AppDatabase extends RoomDatabase {
         if(instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     AppDatabase.class, "app_database").fallbackToDestructiveMigration()
-                    /*.addMigrations(MIGRATION_5_6)*/
                     .addCallback(roomCallBack)
                     .build();
         }
@@ -57,13 +56,4 @@ public abstract class AppDatabase extends RoomDatabase {
             return null;
         }
     }
-
-  /*  static final Migration MIGRATION_5_6 = new Migration(5, 6) {
-        @Override
-        public void migrate(SupportSQLiteDatabase database) {
-            database.execSQL("ALTER TABLE game_table"
-                    + " ADD COLUMN game_image STRING");
-        }
-    };*/
-
 }

@@ -27,19 +27,14 @@ public class Model {
     public final static Model instance = new Model();
     FireBaseModel fireBase = new FireBaseModel();
 
-
-
-    public void signUpFB(User user,String password)
-    {
+    public void signUpFB(User user,String password) {
         fireBase.signUpToFireBase(user,password,mActivity);
     }
 
-    public void logInFB(String email,String password, SuccessListener listener)
-    {
+    public void logInFB(String email,String password, SuccessListener listener) {
         fireBase.logInToFireBase(email,password,mActivity, listener);
     }
-    public void resetPass(String email, SuccessListener listener)
-    {
+    public void resetPass(String email, SuccessListener listener) {
         fireBase.forgotPassword(email,mActivity, listener);
     }
 
@@ -169,12 +164,11 @@ public class Model {
         void onComplete(String fname, String lname, String phone);
     }
 
-    public void getUserData(String userId, userDataListener listener){
+    public void getUserData(String userId, userDataListener listener) {
         fireBase.getUserData(userId,listener);
     }
 
-    public void searchGame(String query,FbGamesListener listener)
-    {
+    public void searchGame(String query,FbGamesListener listener) {
         fireBase.getSearchableGame(query,listener);
     }
 
