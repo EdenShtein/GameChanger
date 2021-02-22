@@ -29,7 +29,6 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
-
     }
 
     public Map<String, Object> toMap() {
