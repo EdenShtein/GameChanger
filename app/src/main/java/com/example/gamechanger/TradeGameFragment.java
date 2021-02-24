@@ -31,7 +31,6 @@ public class TradeGameFragment extends Fragment {
                // Navigation.findNavController(view).navigate(R.id.action_tradeGame_to_mainFeed);
             }
         });
-
         return view;
     }
 }
