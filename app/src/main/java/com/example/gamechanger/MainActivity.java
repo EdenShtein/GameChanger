@@ -10,7 +10,6 @@ import android.util.Log;
 
 import com.example.gamechanger.model.Model;
 
-
 public class MainActivity extends AppCompatActivity  {
 
     NavController navController;

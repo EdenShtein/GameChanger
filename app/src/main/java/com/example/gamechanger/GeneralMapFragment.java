@@ -76,7 +76,6 @@ public class GeneralMapFragment extends Fragment {
                                             });
                                        }
                                    }
-
                                     return true;
                                 }
                             });
@@ -94,7 +93,6 @@ public class GeneralMapFragment extends Fragment {
         inflater.inflate(R.menu.map_menu, menu);
         MenuItem back_btn = menu.findItem(R.id.map_menu_back);
         super.onCreateOptionsMenu(menu,inflater);
-
     }
 
     @Override
