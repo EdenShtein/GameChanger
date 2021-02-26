@@ -66,7 +66,6 @@ public class UserProfileFragment extends Fragment {
         gamesList_rv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         gamesList_rv.setLayoutManager(layoutManager);
-
         GameAdapter gamesAdapter = new GameAdapter();
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
@@ -158,8 +157,6 @@ public class UserProfileFragment extends Fragment {
             }
 
         };*/
-
-
 
 
         /*FirestoreRecyclerOptions<Game> options = Model.instance.getUserGames();

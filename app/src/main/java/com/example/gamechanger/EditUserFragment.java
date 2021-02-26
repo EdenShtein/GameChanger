@@ -75,3 +75,171 @@ public class EditUserFragment extends Fragment {
         return view;
     }
 }
+
+/*
+public void onClick(View v) {
+                String firstName = fName.getText().toString();
+                String lastName = lName.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
+                String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+                User user = new User(firstName,lastName,email,phoneNumber);
+
+                Model.instance.updateUser(user, new Model.AddUserListener() {
+                    @Override
+                    public void onComplete() {
+                        Navigation.findNavController(view).navigate(R.id.action_edituser_to_userProfile);
+                    }
+                });
+            }
+        });
+        public void onClick(View v) {
+                String firstName = fName.getText().toString();
+                String lastName = lName.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
+                String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+                User user = new User(firstName,lastName,email,phoneNumber);
+
+                Model.instance.updateUser(user, new Model.AddUserListener() {
+                    @Override
+                    public void onComplete() {
+                        Navigation.findNavController(view).navigate(R.id.action_edituser_to_userProfile);
+                    }
+                });
+            }
+        });
+        public void onClick(View v) {
+                String firstName = fName.getText().toString();
+                String lastName = lName.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
+                String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+                User user = new User(firstName,lastName,email,phoneNumber);
+
+                Model.instance.updateUser(user, new Model.AddUserListener() {
+                    @Override
+                    public void onComplete() {
+                        Navigation.findNavController(view).navigate(R.id.action_edituser_to_userProfile);
+                    }
+                });
+            }
+        });
+        public void onClick(View v) {
+                String firstName = fName.getText().toString();
+                String lastName = lName.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
+                String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+                User user = new User(firstName,lastName,email,phoneNumber);
+
+                Model.instance.updateUser(user, new Model.AddUserListener() {
+                    @Override
+                    public void onComplete() {
+                        Navigation.findNavController(view).navigate(R.id.action_edituser_to_userProfile);
+                    }
+                });
+            }
+        });
+        public void onClick(View v) {
+                String firstName = fName.getText().toString();
+                String lastName = lName.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
+                String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+                User user = new User(firstName,lastName,email,phoneNumber);
+
+                Model.instance.updateUser(user, new Model.AddUserListener() {
+                    @Override
+                    public void onComplete() {
+                        Navigation.findNavController(view).navigate(R.id.action_edituser_to_userProfile);
+                    }
+                });
+            }
+        });
+        public void onClick(View v) {
+                String firstName = fName.getText().toString();
+                String lastName = lName.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
+                String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+                User user = new User(firstName,lastName,email,phoneNumber);
+
+                Model.instance.updateUser(user, new Model.AddUserListener() {
+                    @Override
+                    public void onComplete() {
+                        Navigation.findNavController(view).navigate(R.id.action_edituser_to_userProfile);
+                    }
+                });
+            }
+        });
+        public void onClick(View v) {
+                String firstName = fName.getText().toString();
+                String lastName = lName.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
+                String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+                User user = new User(firstName,lastName,email,phoneNumber);
+
+                Model.instance.updateUser(user, new Model.AddUserListener() {
+                    @Override
+                    public void onComplete() {
+                        Navigation.findNavController(view).navigate(R.id.action_edituser_to_userProfile);
+                    }
+                });
+            }
+        });
+        public void onClick(View v) {
+                String firstName = fName.getText().toString();
+                String lastName = lName.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
+                String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+                User user = new User(firstName,lastName,email,phoneNumber);
+
+                Model.instance.updateUser(user, new Model.AddUserListener() {
+                    @Override
+                    public void onComplete() {
+                        Navigation.findNavController(view).navigate(R.id.action_edituser_to_userProfile);
+                    }
+                });
+            }
+        });
+        public void onClick(View v) {
+                String firstName = fName.getText().toString();
+                String lastName = lName.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
+                String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+                User user = new User(firstName,lastName,email,phoneNumber);
+
+                Model.instance.updateUser(user, new Model.AddUserListener() {
+                    @Override
+                    public void onComplete() {
+                        Navigation.findNavController(view).navigate(R.id.action_edituser_to_userProfile);
+                    }
+                });
+            }
+        });
+        public void onClick(View v) {
+                String firstName = fName.getText().toString();
+                String lastName = lName.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
+                String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+                User user = new User(firstName,lastName,email,phoneNumber);
+
+                Model.instance.updateUser(user, new Model.AddUserListener() {
+                    @Override
+                    public void onComplete() {
+                        Navigation.findNavController(view).navigate(R.id.action_edituser_to_userProfile);
+                    }
+                });
+            }
+        });
+        public void onClick(View v) {
+                String firstName = fName.getText().toString();
+                String lastName = lName.getText().toString();
+                String phoneNumber = phoneNum.getText().toString();
+                String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+                User user = new User(firstName,lastName,email,phoneNumber);
+
+                Model.instance.updateUser(user, new Model.AddUserListener() {
+                    @Override
+                    public void onComplete() {
+                        Navigation.findNavController(view).navigate(R.id.action_edituser_to_userProfile);
+                    }
+                });
+            }
+        });
+ */

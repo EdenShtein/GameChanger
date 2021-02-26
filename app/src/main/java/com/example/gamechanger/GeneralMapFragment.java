@@ -106,7 +106,6 @@ public class GeneralMapFragment extends Fragment {
 
             default:
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
