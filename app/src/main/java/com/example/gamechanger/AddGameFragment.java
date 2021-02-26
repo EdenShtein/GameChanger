@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.gamechanger.model.Game.Game;
+import com.example.gamechanger.model.Game.GameViewModel;
 import com.example.gamechanger.model.Model;
 
 import java.io.InputStream;
@@ -47,6 +49,8 @@ public class AddGameFragment extends Fragment {
 
     EditText gameTitle;
     EditText gamePrice;
+
+    private GameViewModel gameViewModel;
 
     ImageView avatarImageView;
     ImageButton editImage;
@@ -72,6 +76,8 @@ public class AddGameFragment extends Fragment {
 
         avatarImageView = view.findViewById(R.id.addgame_avatar_imv);
         editImage = view.findViewById(R.id.addgame_edit_image_btn);
+
+        gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
         gameTitle = view.findViewById(R.id.addgame_title_input);
         gamePrice = view.findViewById(R.id.addgame_price_input);
@@ -157,7 +163,7 @@ public class AddGameFragment extends Fragment {
                                 mainFeedFragment.setMainFeedFlag(1);
 
                                 Navigation.findNavController(view).navigate(action);
-
+                                gameViewModel.insert(game);
                                 //adding game to firebase collection
                                 Model.instance.addGame(game, new Model.GameListener() {
                                     @Override
