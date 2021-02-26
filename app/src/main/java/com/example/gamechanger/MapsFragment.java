@@ -197,7 +197,9 @@ public class MapsFragment extends Fragment  {
 
                                     if (getAdd_flag() == 1) {
                                         setAdd_flag(0);
-                                        MapsFragmentDirections.ActionMapsToAddGame action_add = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude);
+                                        String title = MapsFragmentArgs.fromBundle(getArguments()).getGameTitle();
+                                        String price = MapsFragmentArgs.fromBundle(getArguments()).getGamePrice();
+                                        MapsFragmentDirections.ActionMapsToAddGame action_add = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude, title, price);
                                         AddGameFragment addGameFragment = new AddGameFragment();
                                         addGameFragment.setMapFlag(1);
                                         Navigation.findNavController(view).navigate(action_add);
@@ -208,10 +210,10 @@ public class MapsFragment extends Fragment  {
                                         String title = MapsFragmentArgs.fromBundle(getArguments()).getGameTitle();
                                         String price = MapsFragmentArgs.fromBundle(getArguments()).getGamePrice();
                                         String Id = MapsFragmentArgs.fromBundle(getArguments()).getGameId();
-                                        MapsFragmentDirections.ActionMapsToEditGame action = MapsFragmentDirections.actionMapsToEditGame(title,price,null,Id,latLng.latitude,latLng.longitude);
+                                        MapsFragmentDirections.ActionMapsToEditGame action_edit = MapsFragmentDirections.actionMapsToEditGame(title,price,null,Id,latLng.latitude,latLng.longitude);
                                         EditGameFragment editGameFragment =  new EditGameFragment();
                                         editGameFragment.setMap_flag(1);
-                                        Navigation.findNavController(view).navigate(action);
+                                        Navigation.findNavController(view).navigate(action_edit);
                                     }
                                 }
                             });

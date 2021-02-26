@@ -90,6 +90,14 @@
             android:name="longitude"
             app:argType="java.lang.Double"
             app:nullable="true" />
+        <argument
+            android:name="gameAddTitle"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="gameAddPrice"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/forgetPassFragment"

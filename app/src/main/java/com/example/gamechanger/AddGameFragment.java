@@ -193,6 +193,8 @@ public class AddGameFragment extends Fragment {
     }
 
     public void checkForNewCoordinates(){
+        gameTitle.setText(AddGameFragmentArgs.fromBundle(getArguments()).getGameAddTitle());
+        gamePrice.setText(AddGameFragmentArgs.fromBundle(getArguments()).getGameAddPrice());
         latitude = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
         longitude = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();
     }

@@ -198,6 +198,8 @@ public class EditGameFragment extends AddGameFragment {
             public void onClick(View v) {
                 MapsFragment mapsFragment = new MapsFragment();
                 mapsFragment.setEdit_flag(1);
+                String title = gameTitle.getText().toString();
+                String price = gamePrice.getText().toString();
                 EditGameFragmentDirections.ActionEditGameToMaps action = EditGameFragmentDirections.actionEditGameToMaps(title,price,gameId);
                 Navigation.findNavController(view).navigate(action);
             }
@@ -298,8 +300,10 @@ public class EditGameFragment extends AddGameFragment {
     }
 
     public void checkForNewCoordinates(){
-        latitude = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
-        longitude = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();
+        gameTitle.setText(EditGameFragmentArgs.fromBundle(getArguments()).getEditGameTitle());
+        gamePrice.setText(EditGameFragmentArgs.fromBundle(getArguments()).getEditGamePrice());
+        latitude = EditGameFragmentArgs.fromBundle(getArguments()).getLatitude();
+        longitude = EditGameFragmentArgs.fromBundle(getArguments()).getLongitude();
     }
 
     public int getMap_flag() {
