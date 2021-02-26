@@ -177,7 +177,10 @@ public class AddGameFragment extends Fragment {
             public void onClick(View v) {
                 MapsFragment mapsFragment = new MapsFragment();
                 mapsFragment.setAdd_flag(1);
-                Navigation.findNavController(view).navigate(R.id.action_addGame_to_maps);
+                String title = gameTitle.getText().toString();
+                String price = gamePrice.getText().toString();
+                AddGameFragmentDirections.ActionAddGameToMaps action = AddGameFragmentDirections.actionAddGameToMaps(title,price,null);
+                Navigation.findNavController(view).navigate(action);
             }
         });
 
