@@ -60,8 +60,6 @@ public class AppRepository {
         return users;
     }
 
-    public String getImageFromRoom (int id) {return gameDao.getImageFromRoom(id);}
-
     //-----------------Games-------------------///
     private static class InsertGameAsyncTask extends AsyncTask<Game, Void, Void> {
         private GameDao gameDao;

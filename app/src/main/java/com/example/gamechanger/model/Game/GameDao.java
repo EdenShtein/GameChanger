@@ -28,7 +28,6 @@ public interface GameDao {
     @Query("SELECT * FROM game_table ORDER BY game_id ASC")
     LiveData<List<Game>> getAllGames();
 
-    @Query("SELECT game_image FROM game_table WHERE game_id=:gameId")
-    public String getImageFromRoom(int gameId);
+
 
 }

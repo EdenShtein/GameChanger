@@ -37,5 +37,5 @@ public class GameViewModel extends AndroidViewModel {
         return gamesList;
     }
 
-    public String getImageFromRoom (int id) {return repository.getImageFromRoom(id);}
+
 }

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import android.os.Handler;
@@ -15,8 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gamechanger.model.Game.GameViewModel;
 import com.example.gamechanger.model.Model;
 import com.example.gamechanger.model.User.User;
+import com.example.gamechanger.model.User.UserViewModel;
 
 import java.util.Random;
 
@@ -29,6 +32,8 @@ public class SignUpFragment extends Fragment {
     EditText lName;
     EditText phonenumber;
     Button signup;
+
+    UserViewModel userViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +51,8 @@ public class SignUpFragment extends Fragment {
         lName=view.findViewById(R.id.signup_lname_input);
         phonenumber=view.findViewById(R.id.signup_phonenumber_input);
 
+        userViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +67,7 @@ public class SignUpFragment extends Fragment {
                 else {
                     final User user = new User(firstName, lastName, useremail, phoneNumber);
                     Model.instance.signUpFB(user,userpassword);
+                    userViewModel.insert(user);
                     Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
                 }
             }
