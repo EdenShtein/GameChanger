@@ -9,6 +9,7 @@ import androidx.navigation.Navigation;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -199,7 +200,8 @@ public class MapsFragment extends Fragment  {
                                         setAdd_flag(0);
                                         String title = MapsFragmentArgs.fromBundle(getArguments()).getGameTitle();
                                         String price = MapsFragmentArgs.fromBundle(getArguments()).getGamePrice();
-                                        MapsFragmentDirections.ActionMapsToAddGame action_add = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude, title, price);
+                                        Bitmap bitmap = MapsFragmentArgs.fromBundle(getArguments()).getBitmap();
+                                        MapsFragmentDirections.ActionMapsToAddGame action_add = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude, title, price,bitmap);
                                         AddGameFragment addGameFragment = new AddGameFragment();
                                         addGameFragment.setMapFlag(1);
                                         Navigation.findNavController(view).navigate(action_add);

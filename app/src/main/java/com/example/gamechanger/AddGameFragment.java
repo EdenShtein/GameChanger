@@ -52,6 +52,8 @@ public class AddGameFragment extends Fragment {
 
     private GameViewModel gameViewModel;
 
+    Bitmap bitmap;
+
     ImageView avatarImageView;
     ImageButton editImage;
     ImageView mapBtn;
@@ -185,10 +187,14 @@ public class AddGameFragment extends Fragment {
                 mapsFragment.setAdd_flag(1);
                 String title = gameTitle.getText().toString();
                 String price = gamePrice.getText().toString();
-                AddGameFragmentDirections.ActionAddGameToMaps action = AddGameFragmentDirections.actionAddGameToMaps(title,price,null);
+                AddGameFragmentDirections.ActionAddGameToMaps action = AddGameFragmentDirections.actionAddGameToMaps(title,price,null,bitmap);
                 Navigation.findNavController(view).navigate(action);
             }
         });
+
+
+
+
 
         //updating main feed about new game
         if(getMapFlag() == 1) {
@@ -201,6 +207,7 @@ public class AddGameFragment extends Fragment {
     public void checkForNewCoordinates(){
         gameTitle.setText(AddGameFragmentArgs.fromBundle(getArguments()).getGameAddTitle());
         gamePrice.setText(AddGameFragmentArgs.fromBundle(getArguments()).getGameAddPrice());
+        avatarImageView.setImageBitmap(AddGameFragmentArgs.fromBundle(getArguments()).getBitmap());
         latitude = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
         longitude = AddGameFragmentArgs.fromBundle(getArguments()).getLongitude();
     }
@@ -246,6 +253,7 @@ public class AddGameFragment extends Fragment {
                 case 0:
                     if (resultCode == RESULT_OK && data != null) {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
+                        bitmap = selectedImage;
                         avatarImageView.setImageBitmap(selectedImage);
                     }
                     break;
@@ -255,6 +263,7 @@ public class AddGameFragment extends Fragment {
                             final Uri imageUri = data.getData();
                             final InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
                             final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                            bitmap = selectedImage;
                             avatarImageView.setImageBitmap(selectedImage);
                         } catch (Exception e) {
                             e.printStackTrace();
