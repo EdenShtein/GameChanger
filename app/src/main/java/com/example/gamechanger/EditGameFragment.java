@@ -90,6 +90,10 @@ public class EditGameFragment extends AddGameFragment {
         gamePrice = view.findViewById(R.id.editgame_price_input);
         price = EditGameFragmentArgs.fromBundle(getArguments()).getEditGamePrice();
         gamePrice.setText(price);
+
+        latitude = EditGameFragmentArgs.fromBundle(getArguments()).getLatitude();
+        longitude = EditGameFragmentArgs.fromBundle(getArguments()).getLongitude();
+
         gamePrice.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }

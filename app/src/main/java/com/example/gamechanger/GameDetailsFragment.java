@@ -58,6 +58,9 @@ public class GameDetailsFragment extends Fragment {
     static int user_flag = 0;
     static int map_flag = 0;
 
+    double longitude;
+    double latitude;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -161,7 +164,7 @@ public class GameDetailsFragment extends Fragment {
             public void onClick(View v) {
                 String title = GameDetailsFragmentArgs.fromBundle(getArguments()).getGameDetailsTitle();
                 String price = GameDetailsFragmentArgs.fromBundle(getArguments()).getGameDetailsPrice();
-                GameDetailsFragmentDirections.ActionGameDetailsToEditGame action = GameDetailsFragmentDirections.actionGameDetailsToEditGame(title,price,imageUrl,gameId, null , null);
+                GameDetailsFragmentDirections.ActionGameDetailsToEditGame action = GameDetailsFragmentDirections.actionGameDetailsToEditGame(title,price,imageUrl,gameId, latitude , longitude);
                 Navigation.findNavController(view).navigate(action);
             }
         });
@@ -173,8 +176,8 @@ public class GameDetailsFragment extends Fragment {
         Model.instance.getGameData(gameId, new Model.GameDataListener() {
             @Override
             public void onComplete(Game game) {
-                double latitude = game.getLatitude();
-                double longitude = game.getLongitude();
+                 latitude = game.getLatitude();
+                 longitude = game.getLongitude();
                 gameMap.getMapAsync(new OnMapReadyCallback() {
                     @Override
                     public void onMapReady(GoogleMap googleMap) {
