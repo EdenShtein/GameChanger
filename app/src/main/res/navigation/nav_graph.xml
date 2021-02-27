@@ -98,10 +98,6 @@
             android:name="gameAddPrice"
             app:argType="string"
             app:nullable="true" />
-        <argument
-            android:name="bitmap"
-            app:argType="android.graphics.Bitmap"
-            app:nullable="true" />
     </fragment>
     <fragment
         android:id="@+id/forgetPassFragment"
@@ -196,10 +192,6 @@
         <argument
             android:name="gameId"
             app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="bitmap"
-            app:argType="android.graphics.Bitmap"
             app:nullable="true" />
     </fragment>
     <fragment

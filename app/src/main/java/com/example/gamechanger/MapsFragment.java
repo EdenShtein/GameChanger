@@ -200,8 +200,7 @@ public class MapsFragment extends Fragment  {
                                         setAdd_flag(0);
                                         String title = MapsFragmentArgs.fromBundle(getArguments()).getGameTitle();
                                         String price = MapsFragmentArgs.fromBundle(getArguments()).getGamePrice();
-                                        Bitmap bitmap = MapsFragmentArgs.fromBundle(getArguments()).getBitmap();
-                                        MapsFragmentDirections.ActionMapsToAddGame action_add = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude, title, price,bitmap);
+                                        MapsFragmentDirections.ActionMapsToAddGame action_add = MapsFragmentDirections.actionMapsToAddGame(latLng.latitude,latLng.longitude, title, price);
                                         AddGameFragment addGameFragment = new AddGameFragment();
                                         addGameFragment.setMapFlag(1);
                                         Navigation.findNavController(view).navigate(action_add);

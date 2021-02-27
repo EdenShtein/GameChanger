@@ -200,7 +200,7 @@ public class EditGameFragment extends AddGameFragment {
                 mapsFragment.setEdit_flag(1);
                 String title = gameTitle.getText().toString();
                 String price = gamePrice.getText().toString();
-                EditGameFragmentDirections.ActionEditGameToMaps action = EditGameFragmentDirections.actionEditGameToMaps(title,price,gameId,null);
+                EditGameFragmentDirections.ActionEditGameToMaps action = EditGameFragmentDirections.actionEditGameToMaps(title,price,gameId);
                 Navigation.findNavController(view).navigate(action);
             }
         });
