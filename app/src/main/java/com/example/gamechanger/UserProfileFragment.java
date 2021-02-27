@@ -139,43 +139,6 @@ public class UserProfileFragment extends Fragment {
             }
         });
 
-        /*FirestoreRecyclerOptions<Game> options = new FirestoreRecyclerOptions.Builder<Game>()
-                .setQuery(query, Game.class)
-                .build();
-
-        adapter = new FirestoreRecyclerAdapter<Game, GameAdapter.GameHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull GameAdapter.GameHolder gameHolder, int i, @NonNull Game game) {
-                gameHolder.bindData(game,i);
-            }
-
-            @NonNull
-            @Override
-            public GameAdapter.GameHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mainfeed_list_row, parent, false);
-                return new GameAdapter.GameHolder(view);
-            }
-
-        };*/
-
-
-        /*FirestoreRecyclerOptions<Game> options = Model.instance.getUserGames();
-
-        FirestoreRecyclerAdapter adapter = Model.instance.FirebaseRecyclerAdapter(options);
-*/
-        ///-----------------------------------------------////
-
-        //gamesList_rv.setAdapter(adapter);
-
-        /*gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
-        gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
-            @Override
-            public void onChanged(List<Game> games) {
-                //update RecyclerView
-                gamesAdapter.setGamesData(games);
-            }
-        });*/
-
         return view;
     }
 }
