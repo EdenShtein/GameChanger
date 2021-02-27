@@ -30,6 +30,7 @@ import com.example.gamechanger.model.Game.Game;
 import com.example.gamechanger.model.Game.GameViewModel;
 import com.example.gamechanger.model.Model;
 import com.google.firebase.firestore.FieldValue;
+import com.squareup.picasso.Picasso;
 
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
@@ -57,6 +58,7 @@ public class EditGameFragment extends AddGameFragment {
     String title;
     String price;
     String ownerId;
+    String imgUrl;
 
     static int map_flag =0;
 
@@ -82,6 +84,8 @@ public class EditGameFragment extends AddGameFragment {
         gameTitle = view.findViewById(R.id.editgame_title_input);
         title = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameTitle();
         gameTitle.setText(title);
+
+        imgUrl = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameImage();
 
         gamePrice = view.findViewById(R.id.editgame_price_input);
         price = EditGameFragmentArgs.fromBundle(getArguments()).getEditGamePrice();
@@ -120,7 +124,12 @@ public class EditGameFragment extends AddGameFragment {
                 }
             }});
 
+        game = new Game(title, price, imgUrl);
         avatarImageView = view.findViewById(R.id.editgame_avatar_imv);
+        avatarImageView.setImageResource(R.drawable.gamechangersimple);
+        if (imgUrl != null) {
+            Picasso.get().load(imgUrl).placeholder(R.drawable.gamechangersimple).into(avatarImageView);
+        }
 
         editImageBtn = view.findViewById(R.id.editgame_edit_image_btn);
         editImageBtn.setOnClickListener(new View.OnClickListener() {
