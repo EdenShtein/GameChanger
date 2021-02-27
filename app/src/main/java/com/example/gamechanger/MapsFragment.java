@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -211,7 +212,8 @@ public class MapsFragment extends Fragment  {
                                         String title = MapsFragmentArgs.fromBundle(getArguments()).getGameTitle();
                                         String price = MapsFragmentArgs.fromBundle(getArguments()).getGamePrice();
                                         String Id = MapsFragmentArgs.fromBundle(getArguments()).getGameId();
-                                        MapsFragmentDirections.ActionMapsToEditGame action_edit = MapsFragmentDirections.actionMapsToEditGame(title,price,null,Id,latLng.latitude,latLng.longitude);
+                                        String gameImg = MapsFragmentArgs.fromBundle(getArguments()).getImgUrl();
+                                        MapsFragmentDirections.ActionMapsToEditGame action_edit = MapsFragmentDirections.actionMapsToEditGame(title,price,gameImg,Id,latLng.latitude,latLng.longitude);
                                         EditGameFragment editGameFragment =  new EditGameFragment();
                                         editGameFragment.setMap_flag(1);
                                         Navigation.findNavController(view).navigate(action_edit);

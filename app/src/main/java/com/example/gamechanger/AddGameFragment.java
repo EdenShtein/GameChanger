@@ -186,7 +186,7 @@ public class AddGameFragment extends Fragment {
                 mapsFragment.setAdd_flag(1);
                 String title = gameTitle.getText().toString();
                 String price = gamePrice.getText().toString();
-                AddGameFragmentDirections.ActionAddGameToMaps action = AddGameFragmentDirections.actionAddGameToMaps(title,price,null);
+                AddGameFragmentDirections.ActionAddGameToMaps action = AddGameFragmentDirections.actionAddGameToMaps(title,price,null, null);
                 Navigation.findNavController(view).navigate(action);
             }
         });

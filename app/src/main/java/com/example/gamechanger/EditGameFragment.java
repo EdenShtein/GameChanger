@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.TextWatcher;
@@ -32,6 +33,7 @@ import com.example.gamechanger.model.Model;
 import com.google.firebase.firestore.FieldValue;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -131,9 +133,8 @@ public class EditGameFragment extends AddGameFragment {
         game = new Game(title, price, imgUrl);
         avatarImageView = view.findViewById(R.id.editgame_avatar_imv);
         avatarImageView.setImageResource(R.drawable.gamechangersimple);
-        if (imgUrl != null) {
-            Picasso.get().load(imgUrl).placeholder(R.drawable.gamechangersimple).into(avatarImageView);
-        }
+        Picasso.get().load(imgUrl).placeholder(R.drawable.gamechangersimple).into(avatarImageView); // Getting image url and showing with picasso
+
 
         editImageBtn = view.findViewById(R.id.editgame_edit_image_btn);
         editImageBtn.setOnClickListener(new View.OnClickListener() {
@@ -221,12 +222,12 @@ public class EditGameFragment extends AddGameFragment {
                 mapsFragment.setEdit_flag(1);
                 String title = gameTitle.getText().toString();
                 String price = gamePrice.getText().toString();
-                EditGameFragmentDirections.ActionEditGameToMaps action = EditGameFragmentDirections.actionEditGameToMaps(title,price,gameId);
+                EditGameFragmentDirections.ActionEditGameToMaps action = EditGameFragmentDirections.actionEditGameToMaps(title,price,gameId,imgUrl);
                 Navigation.findNavController(view).navigate(action);
             }
         });
 
-        UpdateGame(view);
+        //UpdateGame(view);
 
         if(getMap_flag() == 1){
             checkForNewCoordinates();
@@ -325,6 +326,8 @@ public class EditGameFragment extends AddGameFragment {
         gamePrice.setText(EditGameFragmentArgs.fromBundle(getArguments()).getEditGamePrice());
         latitude = EditGameFragmentArgs.fromBundle(getArguments()).getLatitude();
         longitude = EditGameFragmentArgs.fromBundle(getArguments()).getLongitude();
+
+
     }
 
     public int getMap_flag() {
