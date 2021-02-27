@@ -74,7 +74,6 @@ public class UserProfileFragment extends Fragment {
             public void onChanged(List<Game> userGames) {
                 //update RecyclerView
                 gamesAdapter.setGamesData(userGames);
-                gamesList_rv.setAdapter(gamesAdapter);
             }
         });
 
