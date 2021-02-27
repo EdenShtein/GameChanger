@@ -72,12 +72,12 @@ public class MainFeedFragment extends Fragment {
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
         Model.instance.showAllFbGames(new Model.FbGamesListener() {
-                    @Override
-                    public void onComplete(List<Game> userGames) {
-                        gamesAdapter.setGamesData(userGames);
-                        gamesList_rv.setAdapter(gamesAdapter);
-                    }
-                });
+            @Override
+            public void onComplete(List<Game> userGames) {
+                gamesAdapter.setGamesData(userGames);
+                gamesList_rv.setAdapter(gamesAdapter);
+            }
+        });
 
         swipeRefreshLayout = view.findViewById(R.id.mainfeed_refresh_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.design_default_color_primary,

@@ -67,7 +67,7 @@ public class SignUpFragment extends Fragment {
                 else {
                     final User user = new User(firstName, lastName, useremail, phoneNumber);
                     Model.instance.signUpFB(user,userpassword);
-                    //userViewModel.insert(user);
+                    userViewModel.insert(user);
                     Navigation.findNavController(view).navigate(R.id.action_signup_to_signin);
                 }
             }

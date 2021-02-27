@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -13,8 +15,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.gamechanger.model.Game.GameViewModel;
 import com.example.gamechanger.model.Model;
 import com.example.gamechanger.model.User.User;
+import com.example.gamechanger.model.User.UserViewModel;
 
 public class EditUserFragment extends Fragment {
 
@@ -25,12 +29,16 @@ public class EditUserFragment extends Fragment {
     EditText lName;
     EditText phoneNum;
 
+    private UserViewModel userViewModel;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_edit_user, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Edit User");
+
+        userViewModel = ViewModelProviders.of(getActivity()).get(UserViewModel.class);
 
         back_btn = view.findViewById(R.id.edituser_back_btn);
         back_btn.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +70,7 @@ public class EditUserFragment extends Fragment {
                 String phoneNumber = phoneNum.getText().toString();
                 String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
                 User user = new User(firstName,lastName,email,phoneNumber);
+                userViewModel.update(user);
 
                 Model.instance.updateUser(user, new Model.AddUserListener() {
                     @Override

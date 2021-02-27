@@ -1,27 +1,46 @@
 package com.example.gamechanger.model.User;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.FieldValue;
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Entity(tableName = "user_table")
 public class User {
 
     @PrimaryKey
     @NonNull
-    private String id;
+    @ColumnInfo(name = "user_id")
+    @SerializedName("id")
+    private String id = UUID.randomUUID().toString();
 
+    @ColumnInfo(name = "first_name")
+    @SerializedName("fname")
     private String firstName;
+
+    @ColumnInfo(name = "last_name")
+    @SerializedName("lname")
     private String lastName;
+
+    @ColumnInfo(name = "email")
+    @SerializedName("email")
     private String email;
+
+    @ColumnInfo(name = "phoneNumber")
+    @SerializedName("phone")
     private String phoneNumber;
+
+    @Ignore
     private long lastUpdated;
 
     public User(String firstName, String lastName, String email, String phoneNumber) {

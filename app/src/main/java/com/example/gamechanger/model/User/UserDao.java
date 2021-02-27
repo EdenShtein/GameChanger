@@ -23,6 +23,6 @@ public interface UserDao {
     @Delete
     void delete(User user);
 
-    @Query("SELECT * FROM user_table ORDER BY id ASC")
+    @Query("SELECT * FROM user_table ORDER BY user_id ASC")
     LiveData<List<User>> getAllUsers();
 }

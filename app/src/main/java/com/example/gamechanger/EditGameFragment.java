@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import android.text.Editable;
@@ -26,6 +27,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.gamechanger.model.Game.Game;
+import com.example.gamechanger.model.Game.GameViewModel;
 import com.example.gamechanger.model.Model;
 import com.google.firebase.firestore.FieldValue;
 
@@ -49,6 +51,8 @@ public class EditGameFragment extends AddGameFragment {
     ImageView map_Btn;
     ImageView editImageBtn;
 
+    GameViewModel gameViewModel;
+
     String gameId;
     String title;
     String price;
@@ -69,6 +73,8 @@ public class EditGameFragment extends AddGameFragment {
         View view = inflater.inflate(R.layout.fragment_edit_game, container, false);
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Edit Game");
+
+        gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
         gameId = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameId();
         ownerId = Model.instance.getUserId();
@@ -146,7 +152,7 @@ public class EditGameFragment extends AddGameFragment {
                                 game = new Game(title, price, url);
                                 game.setLatitude(latitude);
                                 game.setLongitude(longitude);
-
+                                gameViewModel.update(game);
                                 //////////////////////
                                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                                 Date date = new Date();
