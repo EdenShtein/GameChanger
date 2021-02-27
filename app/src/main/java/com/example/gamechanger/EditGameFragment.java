@@ -159,7 +159,9 @@ public class EditGameFragment extends AddGameFragment {
                                 editGameMap = new HashMap<>();
                                 editGameMap.put("id", gameId);
                                 editGameMap.put("gameName", title);
+                                editGameMap.put("search",title.toLowerCase());
                                 editGameMap.put("gamePrice", price);
+                                editGameMap.put("price", Integer.parseInt(price.replace("$","")));
                                 editGameMap.put("imageUrl", url);
                                 editGameMap.put("Posted At", formatter.format(date));
                                 editGameMap.put("latitude", latitude);
