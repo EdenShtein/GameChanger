@@ -252,24 +252,4 @@ public class MapsFragment extends Fragment  {
         MapsFragment.edit_flag = edit_flag;
     }
 
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.map_menu, menu);
-        MenuItem back_btn = menu.findItem(R.id.map_menu_back);
-        super.onCreateOptionsMenu(menu,inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.map_menu_back:
-                if(view != null) {
-                    Navigation.findNavController(view).popBackStack();
-                }
-                break;
-
-            default:
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
