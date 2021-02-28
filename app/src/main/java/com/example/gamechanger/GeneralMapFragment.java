@@ -31,6 +31,7 @@ public class GeneralMapFragment extends Fragment {
     LinkedList<Double> latPoints = new LinkedList<>();
     LinkedList<Double> longPoints = new LinkedList<>();
     LinkedList<String> gameID = new LinkedList<>();
+
     private View view;
 
     SupportMapFragment supportMapFragment;
@@ -76,6 +77,7 @@ public class GeneralMapFragment extends Fragment {
                                             });
                                        }
                                    }
+
                                     return true;
                                 }
                             });
@@ -103,7 +105,6 @@ public class GeneralMapFragment extends Fragment {
                     Navigation.findNavController(view).popBackStack();
                 }
                 break;
-
             default:
         }
         return super.onOptionsItemSelected(item);

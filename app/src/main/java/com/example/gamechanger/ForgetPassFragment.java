@@ -40,8 +40,7 @@ public class ForgetPassFragment extends Fragment {
                 String userEmail = email.getText().toString();
                 if (userEmail.equals("")) {
                     Toast.makeText(getActivity(),"You must enter Email",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     Model.instance.resetPass(userEmail, new Model.SuccessListener() {
                         @Override
                         public void onComplete(boolean result) {

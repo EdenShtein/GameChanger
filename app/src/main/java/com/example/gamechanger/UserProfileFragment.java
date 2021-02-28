@@ -105,7 +105,6 @@ public class UserProfileFragment extends Fragment {
             }
         });
 
-
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView,
@@ -122,6 +121,7 @@ public class UserProfileFragment extends Fragment {
                     @Override
                     public void onComplete() { }
                 });
+
                 Toast.makeText(getActivity(), "Post has been deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(gamesList_rv);

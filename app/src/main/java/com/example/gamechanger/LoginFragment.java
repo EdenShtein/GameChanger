@@ -83,13 +83,5 @@ public class LoginFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-/*        if(Model.instance.isUserLogIn())
-        {
-            Fragment loginFragment = new LoginFragment();
-            FragmentManager fm = getParentFragmentManager();
-            FragmentTransaction transaction = fm.beginTransaction();
-            transaction.replace(R.id.mainFeedFragment,loginFragment);
-            transaction.commit();
-        }*/
     }
 }

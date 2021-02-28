@@ -58,17 +58,14 @@ public class MainFeedFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         view =  inflater.inflate(R.layout.fragment_main_feed, container, false);
-
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Games Feed");
         setHasOptionsMenu(true);
         gamesList_rv = view.findViewById(R.id.mainfeed_gameslist_rv);
         gamesList_rv.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         gamesList_rv.setLayoutManager(layoutManager);
-
         gamesAdapter = new GameAdapter();
         gamesList_rv.setAdapter(gamesAdapter);
-
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
         Model.instance.showAllFbGames(new Model.FbGamesListener() {
@@ -95,6 +92,7 @@ public class MainFeedFragment extends Fragment {
                         gamesList_rv.setAdapter(gamesAdapter);
                     }
                 });
+
                 addGamebtn.setEnabled(true);
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -128,52 +126,13 @@ public class MainFeedFragment extends Fragment {
             }
         });
 
-        /*gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
-            @Override
-            public void onChanged(List<Game> userGames) {
-                //update RecyclerView
-                //gamesAdapter.setGamesData(userGames);
-            }
-        });*/
-
-
         addGamebtn = view.findViewById(R.id.mainfeed_addgame_btn);
         addGamebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_addGame);
-                /*DecisionFragment decisionFragment = new DecisionFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.mainfeed_layout, decisionFragment);
-                addGamebtn.setVisibility(v.GONE);
-                fragmentTransaction.commit();*/
             }
         });
-
-      /*  if (getMainFeedFlag() == 1) {
-            checkForNewGame(view);
-            this.setMainFeedFlag(0);
-        }
-        if (getMainFeedFlag() == 2) {
-            checkForNewUpdate(view);
-            this.setMainFeedFlag(0);
-        }*/
-
-        // SWIPE OFF
-
-        /*new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                gameViewModel.delete(gamesAdapter.getGames(viewHolder.getAdapterPosition()));
-                Toast.makeText(getActivity(), "Post has been deleted", Toast.LENGTH_SHORT).show();
-            }
-        }).attachToRecyclerView(gamesList_rv);*/
 
         //For Details Game
         gamesAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {
@@ -186,8 +145,6 @@ public class MainFeedFragment extends Fragment {
                 String Id = game.getId();
                 String imageUrl = game.getImageURL();
                 MainFeedFragmentDirections.ActionMainFeedToGameDetails action = MainFeedFragmentDirections.actionMainFeedToGameDetails(title,price,Id,imageUrl);
-
-                //MainFeedFragmentDirections.ActionMainFeedToEditGame action = MainFeedFragmentDirections.actionMainFeedToEditGame(title, price, Id);
                 Navigation.findNavController(view).navigate(action);
             }
         });
@@ -205,34 +162,6 @@ public class MainFeedFragment extends Fragment {
         return view;
     }
 
-    private void checkForNewGame(View view) {
-
-        gameTitle = MainFeedFragmentArgs.fromBundle(getArguments()).getGameTitle();
-        gamePrice = MainFeedFragmentArgs.fromBundle(getArguments()).getGamePrice();
-        imageUrl = MainFeedFragmentArgs.fromBundle(getArguments()).getImageUrl();
-
-        /*Bundle bundle = getArguments();
-        gameTitle = bundle.getString("gameTitle");
-        gamePrice = bundle.getString("gamePrice");
-        imageUrl = bundle.getString("imageUrl");*/
-        //imageUrl = MainFeedFragmentArgs.fromBundle(getArguments()).getImageUrl();
-
-        Game game = new Game(gameTitle,gamePrice,imageUrl);
-        gameViewModel.insert(game);
-
-        return;
-    }
-
-    private void checkForNewUpdate(View view) {
-        gameTitle = MainFeedFragmentArgs.fromBundle(getArguments()).getGameTitle();
-        gamePrice = MainFeedFragmentArgs.fromBundle(getArguments()).getGamePrice();
-        imageUrl = MainFeedFragmentArgs.fromBundle(getArguments()).getImageUrl();
-        Game game = new Game(gameTitle,gamePrice,imageUrl);
-        gameViewModel.update(game);
-
-        return;
-    }
-
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.main_menu, menu);
@@ -242,8 +171,7 @@ public class MainFeedFragment extends Fragment {
             @Override
             //Called when we press search button
             public boolean onQueryTextSubmit(String query) {
-                if(query.isEmpty())
-                {
+                if(query.isEmpty()) {
                     Model.instance.showAllFbGames(new Model.FbGamesListener() {
                         @Override
                         public void onComplete(List<Game> userGames) {
@@ -251,8 +179,7 @@ public class MainFeedFragment extends Fragment {
                             gamesList_rv.setAdapter(gamesAdapter);
                         }
                     });
-                }
-                else {
+                } else {
                     Model.instance.searchGame(query, new Model.FbGamesListener() {
                         @Override
                         public void onComplete(List<Game> searchGames) {
@@ -261,8 +188,10 @@ public class MainFeedFragment extends Fragment {
                         }
                     });
                 }
+                
                 return false;
             }
+
             //Called as and when we type even a single letter
             @Override
             public boolean onQueryTextChange(String newText) {

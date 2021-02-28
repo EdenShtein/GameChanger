@@ -33,6 +33,7 @@ public abstract class AppDatabase extends RoomDatabase {
         return instance;
     }
 
+    // Fill the DB with data.
     private static RoomDatabase.Callback roomCallBack = new RoomDatabase.Callback(){
 
         public void onCreate(@NonNull SupportSQLiteDatabase db){

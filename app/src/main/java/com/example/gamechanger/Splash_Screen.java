@@ -15,7 +15,9 @@ import android.widget.ImageView;
 import com.example.gamechanger.model.Model;
 
 public class Splash_Screen extends AppCompatActivity {
+
     ImageView splash;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +31,12 @@ public class Splash_Screen extends AppCompatActivity {
             public void run() {
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
 
-                if(Model.instance.isUserLogIn())
+                if(Model.instance.isUserLogIn()) {
                     intent.putExtra("isLogin", true);
+                }
 
-                    startActivity(intent); // TODO is in if, if now tab+shift
-                    finish();
+                startActivity(intent);
+                finish();
             }
         },5000);
     }

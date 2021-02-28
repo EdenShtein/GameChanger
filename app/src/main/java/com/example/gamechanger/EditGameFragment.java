@@ -121,9 +121,11 @@ public class EditGameFragment extends AddGameFragment {
                     while (cashAmountBuilder.length() > 0 && cashAmountBuilder.charAt(0) == '0') {
                         cashAmountBuilder.deleteCharAt(0);
                     }
+
                     while (cashAmountBuilder.length() < 0) {
                         cashAmountBuilder.insert(0, '0');
                     }
+
                     cashAmountBuilder.insert(cashAmountBuilder.length() - 0, "");
 
                     gamePrice.removeTextChangedListener(this);
@@ -133,9 +135,6 @@ public class EditGameFragment extends AddGameFragment {
                     Selection.setSelection(gamePrice.getText(), cashAmountBuilder.toString().length() + 1);
 
                     gamePrice.addTextChangedListener(this);
-
-                    // getting the value as float
-                    //Float amount = Float.parseFloat(gamePrice.getText().toString().replace("$" ,""));
                 }
             }});
 
@@ -143,8 +142,8 @@ public class EditGameFragment extends AddGameFragment {
         avatarImageView = view.findViewById(R.id.editgame_avatar_imv);
         avatarImageView.setVisibility(View.INVISIBLE);
         avatarImageView.setImageResource(R.drawable.gamechangersimple);
-        Picasso.get().load(imgUrl).placeholder(R.drawable.gamechangersimple).into(avatarImageView); // Getting image url and showing with picasso
 
+        Picasso.get().load(imgUrl).placeholder(R.drawable.gamechangersimple).into(avatarImageView); // Getting image url and showing with picasso
 
         editImageBtn = view.findViewById(R.id.editgame_edit_image_btn);
         editImageBtn.setVisibility(View.INVISIBLE);
@@ -171,7 +170,6 @@ public class EditGameFragment extends AddGameFragment {
                 editImageBtn.setEnabled(true);
                 continueBtn.setVisibility(View.INVISIBLE);
                 continueBtn.setEnabled(false);
-
             }
         });
 
@@ -183,8 +181,7 @@ public class EditGameFragment extends AddGameFragment {
                 String price = gamePrice.getText().toString();
                 if (title.equals("") || price.equals("") || price.equals("$")) {
                     Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     BitmapDrawable drawable = (BitmapDrawable) avatarImageView.getDrawable();
                     Bitmap bitmap = drawable.getBitmap();
                     Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
@@ -193,12 +190,10 @@ public class EditGameFragment extends AddGameFragment {
                             if (url == null) {
                                 displayFailedError();
                             } else {
-
                                 game = new Game(title, price, url);
                                 game.setLatitude(latitude);
                                 game.setLongitude(longitude);
                                 gameViewModel.update(game);
-                                //////////////////////
                                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                                 Date date = new Date();
                                 editGameMap = new HashMap<>();
@@ -213,7 +208,6 @@ public class EditGameFragment extends AddGameFragment {
                                 editGameMap.put("longitude", longitude);
                                 editGameMap.put("OwnedBy", ownerId);
 
-
                                 Model.instance.editGame(gameId, editGameMap, new Model.GameListener() {
                                     @Override
                                     public void onComplete() {
@@ -222,29 +216,13 @@ public class EditGameFragment extends AddGameFragment {
                                         Toast.makeText(getActivity(), "Game Edited Successfully", Toast.LENGTH_SHORT).show();
                                     }
                                 });
-
-                            /*Model.instance.addGame(game, new Model.GameListener() {
-                                @Override
-                                public void onComplete() {
-
-                                    Toast.makeText(getActivity(), "Added Game", Toast.LENGTH_SHORT).show();
-                                    Model.instance.deleteFbGame(gameId, new Model.GameListener() {
-                                        @Override
-                                        public void onComplete() {
-                                            Toast.makeText(getActivity(), "Deleted Game", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
-
-                                }
-                            });*/
-
                             }
                         }
                     });
                 }
             }
-
         });
+
         map_Btn=view.findViewById(R.id.editgame_add_map);
         map_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -258,37 +236,12 @@ public class EditGameFragment extends AddGameFragment {
             }
         });
 
-        //UpdateGame(view);
-
-        if(getMap_flag() == 1){
+        if(getMap_flag() == 1) {
             checkForNewCoordinates();
             this.setMap_flag(0);
         }
 
-       /* editBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String title = gameTitle.getText().toString();
-                String price = gamePrice.getText().toString();
-                EditGameFragmentDirections.ActionEditGameToMainFeed action = EditGameFragmentDirections.actionEditGameToMainFeed(title, price);
-                MainFeedFragment mainFeedFragment = new MainFeedFragment();
-                mainFeedFragment.setMainFeedFlag(2);
-                Navigation.findNavController(view).navigate(action);
-            }
-        });*/
-
         return view;
-    }
-
-    private void UpdateGame(View view) {
-        /*String title = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameTitle();
-        String price = EditGameFragmentArgs.fromBundle(getArguments()).getEditGamePrice();
-        String id = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameId();
-
-        gameTitle.setText(title);
-        gamePrice.setText(price);*/
-
-        return;
     }
 
     private void displayFailedError() {
@@ -301,6 +254,7 @@ public class EditGameFragment extends AddGameFragment {
                 dialogInterface.dismiss();
             }
         });
+
         builder.show();
     }
 
@@ -322,6 +276,7 @@ public class EditGameFragment extends AddGameFragment {
                 }
             }
         });
+
         builder.show();
     }
 
@@ -357,8 +312,6 @@ public class EditGameFragment extends AddGameFragment {
         gamePrice.setText(EditGameFragmentArgs.fromBundle(getArguments()).getEditGamePrice());
         latitude = EditGameFragmentArgs.fromBundle(getArguments()).getLatitude();
         longitude = EditGameFragmentArgs.fromBundle(getArguments()).getLongitude();
-
-
     }
 
     public int getMap_flag() {

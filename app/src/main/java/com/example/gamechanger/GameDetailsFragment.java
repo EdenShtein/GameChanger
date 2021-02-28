@@ -81,8 +81,7 @@ public class GameDetailsFragment extends Fragment {
                 if (getUser_flag() == 1) {
                     setUser_flag(0);
                     Navigation.findNavController(view).navigate(R.id.userProfileFragment);
-                }
-                else {
+                } else {
                     Navigation.findNavController(view).navigate(R.id.mainFeedFragment);
                 }
             }
@@ -169,7 +168,6 @@ public class GameDetailsFragment extends Fragment {
             }
         });
 
-
         gameMap = (MapView) view.findViewById(R.id.gamedetails_mapview);
         gameMap.onCreate(savedInstanceState);
 
@@ -237,8 +235,7 @@ public class GameDetailsFragment extends Fragment {
         gameMap.onLowMemory();
     }
 
-    public void phoneCalls(String phoneNumber)
-    {
+    public void phoneCalls(String phoneNumber) {
         if(ActivityCompat.checkSelfPermission(getActivity(),Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(getActivity(),new String[]{Manifest.permission.CALL_PHONE},100);
             return;

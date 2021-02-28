@@ -69,7 +69,6 @@ public class FireBaseModel {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(activity, "User Failed To Create", Toast.LENGTH_SHORT).show();
                         }
-                        // ...
                     }
                 });
     }
@@ -336,7 +335,6 @@ public class FireBaseModel {
     }
 
     public void editGame(String gameId, Map<String,Object> map, Model.GameListener listener) {
-
         db.collection("Games").document(gameId)
                 .update(map).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
@@ -403,7 +401,7 @@ public class FireBaseModel {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()){
-                    for (QueryDocumentSnapshot querySnapshot : task.getResult()){
+                    for (QueryDocumentSnapshot querySnapshot : task.getResult()) {
                         Game game = new Game();
                         game.fromMap(querySnapshot.getData());
                         matchGames.add(game);

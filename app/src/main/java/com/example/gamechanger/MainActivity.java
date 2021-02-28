@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     @Override
-    public void onBackPressed(){ }
+    public void onBackPressed() { }
 
-    public void userIsLogin(){
+    public void userIsLogin() {
         navController.navigate(R.id.action_signin_to_mainFeed);
     }
 }

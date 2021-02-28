@@ -69,6 +69,7 @@ public class EditUserFragment extends Fragment {
                 String lastName = lName.getText().toString();
                 String phoneNumber = phoneNum.getText().toString();
                 String email = EditUserFragmentArgs.fromBundle(getArguments()).getEmail();
+
                 User user = new User(firstName,lastName,email,phoneNumber);
                 userViewModel.update(user);
 

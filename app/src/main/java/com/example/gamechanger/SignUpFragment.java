@@ -63,8 +63,7 @@ public class SignUpFragment extends Fragment {
                 String phoneNumber=phonenumber.getText().toString();
                 if (useremail.equals("") || userpassword.equals("")) {
                     Toast.makeText(getActivity(),"Please Enter Full Data",Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     final User user = new User(firstName, lastName, useremail, phoneNumber);
                     Model.instance.signUpFB(user,userpassword);
                     userViewModel.insert(user);

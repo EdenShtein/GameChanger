@@ -103,14 +103,14 @@ public class Model {
     }
 
     public interface FbGamesListener {
-            void onComplete(List<Game> userGames);
+        void onComplete(List<Game> userGames);
     }
 
-    public void showAllFbGames(final FbGamesListener listener){
+    public void showAllFbGames(final FbGamesListener listener) {
         fireBase.showAllFbGames(listener);
     }
 
-    public void showUserGames(final FbGamesListener listener){
+    public void showUserGames(final FbGamesListener listener) {
         fireBase.showUserGames(listener);
     }
 
@@ -118,23 +118,23 @@ public class Model {
         void onComplete(String data);
     }
 
-    public void getOwnerId(String gameId, StringListener data){
+    public void getOwnerId(String gameId, StringListener data) {
         fireBase.getOwnerId(gameId,data);
     }
 
-    public void getOwnerName(String ownerId, StringListener data){
+    public void getOwnerName(String ownerId, StringListener data) {
         fireBase.getOwnerName(ownerId,data);
     }
 
-    public void getGameDate(String gameId, StringListener data){
+    public void getGameDate(String gameId, StringListener data) {
         fireBase.getGameDate(gameId,data);
     }
 
-    public void getOwnerPhone(String ownerId, StringListener listener){
+    public void getOwnerPhone(String ownerId, StringListener listener) {
         fireBase.getOwnerPhone(ownerId,listener);
     }
 
-    public void deleteFbGame(String gameId, GameListener listener){
+    public void deleteFbGame(String gameId, GameListener listener) {
         fireBase.deleteFbGame(gameId,listener);
     }
 
@@ -142,8 +142,7 @@ public class Model {
         void onComplete(List<Double> latitudePoint,List<Double> longitudePoints,List<String> gameIDS);
     }
 
-    public void getLatLongPoint(LatLongListener listener)
-    {
+    public void getLatLongPoint(LatLongListener listener) {
         fireBase.getLatLong(listener);
     }
 
@@ -151,12 +150,11 @@ public class Model {
         void onComplete(Game game);
     }
 
-    public void getGameData(String gameID,GameDataListener listener)
-    {
+    public void getGameData(String gameID,GameDataListener listener) {
         fireBase.getGameDetails(gameID,listener);
     }
 
-    public void editGame(String gameId, Map<String, Object> map, GameListener listener){
+    public void editGame(String gameId, Map<String, Object> map, GameListener listener) {
         fireBase.editGame(gameId, map, listener);
     }
 
@@ -179,5 +177,4 @@ public class Model {
     public void sortByPrice(final FbGamesListener listener){
         fireBase.sortByPrice(listener);
     }
-
 }

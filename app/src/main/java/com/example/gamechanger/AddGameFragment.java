@@ -45,7 +45,9 @@ import static android.app.Activity.RESULT_OK;
 
 public class AddGameFragment extends Fragment {
     private View view;
+
     Game game;
+
     Button cancelBtn;
     Button saveBtn;
     Button continueBtn;
@@ -75,8 +77,7 @@ public class AddGameFragment extends Fragment {
     public void setMapFlag(int flag){ this.mapFlag = flag; }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          view = inflater.inflate(R.layout.fragment_add_game, container, false);
 
@@ -113,9 +114,11 @@ public class AddGameFragment extends Fragment {
                     while (cashAmountBuilder.length() > 0 && cashAmountBuilder.charAt(0) == '0') {
                         cashAmountBuilder.deleteCharAt(0);
                     }
+
                     while (cashAmountBuilder.length() < 0) {
                         cashAmountBuilder.insert(0, '0');
                     }
+
                     cashAmountBuilder.insert(cashAmountBuilder.length() - 0, "");
 
                     gamePrice.removeTextChangedListener(this);
@@ -125,9 +128,6 @@ public class AddGameFragment extends Fragment {
                     Selection.setSelection(gamePrice.getText(), cashAmountBuilder.toString().length() + 1);
 
                     gamePrice.addTextChangedListener(this);
-
-                    // getting the value as float
-                    //Float amount = Float.parseFloat(gamePrice.getText().toString().replace("$" ,""));
             }
         }});
 
@@ -150,9 +150,9 @@ public class AddGameFragment extends Fragment {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isMapClicked){
+                if (!isMapClicked) {
                     Toast.makeText(getActivity(),"Please Choose your location", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     isMapClicked = false;
                     continueBtn.setVisibility(View.INVISIBLE);
                     continueBtn.setEnabled(false);
@@ -167,9 +167,9 @@ public class AddGameFragment extends Fragment {
                     editImage.setEnabled(true);
                     prevText.setVisibility(View.VISIBLE);
                 }
-
             }
         });
+
         saveBtn = view.findViewById(R.id.addgame_save_btn);
         saveBtn.setVisibility(View.INVISIBLE);
         saveBtn.setEnabled(false);
@@ -180,13 +180,9 @@ public class AddGameFragment extends Fragment {
                 String price = gamePrice.getText().toString();
                 if (title.equals("") || price.equals("")) {
                     Toast.makeText(getActivity(),"Please Enter Full Data", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();
                     Bitmap bitmap = drawable.getBitmap();
-                    //final Game game= new Game(title,price,null);
-                    //AddGameFragmentDirections.ActionAddGameToMainFeed action= AddGameFragmentDirections
-                    // .actionAddGameToMainFeed(title, price, null);
                     Model.instance.uploadImage(bitmap, Model.instance.getUserId(), new Model.UploadImageListener() {
                         @Override
                         public void onComplete(String url) {
@@ -218,6 +214,7 @@ public class AddGameFragment extends Fragment {
                 }
             }
         });
+
         mapBtn=view.findViewById(R.id.add_map);
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,10 +234,11 @@ public class AddGameFragment extends Fragment {
             checkForNewCoordinates();
             this.setMapFlag(0);
         }
+
         return view;
     }
 
-    public void checkForNewCoordinates(){
+    public void checkForNewCoordinates() {
         gameTitle.setText(AddGameFragmentArgs.fromBundle(getArguments()).getGameAddTitle());
         gamePrice.setText(AddGameFragmentArgs.fromBundle(getArguments()).getGameAddPrice());
         latitude = AddGameFragmentArgs.fromBundle(getArguments()).getLatitude();
@@ -257,6 +255,7 @@ public class AddGameFragment extends Fragment {
                 dialogInterface.dismiss();
             }
         });
+
         builder.show();
     }
 
@@ -278,6 +277,7 @@ public class AddGameFragment extends Fragment {
                 }
             }
         });
+
         builder.show();
     }
 
@@ -300,7 +300,6 @@ public class AddGameFragment extends Fragment {
                             avatarImageView.setImageBitmap(selectedImage);
                         } catch (Exception e) {
                             e.printStackTrace();
-
                         }
                     }
                     break;

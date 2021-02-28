@@ -32,6 +32,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
         notifyDataSetChanged();
     }
 
+    // Create GameHolder for the adapter.
     @NonNull
     @Override
     public GameHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,6 +41,7 @@ public class GameAdapter extends RecyclerView.Adapter<GameAdapter.GameHolder> {
         return holder;
     }
 
+    // Bind data to the adapter.
     @Override
     public void onBindViewHolder(@NonNull GameHolder holder, int position) {
         Game currentGame = gamesData.get(position);
