@@ -56,6 +56,8 @@ public class AddGameFragment extends Fragment {
     TextView locationText;
     TextView prevText;
 
+    static boolean isMapClicked = false;
+
     private GameViewModel gameViewModel;
 
     ImageView avatarImageView;
@@ -148,18 +150,23 @@ public class AddGameFragment extends Fragment {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                continueBtn.setVisibility(View.INVISIBLE);
-                continueBtn.setEnabled(false);
-                saveBtn.setVisibility(View.VISIBLE);
-                saveBtn.setEnabled(true);
-                mapBtn.setVisibility(View.INVISIBLE);
-                mapBtn.setEnabled(false);
-                locationText.setVisibility(View.INVISIBLE);
-                avatarImageView.setVisibility(View.VISIBLE);
-                avatarImageView.setEnabled(true);
-                editImage.setVisibility(View.VISIBLE);
-                editImage.setEnabled(true);
-                prevText.setVisibility(View.VISIBLE);
+                if (!isMapClicked){
+                    Toast.makeText(getActivity(),"Please Choose your location", Toast.LENGTH_SHORT).show();
+                }else {
+                    isMapClicked = false;
+                    continueBtn.setVisibility(View.INVISIBLE);
+                    continueBtn.setEnabled(false);
+                    saveBtn.setVisibility(View.VISIBLE);
+                    saveBtn.setEnabled(true);
+                    mapBtn.setVisibility(View.INVISIBLE);
+                    mapBtn.setEnabled(false);
+                    locationText.setVisibility(View.INVISIBLE);
+                    avatarImageView.setVisibility(View.VISIBLE);
+                    avatarImageView.setEnabled(true);
+                    editImage.setVisibility(View.VISIBLE);
+                    editImage.setEnabled(true);
+                    prevText.setVisibility(View.VISIBLE);
+                }
 
             }
         });
@@ -215,6 +222,7 @@ public class AddGameFragment extends Fragment {
         mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                isMapClicked = true;
                 MapsFragment mapsFragment = new MapsFragment();
                 mapsFragment.setAdd_flag(1);
                 String title = gameTitle.getText().toString();
