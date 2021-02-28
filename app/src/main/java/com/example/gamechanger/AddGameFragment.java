@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gamechanger.model.Game.Game;
@@ -47,9 +48,13 @@ public class AddGameFragment extends Fragment {
     Game game;
     Button cancelBtn;
     Button saveBtn;
+    Button continueBtn;
 
     EditText gameTitle;
     EditText gamePrice;
+
+    TextView locationText;
+    TextView prevText;
 
     private GameViewModel gameViewModel;
 
@@ -76,7 +81,14 @@ public class AddGameFragment extends Fragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Add new Game");
 
         avatarImageView = view.findViewById(R.id.addgame_avatar_imv);
+        avatarImageView.setVisibility(View.INVISIBLE);
+        avatarImageView.setEnabled(false);
         editImage = view.findViewById(R.id.addgame_edit_image_btn);
+        editImage.setVisibility(View.INVISIBLE);
+        editImage.setEnabled(false);
+        locationText = view.findViewById(R.id.addgame_location_text);
+        prevText = view.findViewById(R.id.addgame_prev_text);
+        prevText.setVisibility(View.INVISIBLE);
 
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
@@ -132,7 +144,28 @@ public class AddGameFragment extends Fragment {
             }
         });
 
+        continueBtn = view.findViewById(R.id.addgame_continue_btn);
+        continueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                continueBtn.setVisibility(View.INVISIBLE);
+                continueBtn.setEnabled(false);
+                saveBtn.setVisibility(View.VISIBLE);
+                saveBtn.setEnabled(true);
+                mapBtn.setVisibility(View.INVISIBLE);
+                mapBtn.setEnabled(false);
+                locationText.setVisibility(View.INVISIBLE);
+                avatarImageView.setVisibility(View.VISIBLE);
+                avatarImageView.setEnabled(true);
+                editImage.setVisibility(View.VISIBLE);
+                editImage.setEnabled(true);
+                prevText.setVisibility(View.VISIBLE);
+
+            }
+        });
         saveBtn = view.findViewById(R.id.addgame_save_btn);
+        saveBtn.setVisibility(View.INVISIBLE);
+        saveBtn.setEnabled(false);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
