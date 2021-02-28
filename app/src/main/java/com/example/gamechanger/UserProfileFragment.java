@@ -67,13 +67,14 @@ public class UserProfileFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         gamesList_rv.setLayoutManager(layoutManager);
         GameAdapter gamesAdapter = new GameAdapter();
+        GameAdapter gamesAdapter2 = new GameAdapter();
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
         gameViewModel.getAllGames().observe(getViewLifecycleOwner(), new Observer<List<Game>>() {
             @Override
             public void onChanged(List<Game> userGames) {
                 //update RecyclerView
-                gamesAdapter.setGamesData(userGames);
+                gamesAdapter2.setGamesData(userGames);
             }
         });
 
