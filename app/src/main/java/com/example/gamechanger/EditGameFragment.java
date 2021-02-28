@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.gamechanger.model.Game.Game;
@@ -46,9 +47,13 @@ import static android.app.Activity.RESULT_OK;
 public class EditGameFragment extends AddGameFragment {
 
     Button saveBtn;
+    Button continueBtn;
 
     EditText gameTitle;
     EditText gamePrice;
+
+    TextView locationText;
+    TextView prevText;
 
     ImageView avatarImageView;
     ImageView map_Btn;
@@ -79,6 +84,10 @@ public class EditGameFragment extends AddGameFragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Edit Game");
 
         gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
+
+        locationText = view.findViewById(R.id.editgame_location_text);
+        prevText = view.findViewById(R.id.editgame_prev_text);
+        prevText.setVisibility(View.INVISIBLE);
 
         gameId = EditGameFragmentArgs.fromBundle(getArguments()).getEditGameId();
         ownerId = Model.instance.getUserId();
@@ -132,15 +141,37 @@ public class EditGameFragment extends AddGameFragment {
 
         game = new Game(title, price, imgUrl);
         avatarImageView = view.findViewById(R.id.editgame_avatar_imv);
+        avatarImageView.setVisibility(View.INVISIBLE);
         avatarImageView.setImageResource(R.drawable.gamechangersimple);
         Picasso.get().load(imgUrl).placeholder(R.drawable.gamechangersimple).into(avatarImageView); // Getting image url and showing with picasso
 
 
         editImageBtn = view.findViewById(R.id.editgame_edit_image_btn);
+        editImageBtn.setVisibility(View.INVISIBLE);
+        editImageBtn.setEnabled(false);
         editImageBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 editImage();
+            }
+        });
+
+        continueBtn = view.findViewById(R.id.editgame_continue_btn);
+        continueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveBtn.setVisibility(View.VISIBLE);
+                saveBtn.setEnabled(true);
+                locationText.setVisibility(View.INVISIBLE);
+                map_Btn.setVisibility(View.INVISIBLE);
+                map_Btn.setEnabled(false);
+                avatarImageView.setVisibility(View.VISIBLE);
+                avatarImageView.setEnabled(true);
+                editImageBtn.setVisibility(View.VISIBLE);
+                editImageBtn.setEnabled(true);
+                continueBtn.setVisibility(View.INVISIBLE);
+                continueBtn.setEnabled(false);
+
             }
         });
 
