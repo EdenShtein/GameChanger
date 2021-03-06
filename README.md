@@ -25,9 +25,6 @@ Our app will help with addressing these problems. The app will allow users to li
     <div class="col-sm">
      <p> <img src="Images/mainfeed.png" width="450" height="750"></p>
     </div>
-    <div class="col-sm">
-       <p> <img src="Images/mainfeed.png" width="450" height="750"></p>
-    </div>
   </div>
 </div>
 
