@@ -15,6 +15,10 @@ Our app will help with addressing these problems. The app will allow users to li
 4.	<b>Add new item page</b> – will contain all the relevant information about the game you wish to trade.
 5.	<b>Transaction page</b> – Users that will be matched together will be transferred to this page in order to discuss specifics about the trade, such as their wanted price, time and location of the trade. 
 
+
+## Images From App
+<p align="center"> <img src="Images/splash.png"> </p>
+
 ## Installation
 
 - Export git repositorie to andorid studio
