@@ -16,7 +16,7 @@ Our app will help with addressing these problems. The app will allow users to li
 5.	<b>Transaction page</b> – Users that will be matched together will be transferred to this page in order to discuss specifics about the trade, such as their wanted price, time and location of the trade. 
 
 ## Developed by:
-1. Or Levi
-2. Eden Shtein
-3. Rom Sanitovsky
-4. Omer Berger
+* **Eden Shtein** - [LinkedIn](https://www.linkedin.com/in/edenshtein/)
+* **Omer Berger** - [LinkedIn](https://www.linkedin.com/in/omerberger/)
+* **Or Levi** - [LinkedIn](https://www.linkedin.com/in/orlevi13/)
+* **Rom Sanitovsky** - [LinkedIn](https://www.linkedin.com/in/rom-sanitovsky-a38272197/)
