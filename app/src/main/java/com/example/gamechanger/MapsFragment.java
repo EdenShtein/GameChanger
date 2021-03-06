@@ -159,3 +159,345 @@ public class MapsFragment extends Fragment  {
     public void setEdit_flag(int edit_flag) { MapsFragment.edit_flag = edit_flag; }
 
 }
+
+/*
+supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });supportMapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.general_map);
+        setHasOptionsMenu(true);
+
+        client = LocationServices.getFusedLocationProviderClient(getActivity());
+
+        if(ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            getCurrentLocation();
+        } else {
+            ActivityCompat.requestPermissions(getActivity(),
+                   new String[]{Manifest.permission.ACCESS_FINE_LOCATION} ,44);
+        }
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });
+ */
