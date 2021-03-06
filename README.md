@@ -31,7 +31,7 @@ Our app will help with addressing these problems. The app will allow users to li
 
 ## Installation
 
-- Export git repositorie to andorid studio
+- Export git repository to Android Studio
 - Build and run the application on a physical device or andorid emulator
 
 ## Developed by:
