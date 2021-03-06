@@ -20,13 +20,13 @@ Our app will help with addressing these problems. The app will allow users to li
 ## Images From App
 
 <p float="left">
-  <img src="Images/splashscreen.png" width="450" height="750" />
-  <img src="Images/mainfeed.png" width="450" height="750" /> 
+  <img src="Images/splashscreen.png" width="400" height="750" />
+  <img src="Images/mainfeed.png" width="400" height="750" /> 
 </p>
 
 <p float="left">
-  <img src="Images/gamedetails.png" width="450" height="750" />
-  <img src="Images/generalmap.png" width="450" height="750" /> 
+  <img src="Images/gamedetails.png" width="400" height="750" />
+  <img src="Images/generalmap.png" width="400" height="750" /> 
 </p>
 
 ## Installation
