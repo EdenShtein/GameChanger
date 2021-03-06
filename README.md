@@ -13,7 +13,8 @@ Our app will help with addressing these problems. The app will allow users to li
 2.	<b>User profile page</b> - will include the user's personal details and information, as well as the list of owned games. Other users will have an option to rate your profile based on your credibility in regards with past trade experience they had with you. 
 3.	<b>Main feed</b> – randomly shows content and most relevant games depending on the user's choices and can also be filtered.
 4.	<b>Add new item page</b> – will contain all the relevant information about the game you wish to trade.
-5.	<b>Transaction page</b> – Users that will be matched together will be transferred to this page in order to discuss specifics about the trade, such as their wanted price, time and location of the trade. 
+5.	<b>General map page</b> – User can see all the location of games that posted around the world.
+6.	<b>Game Details</b> - User can click on a game on the main feed and see his details. Name,Price, Location and click on contact to call to the one who posted the game.
 
 
 ## Images From App
