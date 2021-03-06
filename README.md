@@ -17,7 +17,7 @@ Our app will help with addressing these problems. The app will allow users to li
 
 
 ## Images From App
-<p align="left"> <img src="Images/splash.png" width="450" height="650"></p>
+<p align="left"> <img src="Images/splashscreen.png" width="450" height="650"></p>
 
 ## Installation
 
