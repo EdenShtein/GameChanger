@@ -17,16 +17,11 @@ Our app will help with addressing these problems. The app will allow users to li
 
 
 ## Images From App
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <p> <img src="Images/splashscreen.png" width="450" height="750"></p>
-    </div>
-    <div class="col-sm">
-     <p> <img src="Images/mainfeed.png" width="450" height="750"></p>
-    </div>
-  </div>
-</div>
+
+<p float="left">
+  <img src="Images/splashscreen.png" width="450" height="750" />
+  <img src="Images/mainfeed.png" width="450" height="750" /> 
+</p>
 
 ## Installation
 
