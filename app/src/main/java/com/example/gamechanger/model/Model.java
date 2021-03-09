@@ -177,4 +177,8 @@ public class Model {
     public void sortByPrice(final FbGamesListener listener){
         fireBase.sortByPrice(listener);
     }
+
+    public void ifGameExist(String gameId, SuccessListener listener){
+        fireBase.ifGameExist(gameId,listener);
+    }
 }

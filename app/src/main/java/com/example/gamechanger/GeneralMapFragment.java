@@ -64,17 +64,30 @@ public class GeneralMapFragment extends Fragment {
                                 public boolean onMarkerClick(Marker marker) {
                                     double lat = marker.getPosition().latitude;
                                     double longitude = marker.getPosition().longitude;
-                                   for(int i = 0; i < gameID.size(); i++) {
+                                    for(int i = 0; i < gameID.size(); i++) {
                                        if(latPoints.get(i) == lat && longPoints.get(i) == longitude) {
-                                            Model.instance.getGameData(gameID.get(i), new Model.GameDataListener() {
-                                                @Override
-                                                public void onComplete(Game game) {
-                                                    GeneralMapFragmentDirections.ActionGeneralMapToGameDetails action =
-                                                            GeneralMapFragmentDirections.actionGeneralMapToGameDetails(
-                                                                    game.getName(),game.getPrice(),game.getId(),game.getImageURL());
-                                                     Navigation.findNavController(view).navigate(action);
-                                                }
-                                            });
+                                           int gamePosition = i;
+                                           Model.instance.ifGameExist(gameID.get(i), new Model.SuccessListener() {
+                                               @Override
+                                               public void onComplete(boolean result) {
+                                                   if (result){
+                                                       Model.instance.getGameData(gameID.get(gamePosition), new Model.GameDataListener() {
+                                                           @Override
+                                                           public void onComplete(Game game) {
+                                                               GeneralMapFragmentDirections.ActionGeneralMapToGameDetails action =
+                                                                       GeneralMapFragmentDirections.actionGeneralMapToGameDetails(
+                                                                               game.getName(),game.getPrice(),game.getId(),game.getImageURL());
+                                                               Navigation.findNavController(view).navigate(action);
+                                                           }
+                                                       });
+                                                   }
+                                                   else{
+                                                       Navigation.findNavController(view).navigate(R.id.action_generalMap_to_error);
+                                                   }
+
+                                               }
+                                           });
+
                                        }
                                    }
 

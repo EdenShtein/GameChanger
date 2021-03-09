@@ -138,14 +138,25 @@ public class MainFeedFragment extends Fragment {
         gamesAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Game game, View v) {
-                GameDetailsFragment gameDetailsFragment = new GameDetailsFragment();
-                gameDetailsFragment.setFeed_flag(1);
-                String title = game.getName();
-                String price = game.getPrice();
-                String Id = game.getId();
-                String imageUrl = game.getImageURL();
-                MainFeedFragmentDirections.ActionMainFeedToGameDetails action = MainFeedFragmentDirections.actionMainFeedToGameDetails(title,price,Id,imageUrl);
-                Navigation.findNavController(view).navigate(action);
+                Model.instance.ifGameExist(game.getId(), new Model.SuccessListener() {
+                    @Override
+                    public void onComplete(boolean result) {
+                        if (result){
+                            GameDetailsFragment gameDetailsFragment = new GameDetailsFragment();
+                            gameDetailsFragment.setFeed_flag(1);
+                            String title = game.getName();
+                            String price = game.getPrice();
+                            String Id = game.getId();
+                            String imageUrl = game.getImageURL();
+                            MainFeedFragmentDirections.ActionMainFeedToGameDetails action = MainFeedFragmentDirections.actionMainFeedToGameDetails(title,price,Id,imageUrl);
+                            Navigation.findNavController(view).navigate(action);
+                        }
+                        else{
+                            Navigation.findNavController(view).navigate(R.id.action_mainFeed_to_error);
+                        }
+                    }
+                });
+
             }
         });
 

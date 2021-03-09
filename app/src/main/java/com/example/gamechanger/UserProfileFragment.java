@@ -130,14 +130,25 @@ public class UserProfileFragment extends Fragment {
         gamesAdapter.setOnItemClickListener(new GameAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Game game, View v) {
-                GameDetailsFragment gameDetailsFragment = new GameDetailsFragment();
-                gameDetailsFragment.setUser_flag(1);
-                String title = game.getName();
-                String price = game.getPrice();
-                String Id = game.getId();
-                String imageUrl = game.getImageURL();
-                UserProfileFragmentDirections.ActionUserProfileToGameDetails action = UserProfileFragmentDirections.actionUserProfileToGameDetails(title,price,Id,imageUrl);
-                Navigation.findNavController(view).navigate(action);
+                Model.instance.ifGameExist(game.getId(), new Model.SuccessListener() {
+                    @Override
+                    public void onComplete(boolean result) {
+                        if (result){
+                            GameDetailsFragment gameDetailsFragment = new GameDetailsFragment();
+                            gameDetailsFragment.setUser_flag(1);
+                            String title = game.getName();
+                            String price = game.getPrice();
+                            String Id = game.getId();
+                            String imageUrl = game.getImageURL();
+                            UserProfileFragmentDirections.ActionUserProfileToGameDetails action = UserProfileFragmentDirections.actionUserProfileToGameDetails(title,price,Id,imageUrl);
+                            Navigation.findNavController(view).navigate(action);
+                        }
+                        else {
+                            Navigation.findNavController(view).navigate(R.id.action_userProfile_to_error);
+                        }
+                    }
+                });
+
             }
         });
 
