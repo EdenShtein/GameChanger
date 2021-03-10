@@ -178,7 +178,7 @@ public class AddGameFragment extends Fragment {
             public void onClick(View v) {
                 String title = gameTitle.getText().toString();
                 String price = gamePrice.getText().toString();
-                if (title.equals("") || price.equals("")) {
+                if (title.equals("") || price.equals("$")) {
                     Toast.makeText(getActivity(),"Please Enter Full Data", Toast.LENGTH_SHORT).show();
                 } else {
                     BitmapDrawable drawable = (BitmapDrawable)avatarImageView.getDrawable();

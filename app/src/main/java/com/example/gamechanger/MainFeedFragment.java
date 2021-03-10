@@ -34,12 +34,9 @@ import java.util.List;
 
 public class MainFeedFragment extends Fragment {
 
-    private GameViewModel gameViewModel;
     public RecyclerView gamesList_rv;
     FloatingActionButton addGamebtn;
-    String gameTitle;
-    String gamePrice;
-    String imageUrl;
+
     ImageView mapBtn;
     ImageView nameSort;
     ImageView priceSort;
@@ -66,7 +63,6 @@ public class MainFeedFragment extends Fragment {
         gamesList_rv.setLayoutManager(layoutManager);
         gamesAdapter = new GameAdapter();
         gamesList_rv.setAdapter(gamesAdapter);
-        gameViewModel = ViewModelProviders.of(getActivity()).get(GameViewModel.class);
 
         Model.instance.showAllFbGames(new Model.FbGamesListener() {
             @Override

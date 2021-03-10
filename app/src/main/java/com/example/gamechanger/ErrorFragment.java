@@ -31,7 +31,6 @@ public class ErrorFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.map_menu, menu);
-        MenuItem back_btn = menu.findItem(R.id.map_menu_back);
         super.onCreateOptionsMenu(menu,inflater);
     }
 
